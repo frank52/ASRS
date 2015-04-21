@@ -45,15 +45,20 @@ public class GuiHandler extends JFrame {
 
                 System.out.println("Root element :" + doc.getDocumentElement().getNodeName());
 
-                System.out.println("Ordernummer : " + doc.getElementsByTagName("ordernummer").item(0).getTextContent());
-                System.out.println("Datum : " + doc.getElementsByTagName("datum").item(0).getTextContent());
+                String ordernummer = doc.getElementsByTagName("ordernummer").item(0).getTextContent();
+                String Datum =doc.getElementsByTagName("datum").item(0).getTextContent();
+
+                //String artikelnummer=doc.getElementsByTagName("artikelnr").item(i).getTextContent();
+
+                System.out.println("Ordernummer : " + ordernummer);
+                System.out.println("Datum : " + Datum);
 
                 NodeList artikelnr = doc.getElementsByTagName("artikelnr");
                 //System.out.println(artikelnr.getLength());
-
+                
                 for (int i = 0; i < artikelnr.getLength(); i++) {
                     int iplus1 = i + 1;
-                    System.out.println("Artikelnummer " + iplus1 + ": " + doc.getElementsByTagName("artikelnr").item(i).getTextContent());
+                    System.out.println("Artikelnummer " + iplus1 + ": " + doc.getElementsByTagName("artikelnr").item(i).getTextContent() );
                 }
 
                 // klant subcategorie
