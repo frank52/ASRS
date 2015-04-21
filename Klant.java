@@ -51,6 +51,10 @@ public class Klant {
     public String getAchternaam() {
         return achternaam;
     }
+
+    public String toString(){
+        return "Voornaam: " +voornaam +" \nAchtenaam: " + achternaam+ "\nAdres: "+ address+ "\nPostcode: "+ postcode+"\nWoonplaats: "+ woonplaats;
+    }
     
     
 }

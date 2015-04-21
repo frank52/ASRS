@@ -18,7 +18,10 @@ public class GuiHandler extends JFrame {
 
     private final JFileChooser jfc;
 
+
     public GuiHandler() {
+
+
         this.jfc = new JFileChooser();
         this.jfc.setFileSelectionMode(JFileChooser.FILES_ONLY);
         this.jfc.setFileFilter(new FileNameExtensionFilter("XML files (*.xml)", "xml"));
@@ -65,12 +68,16 @@ public class GuiHandler extends JFrame {
                     if (node.getNodeType() == Node.ELEMENT_NODE) {
 
                         Element eElement = (Element) node;
+                        String voornaam=eElement.getElementsByTagName("voornaam").item(0).getTextContent();
+                        String achternaam=eElement.getElementsByTagName("achternaam").item(0).getTextContent();
+                        String address=eElement.getElementsByTagName("adres").item(0).getTextContent();
+                        String postcode=eElement.getElementsByTagName("postcode").item(0).getTextContent();
+                        String woonplaats=eElement.getElementsByTagName("plaats").item(0).getTextContent();
 
-                        System.out.println("Voornaam : " + eElement.getElementsByTagName("voornaam").item(0).getTextContent());
-                        System.out.println("Achternaam : " + eElement.getElementsByTagName("achternaam").item(0).getTextContent());
-                        System.out.println("Adres : " + eElement.getElementsByTagName("adres").item(0).getTextContent());
-                        System.out.println("Postcode : " + eElement.getElementsByTagName("postcode").item(0).getTextContent());
-                        System.out.println("Plaats : " + eElement.getElementsByTagName("plaats").item(0).getTextContent());
+                        Klant klant1= new Klant(voornaam, achternaam, address, woonplaats, postcode );
+
+
+                        System.out.println(klant1);
                     }
                 }
                 System.out.println("----------------------------");
