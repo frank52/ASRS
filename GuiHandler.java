@@ -19,6 +19,7 @@ public class GuiHandler extends JFrame {
 
     private final JFileChooser jfc;
     ArrayList<String> artikelnummer;
+    Klant klant1;
 
 
     public GuiHandler() {
@@ -55,6 +56,8 @@ public class GuiHandler extends JFrame {
                 System.out.println("Ordernummer : " + ordernummer);
                 System.out.println("Datum : " + Datum);
 
+                Bestelling bestelling1 = new Bestelling(ordernummer, Datum, artikelnummer, klant1 );
+
                 NodeList artikelnr = doc.getElementsByTagName("artikelnr");
                 //System.out.println(artikelnr.getLength());
                 artikelnummer = new ArrayList<>();
@@ -82,7 +85,6 @@ public class GuiHandler extends JFrame {
                         String postcode=eElement.getElementsByTagName("postcode").item(0).getTextContent();
                         String woonplaats=eElement.getElementsByTagName("plaats").item(0).getTextContent();
 
-                        Klant klant1= new Klant(voornaam, achternaam, adres, woonplaats, postcode );
 
 
                         System.out.println(klant1);

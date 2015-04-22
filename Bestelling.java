@@ -21,7 +21,9 @@ public class Bestelling {
         this.klant = klant;
     }
 
-   
+   public String toString(){
+       return "";
+   }
 
     public Klant getKlant() {
         return klant;
