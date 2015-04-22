@@ -21,6 +21,7 @@ public class Bestelling {
         this.klant = klant;
     }
 
+    @Override
    public String toString(){
        return "Ordernummer: "+ ordernr +"\nDatum:"+ datum+"\nartikelnummers"+artikelnrs+ "\nKlant: "+klant.toString();
    }
