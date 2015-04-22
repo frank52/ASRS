@@ -67,7 +67,7 @@ public class Scherm extends JFrame implements ActionListener {
         p1.add(startSysteem, BorderLayout.WEST);
         startSysteem.addActionListener(this);
         genereerPakbon = new JButton("Genereer Pakbon");
-        startSysteem.setPreferredSize(new Dimension(200, 40));
+        genereerPakbon.setPreferredSize(new Dimension(200, 40));
         p1.add(genereerPakbon, BorderLayout.WEST);
         genereerPakbon.addActionListener(this);
 
