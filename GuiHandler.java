@@ -19,7 +19,7 @@ public class GuiHandler extends JFrame {
 
     private final JFileChooser jfc;
     ArrayList<String> artikelnummer;
-    Klant klant1;
+    Klant klant;
 
 
     public GuiHandler() {
@@ -37,60 +37,37 @@ public class GuiHandler extends JFrame {
         if (xmlFile != null) {
 
             try {
-
+                
+                //setup
                 DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
                 DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
                 Document doc = dBuilder.parse(xmlFile);
-
-                            //optional, but recommended
-                //read this - http://stackoverflow.com/questions/13786607/normalization-in-dom-parsing-with-java-how-does-it-work
                 doc.getDocumentElement().normalize();
-
-                System.out.println("Root element :" + doc.getDocumentElement().getNodeName());
-
+                
+                
+                //xml waarden in attributen stoppen
                 String ordernummer = doc.getElementsByTagName("ordernummer").item(0).getTextContent();
-                String Datum =doc.getElementsByTagName("datum").item(0).getTextContent();
-
-                //String artikelnummer=doc.getElementsByTagName("artikelnr").item(i).getTextContent();
-
-                System.out.println("Ordernummer : " + ordernummer);
-                System.out.println("Datum : " + Datum);
-
-                Bestelling bestelling1 = new Bestelling(ordernummer, Datum, artikelnummer, klant1 );
-
+                int ordernr = Integer.parseInt(ordernummer);
+                
+                String datum =doc.getElementsByTagName("datum").item(0).getTextContent();
+                
                 NodeList artikelnr = doc.getElementsByTagName("artikelnr");
-                //System.out.println(artikelnr.getLength());
+                
                 artikelnummer = new ArrayList<>();
                 for (int i = 0; i < artikelnr.getLength(); i++) {
                     int iplus1 = i + 1;
                     artikelnummer.add(doc.getElementsByTagName("artikelnr").item(i).getTextContent());
                 }
-                System.out.println(artikelnummer);
-
-                // klant subcategorie
-                System.out.println("\n----------------------------");
-                NodeList klant = doc.getElementsByTagName("klant");
-                for (int temp = 0; temp < klant.getLength(); temp++) {
-                    //System.out.println(klant.getLength());        
-                    Node node = klant.item(temp);
-
-                    System.out.println("Current SubElement :" + node.getNodeName() + "\n");
-
-                    if (node.getNodeType() == Node.ELEMENT_NODE) {
-
-                        Element eElement = (Element) node;
-                        String voornaam=eElement.getElementsByTagName("voornaam").item(0).getTextContent();
-                        String achternaam=eElement.getElementsByTagName("achternaam").item(0).getTextContent();
-                        String adres=eElement.getElementsByTagName("adres").item(0).getTextContent();
-                        String postcode=eElement.getElementsByTagName("postcode").item(0).getTextContent();
-                        String woonplaats=eElement.getElementsByTagName("plaats").item(0).getTextContent();
-
-
-
-                        System.out.println(klant1);
-                    }
-                }
-                System.out.println("----------------------------");
+                
+                //xml waarden in klasse Klant stoppen
+                subcatKlantUitlezen(doc);
+                
+                //attributen in klasse Bestelling stoppen
+                Bestelling bestelling = new Bestelling(ordernr, datum, artikelnummer, klant );
+                
+                System.out.println(bestelling);
+                
+                
 
             }
             catch (Exception e) {
@@ -108,5 +85,25 @@ public class GuiHandler extends JFrame {
             return this.jfc.getSelectedFile();
         }
         return null;
+    }
+    
+    public void subcatKlantUitlezen(Document doc) {
+        NodeList klantList = doc.getElementsByTagName("klant");
+        for (int temp = 0; temp < klantList.getLength(); temp++) {
+
+            Node node = klantList.item(temp);
+
+            if (node.getNodeType() == Node.ELEMENT_NODE) {
+
+                Element eElement = (Element) node;
+                String voornaam = eElement.getElementsByTagName("voornaam").item(0).getTextContent();
+                String achternaam = eElement.getElementsByTagName("achternaam").item(0).getTextContent();
+                String adres = eElement.getElementsByTagName("adres").item(0).getTextContent();
+                String postcode = eElement.getElementsByTagName("postcode").item(0).getTextContent();
+                String woonplaats = eElement.getElementsByTagName("plaats").item(0).getTextContent();
+
+                klant = new Klant(voornaam, achternaam, adres, woonplaats, postcode);
+            }
+        }
     }
 }
