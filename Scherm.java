@@ -26,6 +26,7 @@ public class Scherm extends JFrame implements ActionListener {
     private JButton selecteerXML;
     private JButton stopSysteem;
     private JButton startSysteem;
+    private JButton genereerPakbon;
     private JTabbedPane jTabbedPane1;
     private JTable table1;
     private JScrollPane jScrollPane1;
@@ -65,6 +66,10 @@ public class Scherm extends JFrame implements ActionListener {
         startSysteem.setPreferredSize(new Dimension(200, 40));
         p1.add(startSysteem, BorderLayout.WEST);
         startSysteem.addActionListener(this);
+        genereerPakbon = new JButton("Genereer Pakbon");
+        startSysteem.setPreferredSize(new Dimension(200, 40));
+        p1.add(startSysteem, BorderLayout.WEST);
+        genereerPakbon.addActionListener(this);
 
         //tabbladen
         JPanel p2 = new JPanel();
