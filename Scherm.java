@@ -70,8 +70,8 @@ public class Scherm extends JFrame implements ActionListener {
         JPanel p2 = new JPanel();
         p2.setLayout(new GridLayout(0, 1));
         table1 = new JTable();
-        table1.setModel(new DefaultTableModel(new Object[][]{{null, null, null, null, null}},
-                new String[]{"Ordernummer", "Huidig artikel", "Verstreken tijd", "Benodigde pakketten", "Klant"}));
+        table1.setModel(new DefaultTableModel(new Object[][]{{ null, null, null, null}},
+                new String[]{"Ordernummer", "Huidig artikel", "Benodigde pakketten", "Klant"}));
 	 	
 		
 		jScrollPane1  = new JScrollPane();
@@ -94,9 +94,7 @@ public class Scherm extends JFrame implements ActionListener {
     new String[]
 
     {
-        "Soort Bericht"
-    
-    , "Bericht"}));
+        "Type Bericht", "Bericht"}));
 		jScrollPane1  = new JScrollPane();
 
     jScrollPane1.setViewportView (table1);
@@ -110,23 +108,18 @@ public class Scherm extends JFrame implements ActionListener {
 		
 		JLabel simulatie;
 
-    simulatie  = new JLabel("simulatie");
+    simulatie  = new JLabel("Logboek robot");
 
     p4.add (simulatie, Component.LEFT_ALIGNMENT );
 
     table1  = new JTable();
 
     table1.setModel ( 
-        new DefaultTableModel(new Object[][]{{null
-        
-    
-    , null, null, null, null, null}} ,
+        new DefaultTableModel(new Object[][]{{ null, null, null, null, null}} ,
     new String[]
 
     {
-        "Ordernummer"
-    
-    , "Aantal artikelen", "Verstreken tijd", "Aantal bins", "Algoritme TSP", "Algormitme BPP"}));
+        "Ordernummer", "Aantal artikelen", "Aantal bins", "Algoritme TSP", "Algormitme BPP"}));
 		jScrollPane1  = new JScrollPane();
 
     jScrollPane1.setViewportView (table1);
