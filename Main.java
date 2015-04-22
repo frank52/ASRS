@@ -1,4 +1,5 @@
 package ASRS;
+import java.util.ArrayList;
 import javax.swing.JFrame;
 import javax.swing.UIManager;
 
@@ -15,7 +16,17 @@ public class Main {
 			// File Explorerer settings
 			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 			
-                        Pakbon pakbon = new Pakbon();
+                        
+                        //pakbon testen
+                        Klant klant = new Klant("Piet", " van Jansen", "Kalverstraat 17", "1012NX", "Amsterdam");
+                        ArrayList<Integer> artikelnrs = new ArrayList();
+                        artikelnrs.add(3);
+                        artikelnrs.add(5);
+                        artikelnrs.add(8);
+                        artikelnrs.add(1);
+                        artikelnrs.add(2);
+                        System.out.println(artikelnrs);
+                        Pakbon pakbon = new Pakbon(klant, 3, artikelnrs);
                         pakbon.generatePakbon();
 			
 			

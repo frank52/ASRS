@@ -16,8 +16,8 @@ public class Klant {
         this.voornaam = voornaam;
         this.achternaam = achternaam;
         this.adres = adres;
-        this.woonplaats = woonplaats;
         this.postcode = postcode;
+        this.woonplaats = woonplaats;
     }
 
     public String getAdres() {
