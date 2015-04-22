@@ -30,6 +30,11 @@ public class Scherm extends JFrame implements ActionListener {
     private JTabbedPane jTabbedPane1;
     private JTable table1;
     private JScrollPane jScrollPane1;
+    private DefaultTableModel model;
+    private DefaultTableModel model2;
+    private DefaultTableModel model3;
+    private DefaultTableModel model4;
+    private DefaultTableModel model5;
     final static boolean shouldFill = true;
     final static boolean shouldWeightX = true;
     final static boolean RIGHT_TO_LEFT = false;
@@ -74,37 +79,37 @@ public class Scherm extends JFrame implements ActionListener {
         //tabbladen
         JPanel p2 = new JPanel();
         p2.setLayout(new GridLayout(0, 1));
-        table1 = new JTable();
-        table1.setModel(new DefaultTableModel(new Object[][]{{ null, null, null, null}},
-                new String[]{"Ordernummer", "Huidig artikel", "Benodigde pakketten", "Klant"}));
-	 	
+        model = new DefaultTableModel();
+        table1 = new JTable(model);
+        model.addColumn("Ordernummer");
+        model.addColumn("Huidig Artikel");
+        model.addColumn("Benodigde Pakketten");
+        model.addColumn("Klant");
+
+
 		
 		jScrollPane1  = new JScrollPane();
 
     jScrollPane1.setViewportView (table1);
 
-    p2.add (jScrollPane1);
+    p2.add(jScrollPane1);
 
     JPanel p3 = new JPanel();
 
     p3.setLayout (
-    new GridLayout(0,1));	
-		table1  = new JTable();
+    new GridLayout(0,1));
+        model2 = new DefaultTableModel();
+		table1  = new JTable(model2);
+        model2.addColumn("Bericht");
+        model2.addColumn("Type bericht");
 
-    table1.setModel ( 
-        new DefaultTableModel(new Object[][]{{null
-        
-    
-    , null}} ,
-    new String[]
 
-    {
-        "Type Bericht", "Bericht"}));
+
 		jScrollPane1  = new JScrollPane();
 
     jScrollPane1.setViewportView (table1);
 
-    p3.add (jScrollPane1);
+    p3.add(jScrollPane1);
 
     JPanel p4 = new JPanel();
 
@@ -117,67 +122,54 @@ public class Scherm extends JFrame implements ActionListener {
 
     p4.add (simulatie, Component.LEFT_ALIGNMENT );
 
-    table1  = new JTable();
 
-    table1.setModel ( 
-        new DefaultTableModel(new Object[][]{{ null, null, null, null, null}} ,
-    new String[]
 
-    {
-        "Ordernummer", "Aantal artikelen", "Aantal bins", "Algoritme TSP", "Algormitme BPP"}));
+        model3 = new DefaultTableModel();
+        table1  = new JTable(model3);
+        model3.addColumn("Ordernummer");
+        model3.addColumn("Aantal artikelen");
+        model3.addColumn("Aantal bins");
+        model3.addColumn("Algoritme TSP");
+        model3.addColumn("Algoritme BPP");
+
+
 		jScrollPane1  = new JScrollPane();
 
     jScrollPane1.setViewportView (table1);
 
-    p4.add (jScrollPane1);
+    p4.add(jScrollPane1);
     JLabel suggesties;
 
-    suggesties  = new JLabel("suggesties");
+    suggesties  = new JLabel("Suggesties");
 
     p4.add (suggesties);
 
-    table1  = new JTable();
+        model4 = new DefaultTableModel();
+        table1  = new JTable(model4);
+        model4.addColumn("Product ID");
+        model4.addColumn("Huidige Locatie");
+        model4.addColumn("Voorgestelde Locatie");
 
-    table1.setModel ( 
-        new DefaultTableModel(new Object[][]{{null
-        
-    
-    , null, null}} ,
-    new String[]
-
-    {
-        "Product ID"
-    
-    , "Huidige locatie", "Voorgestelde locaties"}));
 		jScrollPane1  = new JScrollPane();
 
     jScrollPane1.setViewportView (table1);
 
-    p4.add (jScrollPane1);
+    p4.add(jScrollPane1);
     JLabel bestVerkocht;
 
-    bestVerkocht  = new JLabel("meest verkochte producten");
+    bestVerkocht  = new JLabel("Meest verkochte producten");
 
     p4.add (bestVerkocht);
 
-    table1  = new JTable();
+        model5 = new DefaultTableModel();
+        table1  = new JTable(model5);
+        model5.addColumn("Product ID");
 
-    table1.setModel ( 
-        new DefaultTableModel(new Object[][]{{null
-        }
-    }
-     ,
-    new String[]
-
-    {
-        "Product ID"
-    }
-    ));
 	jScrollPane1  = new JScrollPane();
 
     jScrollPane1.setViewportView (table1);
 
-    p4.add (jScrollPane1);
+    p4.add(jScrollPane1);
 
 //		JPanel p5 = new JPanel();
 //		p2.setLayout(new GridLayout(0,1));
@@ -203,6 +195,8 @@ public class Scherm extends JFrame implements ActionListener {
 //			xmlFilesBrowserActionPerformed();
 			GuiHandler dialoog= new GuiHandler();
 			dialoog.setVisible(false);
+
+            model.addRow(new String[]{"" + dialoog.getBestelling().getOrdernr() + ""});
 			
 			
 		}

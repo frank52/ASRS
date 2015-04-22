@@ -23,6 +23,7 @@ public class GuiHandler extends JFrame {
     Klant klant;
     String datum;
     ArrayList<String> artikelnummer;
+    Bestelling bestelling;
 
     public GuiHandler() {
         this.jfc = new JFileChooser();
@@ -62,7 +63,13 @@ public class GuiHandler extends JFrame {
                 subcatKlantUitlezen(doc);
 
                 //attributen in klasse Bestelling stoppen
-                Bestelling bestelling = new Bestelling(ordernr, datum, artikelnummer, klant);
+                //ArrayList<Bestellings> bestellingen = new ArrayList();
+
+                // for each bestelling ->
+                //      new Bestelling(uniek id, andere shit)
+
+
+                bestelling = new Bestelling(ordernr, datum, artikelnummer, klant);
 
                 System.out.println(bestelling);
 
@@ -72,6 +79,11 @@ public class GuiHandler extends JFrame {
             }
 
         }
+    }
+
+    public Bestelling getBestelling()
+    {
+        return bestelling;
     }
 
     public File getXmlFile() {
