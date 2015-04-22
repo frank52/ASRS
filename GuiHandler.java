@@ -1,6 +1,7 @@
 package ASRS;
 
 import java.io.File;
+import java.util.ArrayList;
 
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
@@ -17,6 +18,7 @@ import org.w3c.dom.NodeList;
 public class GuiHandler extends JFrame {
 
     private final JFileChooser jfc;
+    ArrayList<String> artikelnummer;
 
 
     public GuiHandler() {
@@ -55,11 +57,12 @@ public class GuiHandler extends JFrame {
 
                 NodeList artikelnr = doc.getElementsByTagName("artikelnr");
                 //System.out.println(artikelnr.getLength());
-                
+                artikelnummer = new ArrayList<>();
                 for (int i = 0; i < artikelnr.getLength(); i++) {
                     int iplus1 = i + 1;
-                    System.out.println("Artikelnummer " + iplus1 + ": " + doc.getElementsByTagName("artikelnr").item(i).getTextContent() );
+                    artikelnummer.add(doc.getElementsByTagName("artikelnr").item(i).getTextContent());
                 }
+                System.out.println(artikelnummer);
 
                 // klant subcategorie
                 System.out.println("\n----------------------------");
@@ -75,11 +78,11 @@ public class GuiHandler extends JFrame {
                         Element eElement = (Element) node;
                         String voornaam=eElement.getElementsByTagName("voornaam").item(0).getTextContent();
                         String achternaam=eElement.getElementsByTagName("achternaam").item(0).getTextContent();
-                        String address=eElement.getElementsByTagName("adres").item(0).getTextContent();
+                        String adres=eElement.getElementsByTagName("adres").item(0).getTextContent();
                         String postcode=eElement.getElementsByTagName("postcode").item(0).getTextContent();
                         String woonplaats=eElement.getElementsByTagName("plaats").item(0).getTextContent();
 
-                        Klant klant1= new Klant(voornaam, achternaam, address, woonplaats, postcode );
+                        Klant klant1= new Klant(voornaam, achternaam, adres, woonplaats, postcode );
 
 
                         System.out.println(klant1);

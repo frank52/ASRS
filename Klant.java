@@ -8,24 +8,24 @@ package ASRS;
 public class Klant {
     private String voornaam;
     private String achternaam;
-    private String address;
+    private String adres;
     private String woonplaats;
     private String postcode;
 
-    public Klant(String voornaam, String achternaam, String address, String woonplaats, String postcode) {
+    public Klant(String voornaam, String achternaam, String adres, String woonplaats, String postcode) {
         this.voornaam = voornaam;
         this.achternaam = achternaam;
-        this.address = address;
+        this.adres = adres;
         this.woonplaats = woonplaats;
         this.postcode = postcode;
     }
 
-    public String getAddress() {
-        return address;
+    public String getAdres() {
+        return adres;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
+    public void setAdres(String adres) {
+        this.adres = adres;
     }
 
     public String getWoonplaats() {
@@ -53,7 +53,7 @@ public class Klant {
     }
 
     public String toString(){
-        return "Voornaam: " +voornaam +" \nAchtenaam: " + achternaam+ "\nAdres: "+ address+ "\nPostcode: "+ postcode+"\nWoonplaats: "+ woonplaats;
+        return "Voornaam: " +voornaam +" \nAchtenaam: " + achternaam+ "\nAdres: "+ adres + "\nPostcode: "+ postcode+"\nWoonplaats: "+ woonplaats;
     }
     
     

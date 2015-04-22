@@ -4,19 +4,20 @@ package ASRS;/*
  * and open the template in the editor.
  */
 
-import java.util.Date;
 
+import java.util.ArrayList;
 
 public class Bestelling {
     private int ordernr;
-    private Date datum;
-    private int artikelnr;
     private Klant klant;
+    private String datum;
+    private ArrayList<String> artikelnrs;
 
-    public Bestelling(int ordernr, Date datum, int artikelnr, Klant klant) {
+
+    public Bestelling(int ordernr, String datum, ArrayList<String> artikelnrs, Klant klant) {
         this.ordernr = ordernr;
         this.datum = datum;
-        this.artikelnr = artikelnr;
+        this.artikelnrs = artikelnrs;
         this.klant = klant;
     }
 
@@ -30,12 +31,12 @@ public class Bestelling {
         return ordernr;
     }
 
-    public Date getDatum() {
+    public String getDatum() {
         return datum;
     }
 
-    public int getArtikelnr() {
-        return artikelnr;
+    public ArrayList<String> getArtikelnrs() {
+        return artikelnrs;
     
   
     }
