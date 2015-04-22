@@ -195,8 +195,8 @@ public class Scherm extends JFrame implements ActionListener {
 //			xmlFilesBrowserActionPerformed();
 			GuiHandler dialoog= new GuiHandler();
 			dialoog.setVisible(false);
-
-            model.addRow(new String[]{"" + dialoog.getBestelling().getOrdernr() + ""});
+            Bestelling best = dialoog.bestelling;
+            model.addRow(new String[]{"" + best.getOrdernr() + "", "NULL", "" + best.getArtikelnrs() + "", "" + best.getKlant().getVoornaam() + " " + best.getKlant().getAchternaam() });
 			
 			
 		}
