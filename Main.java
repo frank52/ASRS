@@ -15,6 +15,8 @@ public class Main {
 			// File Explorerer settings
 			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 			
+                        Pakbon pakbon = new Pakbon();
+                        pakbon.generatePakbon();
 			
 			
 	        
