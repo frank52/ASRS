@@ -52,6 +52,7 @@ public class Klant {
         return achternaam;
     }
 
+    @Override
     public String toString(){
         return "Voornaam: " +voornaam +" \nAchtenaam: " + achternaam+ "\nAdres: "+ adres + "\nPostcode: "+ postcode+"\nWoonplaats: "+ woonplaats;
     }
