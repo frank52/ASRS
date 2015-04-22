@@ -22,7 +22,7 @@ public class Bestelling {
     }
 
    public String toString(){
-       return "Ordernummer: "+ ordernr +"\nDatum:"+ datum+"\nartikelnummers"+artikelnrs+ "Klant: "+klant.toString();
+       return "Ordernummer: "+ ordernr +"\nDatum:"+ datum+"\nartikelnummers"+artikelnrs+ "\nKlant: "+klant.toString();
    }
 
     public Klant getKlant() {
