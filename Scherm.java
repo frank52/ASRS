@@ -17,6 +17,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 import javax.swing.JTable;
+import javax.swing.border.Border;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
 
@@ -35,6 +36,7 @@ public class Scherm extends JFrame implements ActionListener {
     private DefaultTableModel model3;
     private DefaultTableModel model4;
     private DefaultTableModel model5;
+    private DefaultTableModel model6;
     final static boolean shouldFill = true;
     final static boolean shouldWeightX = true;
     final static boolean RIGHT_TO_LEFT = false;
@@ -78,7 +80,16 @@ public class Scherm extends JFrame implements ActionListener {
 
         //tabbladen
         JPanel p2 = new JPanel();
-        p2.setLayout(new GridLayout(0, 1));
+        p2.setLayout(new BorderLayout());
+        JPanel p5 =  new JPanel();
+        p5.setLayout(new GridLayout(0, 10));
+        JLabel geplandeOrders= new JLabel("Geplande Orders");
+        p5.add(geplandeOrders);
+        JLabel niks = new JLabel("");
+        p5.add(niks);
+        JLabel huidgeOrder = new JLabel("Huidige Order");
+        p5.add(huidgeOrder);
+        p2.add(p5, BorderLayout.NORTH);
         model = new DefaultTableModel();
         table1 = new JTable(model);
         model.addColumn("Ordernummer");
@@ -86,13 +97,22 @@ public class Scherm extends JFrame implements ActionListener {
         model.addColumn("Benodigde Pakketten");
         model.addColumn("Klant");
 
+        model6 = new DefaultTableModel();
+        JTable table2= new JTable(model6);
+        model6.addColumn("Ordernummer");
 
-		
+        JScrollPane jScrollPane2 = new JScrollPane();
+        jScrollPane2.setViewportView(table2);
+        jScrollPane2.setPreferredSize(new Dimension(150,700));
+
 		jScrollPane1  = new JScrollPane();
+        jScrollPane1.setPreferredSize(new Dimension(880, 700));
 
-    jScrollPane1.setViewportView (table1);
 
-    p2.add(jScrollPane1);
+        jScrollPane1.setViewportView(table1);
+
+        p2.add(jScrollPane1, BorderLayout.EAST);
+        p2.add(jScrollPane2, BorderLayout.WEST);
 
     JPanel p3 = new JPanel();
 
