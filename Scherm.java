@@ -7,6 +7,7 @@ import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
@@ -37,6 +38,7 @@ public class Scherm extends JFrame implements ActionListener {
     private DefaultTableModel model4;
     private DefaultTableModel model5;
     private DefaultTableModel model6;
+    private ArrayList<Bestelling> bestellingen;
     final static boolean shouldFill = true;
     final static boolean shouldWeightX = true;
     final static boolean RIGHT_TO_LEFT = false;
@@ -157,14 +159,14 @@ public class Scherm extends JFrame implements ActionListener {
 
 		jScrollPane1  = new JScrollPane();
 
-    jScrollPane1.setViewportView (table1);
+        jScrollPane1.setViewportView (table1);
 
-    p4.add(jScrollPane1);
-    JLabel suggesties;
+        p4.add(jScrollPane1);
+        JLabel suggesties;
 
-    suggesties  = new JLabel("Suggesties");
+        suggesties  = new JLabel("Suggesties");
 
-    p4.add (suggesties);
+        p4.add (suggesties);
 
         model4 = new DefaultTableModel();
         table1  = new JTable(model4);
@@ -174,49 +176,52 @@ public class Scherm extends JFrame implements ActionListener {
 
 		jScrollPane1  = new JScrollPane();
 
-    jScrollPane1.setViewportView (table1);
+        jScrollPane1.setViewportView (table1);
 
-    p4.add(jScrollPane1);
-    JLabel bestVerkocht;
+        p4.add(jScrollPane1);
+        JLabel bestVerkocht;
 
-    bestVerkocht  = new JLabel("Meest verkochte producten");
+        bestVerkocht  = new JLabel("Meest verkochte producten");
 
-    p4.add (bestVerkocht);
+        p4.add (bestVerkocht);
 
         model5 = new DefaultTableModel();
         table1  = new JTable(model5);
         model5.addColumn("Product ID");
 
-	jScrollPane1  = new JScrollPane();
+	    jScrollPane1  = new JScrollPane();
 
-    jScrollPane1.setViewportView (table1);
+        jScrollPane1.setViewportView (table1);
 
-    p4.add(jScrollPane1);
+        p4.add(jScrollPane1);
 
 //		JPanel p5 = new JPanel();
 //		p2.setLayout(new GridLayout(0,1));
-    jTabbedPane1  = new JTabbedPane();
+        jTabbedPane1  = new JTabbedPane();
 
-    jTabbedPane1.addTab (
+        jTabbedPane1.addTab (
 
-    "Huidige order", p2);
-    jTabbedPane1.addTab (
+        "Huidige order", p2);
+        jTabbedPane1.addTab (
 
-    "Meldingen", p3);
-    jTabbedPane1.addTab (
+        "Meldingen", p3);
+        jTabbedPane1.addTab (
 
-    "Statistieken", p4);
+        "Statistieken", p4);
 		//jTabbedPane1.addTab("Magazijn",p5);
 		
-    add(jTabbedPane1);
+        add(jTabbedPane1);
+        bestellingen= new ArrayList<Bestelling>();
 
 }
-@Override
+        @Override
         public void actionPerformed(ActionEvent e)  {
 		if(e.getSource()==selecteerXML){
 //			xmlFilesBrowserActionPerformed();
 			XmlParser dialoog= new XmlParser();
-			dialoog.setVisible(false);
+            bestellingen.add(dialoog.getBestelling());
+            System.out.println(bestellingen.get(0));
+            dialoog.setVisible(false);
             Bestelling best = dialoog.getBestelling();
 
             model.addRow(new String[]{"" + best.getOrdernr() + "", null , "" + best.getArtikelnrs() + "", "" + best.getKlant().getVoornaam() + " " + best.getKlant().getAchternaam() });

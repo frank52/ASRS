@@ -63,9 +63,9 @@ public class XmlParser extends JFrame {
                 subcatKlantUitlezen(doc);
 
                 //attributen in klasse Bestelling stoppen
-                //ArrayList<Bestellings> bestellingen = new ArrayList();
 
-                // for each bestelling ->
+
+
                 //      new Bestelling(uniek id, andere shit)
 
 
