@@ -201,19 +201,19 @@ public class Scherm extends JFrame implements ActionListener {
 //		p2.setLayout(new GridLayout(0,1));
         jTabbedPane1  = new JTabbedPane();
 
-        jTabbedPane1.addTab (
+        jTabbedPane1.addTab(
 
-        "Huidige order", p2);
-        jTabbedPane1.addTab (
+                "Huidige order", p2);
+        jTabbedPane1.addTab(
 
-        "Meldingen", p3);
+                "Meldingen", p3);
         jTabbedPane1.addTab(
 
                 "Statistieken", p4);
 		//jTabbedPane1.addTab("Magazijn",p5);
 		
         add(jTabbedPane1);
-        bestellingen= new ArrayList<Bestelling>();
+        bestellingen = new ArrayList<Bestelling>();
 
 }
         @Override
@@ -222,7 +222,19 @@ public class Scherm extends JFrame implements ActionListener {
 
 //			xmlFilesBrowserActionPerformed();
 			XmlParser dialoog= new XmlParser();
-            if(!bestellingen.contains(dialoog.getBestelling().getOrdernr())) {
+
+            boolean zitErin;
+            zitErin = false;
+
+            for(Bestelling b: bestellingen)
+            {
+                if(b.getOrdernr() == dialoog.getBestelling().getOrdernr())
+                {
+                    zitErin = true;
+                }
+
+            }
+            if(!zitErin) {
                 bestellingen.add(dialoog.getBestelling());
             }
             System.out.println(bestellingen);
