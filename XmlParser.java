@@ -71,7 +71,7 @@ public class XmlParser extends JFrame {
 
                 bestelling = new Bestelling(ordernr, datum, artikelnummer, klant);
 
-                System.out.println(bestelling);
+                //System.out.println(bestelling);
 
             }
             catch (Exception e) {

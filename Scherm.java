@@ -18,7 +18,6 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 import javax.swing.JTable;
-import javax.swing.border.Border;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
 
@@ -38,6 +37,7 @@ public class Scherm extends JFrame implements ActionListener {
     private DefaultTableModel model4;
     private DefaultTableModel model5;
     private DefaultTableModel model6;
+    int ii =0;
     private ArrayList<Bestelling> bestellingen;
     final static boolean shouldFill = true;
     final static boolean shouldWeightX = true;
@@ -102,6 +102,8 @@ public class Scherm extends JFrame implements ActionListener {
         model6 = new DefaultTableModel();
         JTable table2= new JTable(model6);
         model6.addColumn("Ordernummer");
+
+
 
         JScrollPane jScrollPane2 = new JScrollPane();
         jScrollPane2.setViewportView(table2);
@@ -205,9 +207,9 @@ public class Scherm extends JFrame implements ActionListener {
         jTabbedPane1.addTab (
 
         "Meldingen", p3);
-        jTabbedPane1.addTab (
+        jTabbedPane1.addTab(
 
-        "Statistieken", p4);
+                "Statistieken", p4);
 		//jTabbedPane1.addTab("Magazijn",p5);
 		
         add(jTabbedPane1);
@@ -217,17 +219,26 @@ public class Scherm extends JFrame implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e)  {
 		if(e.getSource()==selecteerXML){
+
 //			xmlFilesBrowserActionPerformed();
 			XmlParser dialoog= new XmlParser();
-            bestellingen.add(dialoog.getBestelling());
-            System.out.println(bestellingen.get(0));
+            if(!bestellingen.contains(dialoog.getBestelling().getOrdernr())) {
+                bestellingen.add(dialoog.getBestelling());
+            }
+            System.out.println(bestellingen);
             dialoog.setVisible(false);
             Bestelling best = dialoog.getBestelling();
 
             model.addRow(new String[]{"" + best.getOrdernr() + "", null , "" + best.getArtikelnrs() + "", "" + best.getKlant().getVoornaam() + " " + best.getKlant().getAchternaam() });
 			if(e.getSource()==selecteerXML){
-                model.removeRow(1);
+               if(ii >0){
+                   model.removeRow(1);
+               }
+                ii++;
             }
+
+            model6.addRow(new String[]{""+ best.getOrdernr()});
+
 			
 		}
 		
