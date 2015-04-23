@@ -193,7 +193,7 @@ public class Scherm extends JFrame implements ActionListener {
         public void actionPerformed(ActionEvent e)  {
 		if(e.getSource()==selecteerXML){
 //			xmlFilesBrowserActionPerformed();
-			GuiHandler dialoog= new GuiHandler();
+			XmlParser dialoog= new XmlParser();
 			dialoog.setVisible(false);
             Bestelling best = dialoog.bestelling;
 
