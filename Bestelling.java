@@ -12,6 +12,7 @@ public class Bestelling {
     private Klant klant;
     private String datum;
     private ArrayList<String> artikelnrs;
+    private int hoeveelheidPakketen;
 
 
     public Bestelling(int ordernr, String datum, ArrayList<String> artikelnrs, Klant klant) {
@@ -19,6 +20,14 @@ public class Bestelling {
         this.datum = datum;
         this.artikelnrs = artikelnrs;
         this.klant = klant;
+    }
+
+    public int getHoeveelheidPakketen() {
+        return hoeveelheidPakketen;
+    }
+
+    public void setHoeveelheidPakketen(int hoeveelheidPakketen) {
+        this.hoeveelheidPakketen = hoeveelheidPakketen;
     }
 
     @Override
