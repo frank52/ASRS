@@ -10,11 +10,15 @@ public class Pakbon {
     private int pakbonID;
     private Klant klant;
     private ArrayList<Integer> artikelnrs;
+    private int pakketnr;
+    private int hoeveelheidPakketen;
 
-    public Pakbon(Klant klant, int pakbonID, ArrayList<Integer> artikelnr) {
-        this.klant = klant;
+    public Pakbon(int pakbonID, Klant klant, ArrayList<Integer> artikelnrs, int pakketnr, int hoeveelheidPakketen) {
         this.pakbonID = pakbonID;
-        this.artikelnrs = artikelnr;
+        this.klant = klant;
+        this.artikelnrs = artikelnrs;
+        this.pakketnr = pakketnr;
+        this.hoeveelheidPakketen = hoeveelheidPakketen;
     }
 
     public Pakbon() {
