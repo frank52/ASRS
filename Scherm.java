@@ -128,9 +128,11 @@ public class Scherm extends JFrame implements ActionListener {
         table1  = new JTable(model3);
         model3.addColumn("Ordernummer");
         model3.addColumn("Aantal artikelen");
-        model3.addColumn("Aantal bins");
-        model3.addColumn("Algoritme TSP");
-        model3.addColumn("Algoritme BPP");
+        model3.addColumn("Aantal pakketten");
+        model3.addColumn("Klant");
+        model3.addColumn("Datum");
+        //model3.addColumn("Algoritme TSP");
+        //model3.addColumn("Algoritme BPP");
 
 
 		jScrollPane1  = new JScrollPane();
