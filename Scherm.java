@@ -228,12 +228,16 @@ public class Scherm extends JFrame implements ActionListener {
 
             for(Bestelling b: bestellingen)
             {
-                if(b.getOrdernr() == dialoog.getBestelling().getOrdernr())
-                {
-                    zitErin = true;
+                try {
+                    if (b.getOrdernr() == dialoog.getBestelling().getOrdernr()) {
+                        zitErin = true;
+                    }
                 }
-
+                catch(NullPointerException zz ){
+                    System.out.println("error");
+                }
             }
+
             if(!zitErin) {
                 bestellingen.add(dialoog.getBestelling());
             }
@@ -245,12 +249,17 @@ public class Scherm extends JFrame implements ActionListener {
 			if(e.getSource()==selecteerXML){
                if(ii >0){
                    model.removeRow(1);
+
                }
                 ii++;
             }
-
-            model6.addRow(new String[]{""+ best.getOrdernr()});
-
+            int aantalRijen = model6.getRowCount();
+            for(int i = aantalRijen -1; i>=0;i--){
+                model6.removeRow(i);
+            }
+            for(Bestelling b: bestellingen){
+            model6.addRow(new String[]{""+ b.getOrdernr()});
+            }
 			
 		}
 		
