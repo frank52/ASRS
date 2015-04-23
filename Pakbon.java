@@ -51,21 +51,21 @@ public class Pakbon {
 
     public void generatePakbon() {
         try {
-            File file = new File("Paklijst " + getPakbonID() + "van 5.txt");
-            FileWriter write = new FileWriter(file, false);
-            PrintWriter print = new PrintWriter(write);
+                File file = new File("Paklijst " + getPakbonID() + "van 5.txt");
+                FileWriter write = new FileWriter(file, false);
+                PrintWriter print = new PrintWriter(write);
 
-            //print inhoud
-            print.println("######################### Paklijst " + pakbonID + " #########################");
-            print.println("Aan: " + klant.getVoornaam() + " " + klant.getAchternaam() + ", " + klant.getAdres() + ", " + klant.getPostcode() + " " + klant.getWoonplaats());
-            print.println("");
-            print.println("Inhoud Pakket:");
+                //print inhoud
+                print.println("######################### Paklijst " + pakbonID + " #########################");
+                print.println("Aan: " + klant.getVoornaam() + " " + klant.getAchternaam() + ", " + klant.getAdres() + ", " + klant.getPostcode() + " " + klant.getWoonplaats());
+                print.println("");
+                print.println("Inhoud Pakket:");
 
-            int iPlus1;
-            for (int i = 0; i < artikelnrs.size(); i++) {
-                iPlus1 = i + 1;
-                print.println("Artikel " +  ": " + artikelnrs.get(i));
-            }
+                int iPlus1;
+                for (int i = 0; i < artikelnrs.size(); i++) {
+                    iPlus1 = i + 1;
+                    print.println("Artikel " +  ": " + artikelnrs.get(i));
+                }
 
             print.close();
         }
