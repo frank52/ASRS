@@ -47,7 +47,7 @@ public class Pakbon {
 
     public void generatePakbon() {
         try {
-            File file = new File("C:\\random\\Paklijst " + getPakbonID() + ".txt");
+            File file = new File("Paklijst " + getPakbonID() + "van 5.txt");
             FileWriter write = new FileWriter(file, false);
             PrintWriter print = new PrintWriter(write);
 
@@ -55,12 +55,12 @@ public class Pakbon {
             print.println("######################### Paklijst " + pakbonID + " #########################");
             print.println("Aan: " + klant.getVoornaam() + " " + klant.getAchternaam() + ", " + klant.getAdres() + ", " + klant.getPostcode() + " " + klant.getWoonplaats());
             print.println("");
-            print.println("Inhoud Doos:");
+            print.println("Inhoud Pakket:");
 
             int iPlus1;
             for (int i = 0; i < artikelnrs.size(); i++) {
                 iPlus1 = i + 1;
-                print.println(iPlus1 + ". " + artikelnrs.get(i));
+                print.println("Artikel " +  ": " + artikelnrs.get(i));
             }
 
             print.close();
