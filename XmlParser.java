@@ -19,11 +19,11 @@ public class XmlParser extends JFrame {
 
     private final JFileChooser jfc;
 
-    int ordernr;
-    Klant klant;
-    String datum;
-    ArrayList<String> artikelnummer;
-    Bestelling bestelling;
+    private int ordernr;
+    private Klant klant;
+    private String datum;
+    private ArrayList<String> artikelnummer;
+    private Bestelling bestelling;
 
     public XmlParser() {
         this.jfc = new JFileChooser();

@@ -197,7 +197,7 @@ public class Scherm extends JFrame implements ActionListener {
 //			xmlFilesBrowserActionPerformed();
 			XmlParser dialoog= new XmlParser();
 			dialoog.setVisible(false);
-            Bestelling best = dialoog.bestelling;
+            Bestelling best = dialoog.getBestelling();
 
             model.addRow(new String[]{"" + best.getOrdernr() + "", null , "" + best.getArtikelnrs() + "", "" + best.getKlant().getVoornaam() + " " + best.getKlant().getAchternaam() });
 			if(e.getSource()==selecteerXML){
