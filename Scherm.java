@@ -241,7 +241,7 @@ public class Scherm extends JFrame implements ActionListener {
             if(!zitErin) {
                 bestellingen.add(dialoog.getBestelling());
             }
-            System.out.println(bestellingen);
+            
             dialoog.setVisible(false);
             Bestelling best = dialoog.getBestelling();
 
