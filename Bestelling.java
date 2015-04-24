@@ -12,6 +12,7 @@ public class Bestelling {
     private Klant klant;
     private String datum;
     private ArrayList<Integer> artikelnrs;
+    private ArrayList<Pakket> pakketten;
     private int hoeveelheidPakketten;
 
 
@@ -51,12 +52,18 @@ public class Bestelling {
     public ArrayList<Integer> getArtikelnrs() {
         return artikelnrs;
     }
+
+    public void setPakketten(ArrayList<Pakket> pakketten) {
+        this.pakketten = pakketten;
+    }
+    
+    
     
     public void generatePakbonnen() {
         int i = 0;
         while (i < hoeveelheidPakketten) {
             i++;
-            Pakbon pakbon = new Pakbon(orderNr, klant, artikelnrs, i, hoeveelheidPakketten);
+            Pakbon pakbon = new Pakbon(orderNr, klant, pakketten, i, hoeveelheidPakketten);
             pakbon.maakPaklijstAlsTxt();
         }
     }

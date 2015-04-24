@@ -7,9 +7,9 @@ package ASRS;
 
 public class Artikel {
     private String plaats;
-    private String grootte;
+    private int grootte;
 
-    public Artikel(String plaats, String grootte) {
+    public Artikel(String plaats, int grootte) {
         this.plaats = plaats;
         this.grootte = grootte;
     }
@@ -18,7 +18,7 @@ public class Artikel {
         return plaats;
     }
 
-    public String getGrootte() {
+    public int getGrootte() {
         return grootte;
     }
     

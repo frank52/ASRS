@@ -9,15 +9,15 @@ public class Pakbon {
 
     private int orderNr;
     private Klant klant;
-    private ArrayList<Integer> artikelnrs;
+    private ArrayList<Pakket> pakketten;
     private int pakketnr;
     private int totaalHoeveelheidPakketten;
     
 
-    public Pakbon(int orderNr, Klant klant, ArrayList<Integer> artikelnrs, int pakketnr, int totaalHoeveelheidPakketten) {
+    public Pakbon(int orderNr, Klant klant, ArrayList<Pakket> pakketten, int pakketnr, int totaalHoeveelheidPakketten) {
         this.orderNr = orderNr;
         this.klant = klant;
-        this.artikelnrs = artikelnrs;
+        this.pakketten = pakketten;
         this.pakketnr = pakketnr;
         this.totaalHoeveelheidPakketten = totaalHoeveelheidPakketten;
     }
@@ -34,8 +34,8 @@ public class Pakbon {
         return orderNr;
     }
 
-    public ArrayList<Integer> getArtikelnr() {
-        return artikelnrs;
+    public ArrayList<Pakket> getArtikelnr() {
+        return pakketten;
     }
 
     public void setKlant(Klant klant) {
@@ -46,8 +46,8 @@ public class Pakbon {
         this.orderNr = orderNr;
     }
 
-    public void setArtikelnr(ArrayList<Integer> artikelnr) {
-        this.artikelnrs = artikelnr;
+    public void setArtikelnr(ArrayList<Pakket> artikelnr) {
+        this.pakketten = pakketten;
     }
 
     public void maakPaklijstAlsTxt() {
@@ -64,9 +64,10 @@ public class Pakbon {
                 print.println("Inhoud Pakket:");
 
                 int iPlus1;
-                for (int i = 0; i < artikelnrs.size(); i++) {
+                for (int i = 0; i < pakketten.size(); i++) {
                     iPlus1 = i + 1;
-                    print.println("Artikel " +  ": " + artikelnrs.get(i));
+                    print.println("Artikel " +  ": " + pakketten.get(i));
+                    
                 }
 
             print.close();
