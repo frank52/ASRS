@@ -20,6 +20,7 @@ public class Bestelling {
         this.datum = datum;
         this.artikelnrs = artikelnrs;
         this.klant = klant;
+        this.hoeveelheidPakketen = artikelnrs.size();
     }
 
     public int getHoeveelheidPakketen() {
