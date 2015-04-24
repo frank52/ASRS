@@ -252,7 +252,7 @@ public class Scherm extends JFrame implements ActionListener {
             dialoog.setVisible(false);
             Bestelling best = dialoog.getBestelling();
 
-            model.addRow(new String[]{"" + best.getOrdernr() + "", null , "" + best.getArtikelnrs() + "", "" + best.getKlant().getVoornaam() + " " + best.getKlant().getAchternaam() });
+            model.addRow(new String[]{"" + bestellingen.get(0).getOrdernr() + "", null , "" + bestellingen.get(0).getArtikelnrs() + "", "" + bestellingen.get(0).getKlant().getVoornaam() + " " + bestellingen.get(0).getKlant().getAchternaam() });
 			if(e.getSource()==selecteerXML){
                if(ii >0){
                    model.removeRow(1);
@@ -276,16 +276,45 @@ public class Scherm extends JFrame implements ActionListener {
                 model2.addRow(new String[]{"Het Systeem is gestart", "Action", ""+ cal.getTime()+ ""});
                 startSysteem.setVisible(false);
                 stopSysteem.setVisible(true);
+
             }
+            int i=0;
             if(e.getSource()==stopSysteem){
+
                 cal = Calendar.getInstance();
-                model2.addRow(new String[]{"Het systeem is gestopt", "Action",  ""+ cal.getTime()+ ""});
+                model2.addRow(new String[]{"Het systeem is gestopt", "Action", "" + cal.getTime() + ""});
                 stopSysteem.setVisible(false);
                 startSysteem.setVisible(true);
+                for(Bestelling b: bestellingen){
+
+                    i++;
+
+                }
+                if(i>=2){
+
+                    bestellingen.remove(0);
+                }
+                int aantalRijen = model6.getRowCount();
+                for(int iii = aantalRijen -1; iii>=0;iii--){
+                    model6.removeRow(iii);
+                }
+                for(Bestelling b: bestellingen){
+
+                    model6.addRow(new String[]{""+ b.getOrdernr()});
+
+                }
+                model.addRow(new String[]{"" + bestellingen.get(0).getOrdernr() + "", null , "" + bestellingen.get(0).getArtikelnrs() + "", "" + bestellingen.get(0).getKlant().getVoornaam() + " " + bestellingen.get(0).getKlant().getAchternaam() });
+
+                    if(ii >0){
+                        model.removeRow(0);
+
+                    }
+                    ii++;
+
             }
 		
 	}
-	
+
 	
 	 
 
