@@ -232,7 +232,7 @@ public class Scherm extends JFrame implements ActionListener {
             for(Bestelling b: bestellingen)
             {
                 try {
-                    if (b.getOrdernr() == dialoog.getBestelling().getOrdernr()) {
+                    if (b.getOrderNr() == dialoog.getBestelling().getOrderNr()) {
 
                         zitErin = true;
                         model2.addRow(new String[]{"Order bestaat al", "Error",""+ cal.getTime()+""});
@@ -252,7 +252,7 @@ public class Scherm extends JFrame implements ActionListener {
             dialoog.setVisible(false);
             Bestelling best = dialoog.getBestelling();
 
-            model.addRow(new String[]{"" + bestellingen.get(0).getOrdernr() + "", null , "" + bestellingen.get(0).getArtikelnrs() + "", "" + bestellingen.get(0).getKlant().getVoornaam() + " " + bestellingen.get(0).getKlant().getAchternaam() });
+            model.addRow(new String[]{"" + bestellingen.get(0).getOrderNr() + "", null , "" + bestellingen.get(0).getArtikelnrs() + "", "" + bestellingen.get(0).getKlant().getVoornaam() + " " + bestellingen.get(0).getKlant().getAchternaam() });
 			if(e.getSource()==selecteerXML){
                if(ii >0){
                    model.removeRow(1);
@@ -266,7 +266,7 @@ public class Scherm extends JFrame implements ActionListener {
             }
             for(Bestelling b: bestellingen){
 
-                model6.addRow(new String[]{""+ b.getOrdernr()});
+                model6.addRow(new String[]{""+ b.getOrderNr()});
 
             }
 			
@@ -300,10 +300,10 @@ public class Scherm extends JFrame implements ActionListener {
                 }
                 for(Bestelling b: bestellingen){
 
-                    model6.addRow(new String[]{""+ b.getOrdernr()});
+                    model6.addRow(new String[]{""+ b.getOrderNr()});
 
                 }
-                model.addRow(new String[]{"" + bestellingen.get(0).getOrdernr() + "", null , "" + bestellingen.get(0).getArtikelnrs() + "", "" + bestellingen.get(0).getKlant().getVoornaam() + " " + bestellingen.get(0).getKlant().getAchternaam() });
+                model.addRow(new String[]{"" + bestellingen.get(0).getOrderNr() + "", null , "" + bestellingen.get(0).getArtikelnrs() + "", "" + bestellingen.get(0).getKlant().getVoornaam() + " " + bestellingen.get(0).getKlant().getAchternaam() });
 
                     if(ii >0){
                         model.removeRow(0);
