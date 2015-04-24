@@ -51,7 +51,7 @@ public class Pakbon {
 
     public void generatePakbon() {
         try {
-                File file = new File("Paklijst " + getPakbonID() + "van 5.txt");
+                File file = new File("Paklijst " + getPakbonID() + ".txt");
                 FileWriter write = new FileWriter(file, false);
                 PrintWriter print = new PrintWriter(write);
 

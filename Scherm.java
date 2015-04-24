@@ -20,6 +20,7 @@ import javax.swing.JTabbedPane;
 import javax.swing.JTable;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
+import java.util.Calendar;
 
 @SuppressWarnings("serial")
 public class Scherm extends JFrame implements ActionListener {
@@ -38,6 +39,7 @@ public class Scherm extends JFrame implements ActionListener {
     private DefaultTableModel model5;
     private DefaultTableModel model6;
     int ii =0;
+    private Calendar cal;
     private ArrayList<Bestelling> bestellingen;
     final static boolean shouldFill = true;
     final static boolean shouldWeightX = true;
@@ -56,6 +58,7 @@ public class Scherm extends JFrame implements ActionListener {
         setSize(1280, 720);
         setResizable(false);
         setVisible(true);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         //buttons
         JPanel p1 = new JPanel();
@@ -69,16 +72,14 @@ public class Scherm extends JFrame implements ActionListener {
         selecteerXML.addActionListener(this);
         stopSysteem = new JButton("Stop systeem");
         stopSysteem.setPreferredSize(new Dimension(200, 40));
+        stopSysteem.setVisible(false);
         p1.add(stopSysteem, BorderLayout.WEST);
         stopSysteem.addActionListener(this);
         startSysteem = new JButton("Start systeem");
         startSysteem.setPreferredSize(new Dimension(200, 40));
         p1.add(startSysteem, BorderLayout.WEST);
         startSysteem.addActionListener(this);
-        genereerPakbon = new JButton("Genereer Pakbon");
-        genereerPakbon.setPreferredSize(new Dimension(200, 40));
-        p1.add(genereerPakbon, BorderLayout.WEST);
-        genereerPakbon.addActionListener(this);
+
 
         //tabbladen
         JPanel p2 = new JPanel();
@@ -107,7 +108,7 @@ public class Scherm extends JFrame implements ActionListener {
 
         JScrollPane jScrollPane2 = new JScrollPane();
         jScrollPane2.setViewportView(table2);
-        jScrollPane2.setPreferredSize(new Dimension(150,700));
+        jScrollPane2.setPreferredSize(new Dimension(150, 700));
 
 		jScrollPane1  = new JScrollPane();
         jScrollPane1.setPreferredSize(new Dimension(880, 700));
@@ -120,12 +121,14 @@ public class Scherm extends JFrame implements ActionListener {
 
     JPanel p3 = new JPanel();
 
-    p3.setLayout (
-    new GridLayout(0,1));
+    p3.setLayout(
+            new GridLayout(0, 1));
         model2 = new DefaultTableModel();
 		table1  = new JTable(model2);
         model2.addColumn("Bericht");
         model2.addColumn("Type bericht");
+        model2.addColumn("Tijd");
+
 
 
 
@@ -219,7 +222,7 @@ public class Scherm extends JFrame implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e)  {
 		if(e.getSource()==selecteerXML){
-
+            cal = Calendar.getInstance();
 //			xmlFilesBrowserActionPerformed();
 			XmlParser dialoog= new XmlParser();
 
@@ -230,7 +233,9 @@ public class Scherm extends JFrame implements ActionListener {
             {
                 try {
                     if (b.getOrdernr() == dialoog.getBestelling().getOrdernr()) {
+
                         zitErin = true;
+                        model2.addRow(new String[]{"Order bestaat al", "Error",""+ cal.getTime()+""});
                     }
                 }
                 catch(NullPointerException zz ){
@@ -239,7 +244,9 @@ public class Scherm extends JFrame implements ActionListener {
             }
 
             if(!zitErin) {
+
                 bestellingen.add(dialoog.getBestelling());
+                model2.addRow(new String[]{"Nieuw order toegevoegd", "Action", "" + cal.getTime() + ""});
             }
             
             dialoog.setVisible(false);
@@ -258,10 +265,24 @@ public class Scherm extends JFrame implements ActionListener {
                 model6.removeRow(i);
             }
             for(Bestelling b: bestellingen){
-            model6.addRow(new String[]{""+ b.getOrdernr()});
+
+                model6.addRow(new String[]{""+ b.getOrdernr()});
+
             }
 			
 		}
+            if(e.getSource()==startSysteem){
+                cal = Calendar.getInstance();
+                model2.addRow(new String[]{"Het Systeem is gestart", "Action", ""+ cal.getTime()+ ""});
+                startSysteem.setVisible(false);
+                stopSysteem.setVisible(true);
+            }
+            if(e.getSource()==stopSysteem){
+                cal = Calendar.getInstance();
+                model2.addRow(new String[]{"Het systeem is gestopt", "Action",  ""+ cal.getTime()+ ""});
+                stopSysteem.setVisible(false);
+                startSysteem.setVisible(true);
+            }
 		
 	}
 	
