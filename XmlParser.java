@@ -22,7 +22,7 @@ public class XmlParser extends JFrame {
     private int ordernr;
     private Klant klant;
     private String datum;
-    private ArrayList<String> artikelnummer;
+    private ArrayList<Integer> artikelnummer;
     private Bestelling bestelling;
 
     public XmlParser() {
@@ -56,7 +56,7 @@ public class XmlParser extends JFrame {
                 artikelnummer = new ArrayList<>();
                 for (int i = 0; i < artikelnr.getLength(); i++) {
                     int iplus1 = i + 1;
-                    artikelnummer.add(doc.getElementsByTagName("artikelnr").item(i).getTextContent());
+                    artikelnummer.add(Integer.parseInt(doc.getElementsByTagName("artikelnr").item(i).getTextContent()));
                 }
 
                 //xml waarden in klasse Klant stoppen
@@ -69,7 +69,7 @@ public class XmlParser extends JFrame {
                 //      new Bestelling(uniek id, andere shit)
 
 
-                bestelling = new Bestelling(ordernr, datum, artikelnummer, klant);
+                bestelling = new Bestelling(ordernr, datum, artikelnummer, klant, 3);
 
                 //System.out.println(bestelling);
 

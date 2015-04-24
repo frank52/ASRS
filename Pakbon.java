@@ -7,17 +7,19 @@ import java.util.ArrayList;
 
 public class Pakbon {
 
-    private int pakbonID;
+    private int orderNr;
     private Klant klant;
     private ArrayList<Integer> artikelnrs;
     private int pakketnr;
+    private int totaalHoeveelheidPakketten;
     
 
-    public Pakbon(int pakbonID, Klant klant, ArrayList<Integer> artikelnrs, int pakketnr, int hoeveelheidPakketen) {
-        this.pakbonID = pakbonID;
+    public Pakbon(int orderNr, Klant klant, ArrayList<Integer> artikelnrs, int pakketnr, int totaalHoeveelheidPakketten) {
+        this.orderNr = orderNr;
         this.klant = klant;
         this.artikelnrs = artikelnrs;
         this.pakketnr = pakketnr;
+        this.totaalHoeveelheidPakketten = totaalHoeveelheidPakketten;
     }
 
     public Pakbon() {
@@ -28,8 +30,8 @@ public class Pakbon {
         return klant;
     }
 
-    public int getPakbonID() {
-        return pakbonID;
+    public int getOrderNr() {
+        return orderNr;
     }
 
     public ArrayList<Integer> getArtikelnr() {
@@ -40,22 +42,23 @@ public class Pakbon {
         this.klant = klant;
     }
 
-    public void setPakbonID(int pakbonID) {
-        this.pakbonID = pakbonID;
+    public void setOrderNr(int orderNr) {
+        this.orderNr = orderNr;
     }
 
     public void setArtikelnr(ArrayList<Integer> artikelnr) {
         this.artikelnrs = artikelnr;
     }
 
-    public void generatePakbon() {
+    public void maakPaklijstAlsTxt() {
         try {
-                File file = new File("Paklijst " + getPakbonID() + ".txt");
+                File file = new File("Paklijst " + pakketnr + " van " + totaalHoeveelheidPakketten + " (" + orderNr + ")" + ".txt");
                 FileWriter write = new FileWriter(file, false);
                 PrintWriter print = new PrintWriter(write);
 
                 //print inhoud
-                print.println("######################### Paklijst " + pakbonID + " #########################");
+                print.println("################# Order: " + orderNr + " #########" + " Paklijst " + pakketnr + "/" + totaalHoeveelheidPakketten + " #################");
+                print.println("");
                 print.println("Aan: " + klant.getVoornaam() + " " + klant.getAchternaam() + ", " + klant.getAdres() + ", " + klant.getPostcode() + " " + klant.getWoonplaats());
                 print.println("");
                 print.println("Inhoud Pakket:");

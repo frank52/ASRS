@@ -8,49 +8,56 @@ package ASRS;/*
 import java.util.ArrayList;
 
 public class Bestelling {
-    private int ordernr;
+    private int orderNr;
     private Klant klant;
     private String datum;
-    private ArrayList<String> artikelnrs;
-    private int hoeveelheidPakketen;
+    private ArrayList<Integer> artikelnrs;
+    private int hoeveelheidPakketten;
 
 
-    public Bestelling(int ordernr, String datum, ArrayList<String> artikelnrs, Klant klant) {
-        this.ordernr = ordernr;
+    public Bestelling(int orderNr, String datum, ArrayList<Integer> artikelnrs, Klant klant, int hoeveelheidPakketten) {
+        this.orderNr = orderNr;
         this.datum = datum;
         this.artikelnrs = artikelnrs;
         this.klant = klant;
-        this.hoeveelheidPakketen = artikelnrs.size();
+        this.hoeveelheidPakketten = hoeveelheidPakketten;
     }
 
-    public int getHoeveelheidPakketen() {
-        return hoeveelheidPakketen;
+    public int getHoeveelheidPakketten() {
+        return hoeveelheidPakketten;
     }
 
-    public void setHoeveelheidPakketen(int hoeveelheidPakketen) {
-        this.hoeveelheidPakketen = hoeveelheidPakketen;
+    public void setHoeveelheidPakketten(int hoeveelheidPakketten) {
+        this.hoeveelheidPakketten = hoeveelheidPakketten;
     }
 
     @Override
    public String toString(){
-       return "Ordernummer: "+ ordernr +"\nDatum:"+ datum+"\nartikelnummers"+artikelnrs+ "\nKlant: "+klant.toString();
+       return "Ordernummer: "+ orderNr +"\nDatum:"+ datum+"\nartikelnummers"+artikelnrs+ "\nKlant: "+klant.toString();
    }
 
     public Klant getKlant() {
         return klant;
     }
 
-    public int getOrdernr() {
-        return ordernr;
+    public int getOrderNr() {
+        return orderNr;
     }
 
     public String getDatum() {
         return datum;
     }
 
-    public ArrayList<String> getArtikelnrs() {
+    public ArrayList<Integer> getArtikelnrs() {
         return artikelnrs;
+    }
     
-  
+    public void generatePakbonnen() {
+        int i = 0;
+        while (i < hoeveelheidPakketten) {
+            i++;
+            Pakbon pakbon = new Pakbon(orderNr, klant, artikelnrs, i, hoeveelheidPakketten);
+            pakbon.maakPaklijstAlsTxt();
+        }
     }
 }

@@ -5,22 +5,22 @@
  */
 package ASRS;
 
+import java.util.ArrayList;
+
 public class Pakket {
-    private String plaats;
-    private String grootte;
+    private ArrayList<Artikel> artikelen;
+    private int aantalArtikelen;
 
-    public Pakket(String plaats, String grootte) {
-        this.plaats = plaats;
-        this.grootte = grootte;
-    }
-
-    public String getPlaats() {
-        return plaats;
-    }
-
-    public String getGrootte() {
-        return grootte;
+    public Pakket(ArrayList<Artikel> artikelen, int aantalArtikelen) {
+        this.artikelen = artikelen;
+        this.aantalArtikelen = aantalArtikelen;
     }
     
-    
+    public ArrayList<Artikel> getArtikelen() {
+        return artikelen;
+    }
+
+    public int getAantalArtikelen() {
+        return aantalArtikelen;
+    }
 }

@@ -15,18 +15,20 @@ public class Main {
 
         // File Explorerer settings
         UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-
-                        //pakbon testen
-//                        Klant klant = new Klant("Piet", " van Jansen", "Kalverstraat 17", "1012NX", "Amsterdam");
-//                        ArrayList<Integer> artikelnrs = new ArrayList();
-//                        artikelnrs.add(3);
-//                        artikelnrs.add(5);
-//                        artikelnrs.add(8);
-//                        artikelnrs.add(1);
-//                        artikelnrs.add(2);
-//                        System.out.println(artikelnrs);
-//                        Pakbon pakbon = new Pakbon( klant, 3, artikelnrs);
-//                        pakbon.generatePakbon();
+        
+        ArrayList<Integer> artikelnrs = new ArrayList();
+        artikelnrs.add(8);
+        artikelnrs.add(4);
+        artikelnrs.add(7);
+        artikelnrs.add(6);
+        artikelnrs.add(3);
+        
+        Klant klant = new Klant("Piet", " van Jansen", "Kalverstraat 17", "1012NX", "Amsterdam");
+        
+        Bestelling bestelling = new Bestelling(1231,"23-11-1996", artikelnrs, klant, 3);
+        bestelling.generatePakbonnen();
+        System.out.println("klaar");
+        
     }
 
 }
