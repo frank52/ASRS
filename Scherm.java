@@ -7,6 +7,7 @@ import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.ResultSet;
 import java.util.ArrayList;
 
 import javax.swing.BoxLayout;
@@ -134,22 +135,24 @@ public class Scherm extends JFrame implements ActionListener {
 
 		jScrollPane1  = new JScrollPane();
 
-    jScrollPane1.setViewportView (table1);
+    jScrollPane1.setViewportView(table1);
 
     p3.add(jScrollPane1);
 
     JPanel p4 = new JPanel();
 
-    p4.setLayout (
-    new BoxLayout(p4, BoxLayout.Y_AXIS));
+    p4.setLayout(
+            new BoxLayout(p4, BoxLayout.Y_AXIS));
 		
 		JLabel simulatie;
 
     simulatie  = new JLabel("Logboek robot");
 
-    p4.add (simulatie, Component.LEFT_ALIGNMENT );
+    p4.add(simulatie, Component.LEFT_ALIGNMENT);
 
 
+        Database d2 = new Database();
+        
 
         model3 = new DefaultTableModel();
         table1  = new JTable(model3);
@@ -160,6 +163,7 @@ public class Scherm extends JFrame implements ActionListener {
         model3.addColumn("Datum");
         //model3.addColumn("Algoritme TSP");
         //model3.addColumn("Algoritme BPP");
+        model3.addRow(d2.Select().getInt("ordernr"), null, null, null, d2.Select().getInt("datum"));
 
 
 		jScrollPane1  = new JScrollPane();
@@ -291,18 +295,26 @@ public class Scherm extends JFrame implements ActionListener {
 
                 }
 
-                Database d1 = new Database();
-                d1.DatabaseBestelling(bestellingen.get(0).getOrderNr(), bestellingen.get(0).getDatum());
-                ArrayList<Integer> artn = bestellingen.get(0).getArtikelnrs();
-                int iiii =0;
-                for (int b : artn) {
-                    d1.DatabaseBestelRegel(bestellingen.get(0).getOrderNr(), bestellingen.get(0).getArtikelnrs().get(iiii));
-                    //System.out.println(bestellingen.get(0).getArtikelnrs().get(iiii));
-                    iiii++;
-                }
+//                Database d1 = new Database();
+//                d1.DatabaseBestelling(bestellingen.get(0).getOrderNr(), bestellingen.get(0).getDatum());
+//                ArrayList<Integer> artn = bestellingen.get(0).getArtikelnrs();
+//                int iiii =0;
+//                for (int b : artn) {
+//                    d1.DatabaseBestelRegel(bestellingen.get(0).getOrderNr(), bestellingen.get(0).getArtikelnrs().get(iiii));
+//
+//                    iiii++;
+//                }
 
                 if(i>=2){
+                    Database d1 = new Database();
+                    d1.DatabaseBestelling(bestellingen.get(0).getOrderNr(), bestellingen.get(0).getDatum());
+                    ArrayList<Integer> artn = bestellingen.get(0).getArtikelnrs();
+                    int iiii =0;
+                    for (int b : artn) {
+                        d1.DatabaseBestelRegel(bestellingen.get(0).getOrderNr(), bestellingen.get(0).getArtikelnrs().get(iiii));
 
+                        iiii++;
+                    }
                     bestellingen.remove(0);
                 }
                 int aantalRijen = model6.getRowCount();
