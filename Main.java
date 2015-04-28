@@ -41,8 +41,10 @@ public class Main {
         Bestelling bestelling = new Bestelling(1231,"23-11-1996", artikeltjes, klant, 3);
         bestelling.setPakketten(pakketten);
         bestelling.generatePakbonnen();
-        System.out.println("klaar");
-        
+
+
+        Database d1 = new Database();
+        d1.DatabaseBestelling();
     }
 
 }

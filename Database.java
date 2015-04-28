@@ -1,6 +1,6 @@
 package ASRS;
 
-import java.sql.Statement;
+import java.sql.PreparedStatement;
 import java.sql.DriverManager;
 import java.sql.Connection;
 
@@ -22,14 +22,13 @@ public class Database {
         try {
             Class.forName(driver).newInstance();
             Connection database = DriverManager.getConnection(dbUrl, user, pass);
-            Statement myStmt = database.createStatement();
+            PreparedStatement myStmt = (PreparedStatement) database.prepareStatement("Insert into bestelling(ordernr, datum , artikel, artikel_locatie)VALUES(?,?,?,?)");
+            myStmt.setInt(1, 1); // set input parameter 1
+            myStmt.setString(2, "14-2-2015"); // set input parameter 2
+            myStmt.setInt(3, 2); // set input parameter 3
+            myStmt.setString(4, "A5");
+            myStmt.executeUpdate(); // execute insert statement
 
-        int rowsAffected = myStmt.executeUpdate(
-                "insert into bestelling" +
-                        "('ordern', 'datum', 'artikel', 'artikel_locatie' )"+
-                        "values"+
-                                "('32', '24-4-2015', '5', 'A5')"
-        );
         } catch (Exception e) {
             e.printStackTrace();
         }
