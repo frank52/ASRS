@@ -1,8 +1,12 @@
 package ASRS;
 
+
+
 import java.sql.PreparedStatement;
 import java.sql.DriverManager;
 import java.sql.Connection;
+import java.sql.ResultSet;
+
 /**
  * Created by Willem on 24-4-2015.
  */
@@ -11,6 +15,7 @@ public class Database {
     String driver = "com.mysql.jdbc.Driver";
     String user = "stephhq105_kbs";
     String pass = "WKJ03";
+    String query = "SELECT ordernr, datum From bestelling";
 
 
 
@@ -43,6 +48,27 @@ public class Database {
 
             myStmt.setInt(1, ordernnr); // set input parameter 1
             myStmt.setInt(2, artikelnr); // set input parameter 2
+            myStmt.executeUpdate(); // execute insert statement
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    public void Select() {
+
+
+
+        try {
+            Class.forName(driver).newInstance();
+            Connection database = DriverManager.getConnection(dbUrl, user, pass);
+
+            PreparedStatement myStmt = (PreparedStatement) database.prepareStatement(query);
+            ResultSet rs = myStmt.executeQuery(query);
+
+            rs.getInt("ordernr"); // set input parameter 1
+            rs.getString("datum"); // set input parameter 2
             myStmt.executeUpdate(); // execute insert statement
 
         } catch (Exception e) {
