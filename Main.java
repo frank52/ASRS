@@ -44,7 +44,7 @@ public class Main {
 
 
         Database d1 = new Database();
-        d1.DatabaseBestelling();
+       // d1.DatabaseBestelling();
     }
 
 }
