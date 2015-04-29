@@ -7,20 +7,23 @@ public class Logboek {
     private int ordernr;
     private int aantalPakketten;
     private int aantalArtikkelen;
-    private Klant klant;
+    private String voornaam;
+    private String achternaam;
     private String datum;
 
-    public Logboek(int ordernr, int aantalPakketten, int aantalArtikkelen, Klant klant, String datum) {
+    public Logboek(int ordernr, int aantalPakketten, int aantalArtikkelen, String voornaam, String achternaam, String datum) {
         this.ordernr = ordernr;
         this.aantalPakketten = aantalPakketten;
         this.aantalArtikkelen = aantalArtikkelen;
-        this.klant = klant;
+        this.voornaam = voornaam;
+        this.achternaam = achternaam;
         this.datum = datum;
     }
 
-    public Logboek(int ordernr, Klant klant, String datum) {
+    public Logboek(int ordernr, String voornaam, String achternaam, String datum) {
         this.ordernr = ordernr;
-        this.klant = klant;
+        this.voornaam = voornaam;
+        this.achternaam = achternaam;
         this.datum = datum;
     }
 
@@ -41,8 +44,12 @@ public class Logboek {
         return aantalArtikkelen;
     }
 
-    public Klant getKlant() {
-        return klant;
+    public String getVoornaam() {
+        return voornaam;
+    }
+
+    public String getAchternaam() {
+        return achternaam;
     }
 
     public String getDatum() {
