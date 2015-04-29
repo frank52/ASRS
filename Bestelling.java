@@ -14,6 +14,7 @@ public class Bestelling {
     private ArrayList<Integer> artikelnrs;
     private ArrayList<Pakket> pakketten;
     private int hoeveelheidPakketten;
+    private ArrayList<Artikel> artikelen;
 
 
     public Bestelling(int orderNr, String datum, ArrayList<Integer> artikelnrs, Klant klant, int hoeveelheidPakketten) {
@@ -57,38 +58,59 @@ public class Bestelling {
         this.hoeveelheidPakketten = hoeveelheidPakketten;
     }
     
-    
-    
-    public void generatePakbonnen() {
-        
-        // hardcoded test
-        ArrayList<Artikel> artikels = new ArrayList();
-        ArrayList<Pakket> pakketten1 = new ArrayList();
-        
-        //meerdere pakketten maken
-        for (int ii = 0; ii < 3; ii++) {
-            //meerdere artikels maken
-            for (int i = 0 ; i < 3 ; i++) {
-            Artikel artikel = new Artikel("A1", i + 5);
-            artikels.add(artikel);
+    public void convertIntToArtikel(ArrayList<Integer> artikelnrs) {
+        Database d1 = new Database();
+        d1.SelectArtikel();
+        ArrayList<Artikel> allArtikelen = d1.getlistArtikel();
+        artikelen = new ArrayList<>();
+        System.out.println(allArtikelen);
+        for (int i : artikelnrs) {
+            //System.out.println(artikelen);
+            //System.out.println(artikelnrs);
+            //System.out.println(i);
+            for (Artikel a : allArtikelen) {
+                //System.out.println(a);
+                if (i == a.getArtikelnr()) {
+                    artikelen.add(a);
+                }
             }
-            
-            Pakket pakket = new Pakket(artikels, artikels.size());
-            pakketten1.add(pakket);
         }
         
+    }
+
+
+    public void generatePakbonnen() {
         
+//        // hardcoded test
+//        ArrayList<Artikel> artikels = new ArrayList();
+//        ArrayList<Pakket> pakketten1 = new ArrayList();
+//        
+//        //meerdere pakketten maken
+//        for (int ii = 0; ii < 3; ii++) {
+//            //meerdere artikels maken
+//            for (int i = 0 ; i < 3 ; i++) {
+//            //Artikel artikel = new Artikel("A1", i + 5);
+//            artikels.add(artikel);
+//            }
+//            
+//            Pakket pakket = new Pakket(artikels, artikels.size());
+//            pakketten1.add(pakket);
+//        }
+//        
+//        
+//        
+//        setPakketten(pakketten1);
+//        System.out.println(pakketten1);
+//        System.out.println(hoeveelheidPakketten);
         
-        setPakketten(pakketten1);
-        System.out.println(pakketten1);
-        System.out.println(hoeveelheidPakketten);
-        
-        
+        convertIntToArtikel(artikelnrs);
         
         int i = 0;
         while (i < hoeveelheidPakketten) {
             i++;
-            Pakbon pakbon = new Pakbon(orderNr, klant, pakketten, i, hoeveelheidPakketten);
+            
+            System.out.println(artikelen + "?");
+            Pakbon pakbon = new Pakbon(orderNr, klant, artikelen, i, hoeveelheidPakketten);
             pakbon.maakPaklijstAlsTxt();
         }
     }

@@ -5,7 +5,10 @@
  */
 package ASRS;
 
+import java.util.ArrayList;
+
 public class Artikel {
+
     private String plaats;
     private int grootte;
     private int artikelnr;
@@ -14,6 +17,11 @@ public class Artikel {
         this.plaats = plaats;
         this.grootte = grootte;
         this.artikelnr = artikelnr;
+    }
+
+    @Override
+    public String toString() {
+        return "Artikel{" + "plaats=" + plaats + ", grootte=" + grootte + ", artikelnr=" + artikelnr + '}';
     }
 
     public String getPlaats() {
@@ -27,8 +35,5 @@ public class Artikel {
     public int getArtikelnr() {
         return artikelnr;
     }
-
-
-
 
 }

@@ -5,13 +5,13 @@ import javax.swing.JFrame;
 import javax.swing.UIManager;
 
 public class Main {
-
+    Database d1 = new Database();
+    
     public static void main(String[] args) throws Exception {
         //Artikellen in array zetten
-        Database d1 = new Database();
-        ArrayList<Artikel> artikelen = d1.getlistArtikel();
+        
 
-
+        
 
 
 
@@ -53,7 +53,8 @@ public class Main {
         
        // d1.DatabaseBestelling();
 
-        d1.Select();
+        
     }
-
+    
+ 
 }

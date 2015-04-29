@@ -52,7 +52,7 @@ public class Pakbon {
 
     public void maakPaklijstAlsTxt() {
         try {
-                System.out.println(totaalHoeveelheidPakketten + " jaja");
+                
                 
                 File file = new File("Paklijst " + pakketnr + " van " + totaalHoeveelheidPakketten + " (" + orderNr + ")" + ".txt");
                 FileWriter write = new FileWriter(file, false);
