@@ -15,7 +15,7 @@ public class Database {
     String driver = "com.mysql.jdbc.Driver";
     String user = "stephhq105_kbs";
     String pass = "WKJ03";
-    String query = "SELECT ordernr, datum From bestelling";
+
 
 
 
@@ -63,7 +63,7 @@ public class Database {
         try {
             Class.forName(driver).newInstance();
             Connection database = DriverManager.getConnection(dbUrl, user, pass);
-
+            String query = "SELECT ordernr, datum From bestelling";
             PreparedStatement myStmt = (PreparedStatement) database.prepareStatement(query);
             ResultSet rs = myStmt.executeQuery(query);
 
