@@ -163,7 +163,7 @@ public class Scherm extends JFrame implements ActionListener {
         model3.addColumn("Datum");
         //model3.addColumn("Algoritme TSP");
         //model3.addColumn("Algoritme BPP");
-        model3.addRow(d2.Select().getInt("ordernr"), null, null, null, d2.Select().getInt("datum"));
+        //model3.addRow(d2.Select().getInt("ordernr"), null, null, null, d2.Select().getInt("datum"));
 
 
 		jScrollPane1  = new JScrollPane();
@@ -304,11 +304,14 @@ public class Scherm extends JFrame implements ActionListener {
 
                     iiii++;
                 }
-
+                            //Pakbon maken
                 if(i>=2){
 
+
+                            bestellingen.remove(0);
                     }
-                    bestellingen.remove(0);
+
+
                 }
                 int aantalRijen = model6.getRowCount();
                 for(int iii = aantalRijen -1; iii>=0;iii--){
@@ -335,4 +338,4 @@ public class Scherm extends JFrame implements ActionListener {
 	 
 
 
-}
+//}

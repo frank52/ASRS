@@ -63,13 +63,22 @@ public class Database {
         try {
             Class.forName(driver).newInstance();
             Connection database = DriverManager.getConnection(dbUrl, user, pass);
-            String query = "SELECT ordernr, datum From bestelling";
+            String query = "select ordernr, datum from stephhq105_kbs.bestelling";
             PreparedStatement myStmt = (PreparedStatement) database.prepareStatement(query);
             ResultSet rs = myStmt.executeQuery(query);
 
-            rs.getInt("ordernr"); // set input parameter 1
-            rs.getString("datum"); // set input parameter 2
-            myStmt.executeUpdate(); // execute insert statement
+
+            while(rs.next()) {
+
+
+                int ordernummer = rs.getInt("ordernr"); // set input parameter 1
+                String datum2 = rs.getString("datum"); // set input parameter 1
+             //   Logboek logboek = new Logboek(ordernummer, datum2);
+
+
+             //   System.out.println(ordernummer + " " + datumm);
+            }
+
 
         } catch (Exception e) {
             e.printStackTrace();
