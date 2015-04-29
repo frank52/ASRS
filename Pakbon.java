@@ -9,15 +9,15 @@ public class Pakbon {
 
     private int orderNr;
     private Klant klant;
-    private ArrayList<Pakket> pakketten;
+    private ArrayList<Artikel> artikelnrs;
     private int pakketnr;
     private int totaalHoeveelheidPakketten;
     
 
-    public Pakbon(int orderNr, Klant klant, ArrayList<Pakket> pakketten, int pakketnr, int totaalHoeveelheidPakketten) {
+    public Pakbon(int orderNr, Klant klant, ArrayList<Artikel> artikelnrs, int pakketnr, int totaalHoeveelheidPakketten) {
         this.orderNr = orderNr;
         this.klant = klant;
-        this.pakketten = pakketten;
+        this.artikelnrs = artikelnrs;
         this.pakketnr = pakketnr;
         this.totaalHoeveelheidPakketten = totaalHoeveelheidPakketten;
     }
@@ -34,8 +34,8 @@ public class Pakbon {
         return orderNr;
     }
 
-    public ArrayList<Pakket> getArtikelnr() {
-        return pakketten;
+    public ArrayList<Artikel> getArtikelnrs() {
+        return artikelnrs;
     }
 
     public void setKlant(Klant klant) {
@@ -46,12 +46,14 @@ public class Pakbon {
         this.orderNr = orderNr;
     }
 
-    public void setArtikelnr(ArrayList<Pakket> artikelnr) {
-        this.pakketten = pakketten;
+    public void setArtikelnr(ArrayList<Artikel> artikelnrs) {
+        this.artikelnrs = artikelnrs;
     }
 
     public void maakPaklijstAlsTxt() {
         try {
+                System.out.println(totaalHoeveelheidPakketten + " jaja");
+                
                 File file = new File("Paklijst " + pakketnr + " van " + totaalHoeveelheidPakketten + " (" + orderNr + ")" + ".txt");
                 FileWriter write = new FileWriter(file, false);
                 PrintWriter print = new PrintWriter(write);
@@ -64,9 +66,9 @@ public class Pakbon {
                 print.println("Inhoud Pakket:");
 
                 int iPlus1;
-                for (int i = 0; i < pakketten.size(); i++) {
+                for (int i = 0; i < artikelnrs.size(); i++) {
                     iPlus1 = i + 1;
-                    print.println("Artikel " +  ": " + pakketten.get(i));
+                    print.println("Artikel " +  ": " + artikelnrs.get(i));
                     
                 }
 

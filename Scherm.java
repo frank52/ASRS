@@ -39,7 +39,7 @@ public class Scherm extends JFrame implements ActionListener {
     private DefaultTableModel model4;
     private DefaultTableModel model5;
     private DefaultTableModel model6;
-    int ii =0;
+    int ii = 0;
     private Calendar cal;
     private ArrayList<Bestelling> bestellingen;
     final static boolean shouldFill = true;
@@ -81,13 +81,12 @@ public class Scherm extends JFrame implements ActionListener {
         p1.add(startSysteem, BorderLayout.WEST);
         startSysteem.addActionListener(this);
 
-
         //tabbladen
         JPanel p2 = new JPanel();
         p2.setLayout(new BorderLayout());
-        JPanel p5 =  new JPanel();
+        JPanel p5 = new JPanel();
         p5.setLayout(new GridLayout(0, 10));
-        JLabel geplandeOrders= new JLabel("Geplande Orders");
+        JLabel geplandeOrders = new JLabel("Geplande Orders");
         p5.add(geplandeOrders);
         JLabel niks = new JLabel("");
         p5.add(niks);
@@ -102,60 +101,52 @@ public class Scherm extends JFrame implements ActionListener {
         model.addColumn("Klant");
 
         model6 = new DefaultTableModel();
-        JTable table2= new JTable(model6);
+        JTable table2 = new JTable(model6);
         model6.addColumn("Ordernummer");
-
-
 
         JScrollPane jScrollPane2 = new JScrollPane();
         jScrollPane2.setViewportView(table2);
         jScrollPane2.setPreferredSize(new Dimension(150, 700));
 
-		jScrollPane1  = new JScrollPane();
+        jScrollPane1 = new JScrollPane();
         jScrollPane1.setPreferredSize(new Dimension(880, 700));
-
 
         jScrollPane1.setViewportView(table1);
 
         p2.add(jScrollPane1, BorderLayout.EAST);
         p2.add(jScrollPane2, BorderLayout.WEST);
 
-    JPanel p3 = new JPanel();
+        JPanel p3 = new JPanel();
 
-    p3.setLayout(
-            new GridLayout(0, 1));
+        p3.setLayout(
+                new GridLayout(0, 1));
         model2 = new DefaultTableModel();
-		table1  = new JTable(model2);
+        table1 = new JTable(model2);
         model2.addColumn("Bericht");
         model2.addColumn("Type bericht");
         model2.addColumn("Tijd");
 
+        jScrollPane1 = new JScrollPane();
 
+        jScrollPane1.setViewportView(table1);
 
+        p3.add(jScrollPane1);
 
-		jScrollPane1  = new JScrollPane();
+        JPanel p4 = new JPanel();
 
-    jScrollPane1.setViewportView(table1);
+        p4.setLayout(
+                new BoxLayout(p4, BoxLayout.Y_AXIS));
 
-    p3.add(jScrollPane1);
+        JLabel simulatie;
 
-    JPanel p4 = new JPanel();
+        simulatie = new JLabel("Logboek robot");
 
-    p4.setLayout(
-            new BoxLayout(p4, BoxLayout.Y_AXIS));
-		
-		JLabel simulatie;
-
-    simulatie  = new JLabel("Logboek robot");
-
-    p4.add(simulatie, Component.LEFT_ALIGNMENT);
-
+        p4.add(simulatie, Component.LEFT_ALIGNMENT);
 
         Database d2 = new Database();
-        
 
         model3 = new DefaultTableModel();
-        table1  = new JTable(model3);
+        table1 = new JTable(model3);
         model3.addColumn("Ordernummer");
         model3.addColumn("Aantal artikelen");
         model3.addColumn("Aantal pakketten");
@@ -165,174 +156,169 @@ public class Scherm extends JFrame implements ActionListener {
         //model3.addColumn("Algoritme BPP");
         //model3.addRow(d2.Select().getInt("ordernr"), null, null, null, d2.Select().getInt("datum"));
 
+        jScrollPane1 = new JScrollPane();
 
-		jScrollPane1  = new JScrollPane();
-
-        jScrollPane1.setViewportView (table1);
+        jScrollPane1.setViewportView(table1);
 
         p4.add(jScrollPane1);
         JLabel suggesties;
 
-        suggesties  = new JLabel("Suggesties");
+        suggesties = new JLabel("Suggesties");
 
-        p4.add (suggesties);
+        p4.add(suggesties);
 
         model4 = new DefaultTableModel();
-        table1  = new JTable(model4);
+        table1 = new JTable(model4);
         model4.addColumn("Product ID");
         model4.addColumn("Huidige Locatie");
         model4.addColumn("Voorgestelde Locatie");
 
-		jScrollPane1  = new JScrollPane();
+        jScrollPane1 = new JScrollPane();
 
-        jScrollPane1.setViewportView (table1);
+        jScrollPane1.setViewportView(table1);
 
         p4.add(jScrollPane1);
         JLabel bestVerkocht;
 
-        bestVerkocht  = new JLabel("Meest verkochte producten");
+        bestVerkocht = new JLabel("Meest verkochte producten");
 
-        p4.add (bestVerkocht);
+        p4.add(bestVerkocht);
 
         model5 = new DefaultTableModel();
-        table1  = new JTable(model5);
+        table1 = new JTable(model5);
         model5.addColumn("Product ID");
 
-	    jScrollPane1  = new JScrollPane();
+        jScrollPane1 = new JScrollPane();
 
-        jScrollPane1.setViewportView (table1);
+        jScrollPane1.setViewportView(table1);
 
         p4.add(jScrollPane1);
 
 //		JPanel p5 = new JPanel();
 //		p2.setLayout(new GridLayout(0,1));
-        jTabbedPane1  = new JTabbedPane();
+        jTabbedPane1 = new JTabbedPane();
 
         jTabbedPane1.addTab(
-
                 "Huidige order", p2);
         jTabbedPane1.addTab(
-
                 "Meldingen", p3);
         jTabbedPane1.addTab(
-
                 "Statistieken", p4);
 		//jTabbedPane1.addTab("Magazijn",p5);
-		
+
         add(jTabbedPane1);
         bestellingen = new ArrayList<Bestelling>();
 
-}
-        @Override
-        public void actionPerformed(ActionEvent e)  {
-		if(e.getSource()==selecteerXML){
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if (e.getSource() == selecteerXML) {
             cal = Calendar.getInstance();
 //			xmlFilesBrowserActionPerformed();
-			XmlParser dialoog= new XmlParser();
+            XmlParser dialoog = new XmlParser();
 
             boolean zitErin;
             zitErin = false;
 
-            for(Bestelling b: bestellingen)
-            {
+            for (Bestelling b : bestellingen) {
                 try {
                     if (b.getOrderNr() == dialoog.getBestelling().getOrderNr()) {
 
                         zitErin = true;
-                        model2.addRow(new String[]{"Order bestaat al", "Error",""+ cal.getTime()+""});
+                        model2.addRow(new String[]{"Order bestaat al", "Error", "" + cal.getTime() + ""});
                     }
                 }
-                catch(NullPointerException zz ){
+                catch (NullPointerException zz) {
                     System.out.println("error");
                 }
             }
 
-            if(!zitErin) {
+            if (!zitErin) {
 
                 bestellingen.add(dialoog.getBestelling());
                 model2.addRow(new String[]{"Nieuw order toegevoegd", "Action", "" + cal.getTime() + ""});
             }
-            
+
             dialoog.setVisible(false);
             Bestelling best = dialoog.getBestelling();
 
-            model.addRow(new String[]{"" + bestellingen.get(0).getOrderNr() + "", null , "" + bestellingen.get(0).getArtikelnrs() + "", "" + bestellingen.get(0).getKlant().getVoornaam() + " " + bestellingen.get(0).getKlant().getAchternaam() });
-			if(e.getSource()==selecteerXML){
-               if(ii >0){
-                   model.removeRow(1);
+            model.addRow(new String[]{"" + bestellingen.get(0).getOrderNr() + "", null, "" + bestellingen.get(0).getArtikelnrs() + "", "" + bestellingen.get(0).getKlant().getVoornaam() + " " + bestellingen.get(0).getKlant().getAchternaam()});
+            if (e.getSource() == selecteerXML) {
+                if (ii > 0) {
+                    model.removeRow(1);
 
-               }
+                }
                 ii++;
             }
             int aantalRijen = model6.getRowCount();
-            for(int i = aantalRijen -1; i>=0;i--){
+            for (int i = aantalRijen - 1; i >= 0; i--) {
                 model6.removeRow(i);
             }
-            for(Bestelling b: bestellingen){
+            for (Bestelling b : bestellingen) {
 
-                model6.addRow(new String[]{""+ b.getOrderNr()});
-
-            }
-			
-		}
-            if(e.getSource()==startSysteem){
-                cal = Calendar.getInstance();
-                model2.addRow(new String[]{"Het Systeem is gestart", "Action", ""+ cal.getTime()+ ""});
-                startSysteem.setVisible(false);
-                stopSysteem.setVisible(true);
+                model6.addRow(new String[]{"" + b.getOrderNr()});
 
             }
-            int i=0;
-            if(e.getSource()==stopSysteem){
 
-                cal = Calendar.getInstance();
-                model2.addRow(new String[]{"Het systeem is gestopt", "Action", "" + cal.getTime() + ""});
-                stopSysteem.setVisible(false);
-                startSysteem.setVisible(true);
-                for(Bestelling b: bestellingen){
+        }
+        if (e.getSource() == startSysteem) {
+            cal = Calendar.getInstance();
+            model2.addRow(new String[]{"Het Systeem is gestart", "Action", "" + cal.getTime() + ""});
+            startSysteem.setVisible(false);
+            stopSysteem.setVisible(true);
 
-                    i++;
+        }
+        int i = 0;
+        if (e.getSource() == stopSysteem) {
 
-                }
+            cal = Calendar.getInstance();
+            model2.addRow(new String[]{"Het systeem is gestopt", "Action", "" + cal.getTime() + ""});
+            stopSysteem.setVisible(false);
+            startSysteem.setVisible(true);
 
-                Database d1 = new Database();
-                d1.DatabaseBestelling(bestellingen.get(0).getOrderNr(), bestellingen.get(0).getDatum(), bestellingen.get(0).getKlant().getVoornaam(), bestellingen.get(0).getKlant().getAchternaam());
-                ArrayList<Integer> artn = bestellingen.get(0).getArtikelnrs();
-                int iiii =0;
-                for (int b : artn) {
-                    d1.DatabaseBestelRegel(bestellingen.get(0).getOrderNr(), bestellingen.get(0).getArtikelnrs().get(iiii));
-
-                    iiii++;
-                }
-                            //Pakbon maken
-                if(i>=2){
-
-
-                            bestellingen.remove(0);
-                    }
-
-
-                }
-                int aantalRijen = model6.getRowCount();
-                for(int iii = aantalRijen -1; iii>=0;iii--){
-                    model6.removeRow(iii);
-                }
-                for(Bestelling b: bestellingen){
-
-                    model6.addRow(new String[]{""+ b.getOrderNr()});
-
-                }
-                model.addRow(new String[]{"" + bestellingen.get(0).getOrderNr() + "", null , "" + bestellingen.get(0).getArtikelnrs() + "", "" + bestellingen.get(0).getKlant().getVoornaam() + " " + bestellingen.get(0).getKlant().getAchternaam() });
-
-                    if(ii >0){
-                        model.removeRow(0);
-
-                    }
-                    ii++;
-
+            for (Bestelling b : bestellingen) {
+                i++;
             }
-		
-	}
+
+//            Database d1 = new Database();
+//            d1.DatabaseBestelling(bestellingen.get(0).getOrderNr(), bestellingen.get(0).getDatum(), bestellingen.get(0).getKlant().getVoornaam(), bestellingen.get(0).getKlant().getAchternaam());
+//            ArrayList<Integer> artn = bestellingen.get(0).getArtikelnrs();
+//            int iiii = 0;
+//            for (int b : artn) {
+//                d1.DatabaseBestelRegel(bestellingen.get(0).getOrderNr(), bestellingen.get(0).getArtikelnrs().get(iiii));
+//                iiii++;
+//            }
+            
+            bestellingen.get(0).generatePakbonnen();
+            
+            
+            if (i >= 2) {
+
+                bestellingen.remove(0);
+            }
+
+        }
+        int aantalRijen = model6.getRowCount();
+        for (int iii = aantalRijen - 1; iii >= 0; iii--) {
+            model6.removeRow(iii);
+        }
+        for (Bestelling b : bestellingen) {
+
+            model6.addRow(new String[]{"" + b.getOrderNr()});
+
+        }
+        model.addRow(new String[]{"" + bestellingen.get(0).getOrderNr() + "", null, "" + bestellingen.get(0).getArtikelnrs() + "", "" + bestellingen.get(0).getKlant().getVoornaam() + " " + bestellingen.get(0).getKlant().getAchternaam()});
+
+        if (ii > 0) {
+            model.removeRow(0);
+
+        }
+        ii++;
+
+    }
+
+}
 
 	
 	 
