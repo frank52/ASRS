@@ -96,5 +96,33 @@ public class Database {
         public ArrayList<Logboek> getlist() {
             return logboek1;
     }
+
+    public void SelectArtikel(){
+        try {
+            Class.forName(driver).newInstance();
+            Connection database = DriverManager.getConnection(dbUrl, user, pass);
+            String query = "select artikelnr, grootte, locatie from artikel";
+            PreparedStatement myStmt = (PreparedStatement) database.prepareStatement(query);
+            ResultSet rs = myStmt.executeQuery(query);
+
+
+            while(rs.next()) {
+
+
+                int artikelnr = rs.getInt("artikelnr");
+                int grootte = rs.getInt("grootte");
+                String locatie = rs.getString("locatie");
+
+                Artikel artikel = new Artikel(artikelnr,locatie,grootte);
+
+
+            }
+
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }
 
