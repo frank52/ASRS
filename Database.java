@@ -19,16 +19,19 @@ public class Database {
 
 
 
-    public void DatabaseBestelling(int ordernnr, String datum) {
+    public void DatabaseBestelling(int ordernnr, String datum, String voornaam, String achternaam) {
 
 
 
         try {
             Class.forName(driver).newInstance();
             Connection database = DriverManager.getConnection(dbUrl, user, pass);
-            PreparedStatement myStmt = (PreparedStatement) database.prepareStatement("Insert into bestelling(ordernr, datum )VALUES(?,?)");
+            PreparedStatement myStmt = (PreparedStatement) database.prepareStatement("Insert into bestelling(ordernr, datum, voornaamKlant, achternaamKlant )VALUES(?,?,?,?)");
             myStmt.setInt(1, ordernnr); // set input parameter 1
             myStmt.setString(2, datum); // set input parameter 2
+            myStmt.setString(3, voornaam); // set input parameter 2
+            myStmt.setString(4, achternaam); // set input parameter 2
+
             myStmt.executeUpdate(); // execute insert statement
 
         } catch (Exception e) {

@@ -296,7 +296,7 @@ public class Scherm extends JFrame implements ActionListener {
                 }
 
                 Database d1 = new Database();
-                d1.DatabaseBestelling(bestellingen.get(0).getOrderNr(), bestellingen.get(0).getDatum());
+                d1.DatabaseBestelling(bestellingen.get(0).getOrderNr(), bestellingen.get(0).getDatum(), bestellingen.get(0).getKlant().getVoornaam(), bestellingen.get(0).getKlant().getAchternaam());
                 ArrayList<Integer> artn = bestellingen.get(0).getArtikelnrs();
                 int iiii =0;
                 for (int b : artn) {
