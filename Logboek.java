@@ -18,6 +18,16 @@ public class Logboek {
         this.datum = datum;
     }
 
+    public Logboek(int ordernr, Klant klant, String datum) {
+        this.ordernr = ordernr;
+        this.klant = klant;
+        this.datum = datum;
+    }
+
+    public Logboek(int aantalPakketten, int aantalArtikkelen) {
+        this.aantalPakketten = aantalPakketten;
+        this.aantalArtikkelen = aantalArtikkelen;
+    }
 
     public int getOrdernr() {
         return ordernr;
