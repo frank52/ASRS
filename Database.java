@@ -79,7 +79,7 @@ public class Database {
                 int ordernummer = rs.getInt("ordernr"); // set input parameter 1
                 String datum2 = rs.getString("datum"); // set input parameter 1
                 String voornaam = rs.getString("voornaamKlant"); // set input parameter 1
-                String achternaam = rs.getString("achternaaamKlant"); // set input parameter 1
+                String achternaam = rs.getString("achternaamKlant"); // set input parameter 1
                 Logboek logboek = new Logboek(ordernummer, datum2, voornaam, achternaam);
                 logboek1.add(logboek);
 
