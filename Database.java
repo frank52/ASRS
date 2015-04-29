@@ -6,15 +6,17 @@ import java.sql.PreparedStatement;
 import java.sql.DriverManager;
 import java.sql.Connection;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 
 /**
  * Created by Willem on 24-4-2015.
  */
 public class Database {
-    String dbUrl = "jdbc:mysql://stephanschrijver.nl:3306/stephhq105_kbs";
-    String driver = "com.mysql.jdbc.Driver";
-    String user = "stephhq105_kbs";
-    String pass = "WKJ03";
+    private String dbUrl = "jdbc:mysql://stephanschrijver.nl:3306/stephhq105_kbs";
+    private String driver = "com.mysql.jdbc.Driver";
+    private String user = "stephhq105_kbs";
+    private String pass = "WKJ03";
+    private ArrayList<Logboek> logboek1;
 
 
 
@@ -60,7 +62,7 @@ public class Database {
     }
 
     public void Select() {
-
+        logboek1 = new ArrayList<Logboek>();
 
 
         try {
@@ -79,16 +81,20 @@ public class Database {
                 String voornaam = rs.getString("voornaamKlant"); // set input parameter 1
                 String achternaam = rs.getString("achteraaamKlant"); // set input parameter 1
                 Logboek logboek = new Logboek(ordernummer, datum2, voornaam, achternaam);
-
+                logboek1.add(logboek);
 
              //   System.out.println(ordernummer + " " + datumm);
             }
+
 
 
         } catch (Exception e) {
             e.printStackTrace();
         }
 
+    }
+        public ArrayList<Logboek> getlist() {
+            return logboek1;
     }
 }
 
