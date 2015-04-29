@@ -295,25 +295,18 @@ public class Scherm extends JFrame implements ActionListener {
 
                 }
 
-//                Database d1 = new Database();
-//                d1.DatabaseBestelling(bestellingen.get(0).getOrderNr(), bestellingen.get(0).getDatum());
-//                ArrayList<Integer> artn = bestellingen.get(0).getArtikelnrs();
-//                int iiii =0;
-//                for (int b : artn) {
-//                    d1.DatabaseBestelRegel(bestellingen.get(0).getOrderNr(), bestellingen.get(0).getArtikelnrs().get(iiii));
-//
-//                    iiii++;
-//                }
+                Database d1 = new Database();
+                d1.DatabaseBestelling(bestellingen.get(0).getOrderNr(), bestellingen.get(0).getDatum());
+                ArrayList<Integer> artn = bestellingen.get(0).getArtikelnrs();
+                int iiii =0;
+                for (int b : artn) {
+                    d1.DatabaseBestelRegel(bestellingen.get(0).getOrderNr(), bestellingen.get(0).getArtikelnrs().get(iiii));
+
+                    iiii++;
+                }
 
                 if(i>=2){
-                    Database d1 = new Database();
-                    d1.DatabaseBestelling(bestellingen.get(0).getOrderNr(), bestellingen.get(0).getDatum());
-                    ArrayList<Integer> artn = bestellingen.get(0).getArtikelnrs();
-                    int iiii =0;
-                    for (int b : artn) {
-                        d1.DatabaseBestelRegel(bestellingen.get(0).getOrderNr(), bestellingen.get(0).getArtikelnrs().get(iiii));
 
-                        iiii++;
                     }
                     bestellingen.remove(0);
                 }
