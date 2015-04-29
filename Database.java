@@ -66,7 +66,7 @@ public class Database {
         try {
             Class.forName(driver).newInstance();
             Connection database = DriverManager.getConnection(dbUrl, user, pass);
-            String query = "select ordernr, datum from stephhq105_kbs.bestelling";
+            String query = "select ordernr, datum, voornaamKlant, achternaamKlant from stephhq105_kbs.bestelling ORDER BY datum DESC";
             PreparedStatement myStmt = (PreparedStatement) database.prepareStatement(query);
             ResultSet rs = myStmt.executeQuery(query);
 
@@ -76,6 +76,8 @@ public class Database {
 
                 int ordernummer = rs.getInt("ordernr"); // set input parameter 1
                 String datum2 = rs.getString("datum"); // set input parameter 1
+                String voornaam = rs.getString("voornaamKlant"); // set input parameter 1
+                String achternaam = rs.getString("achteraaamKlant"); // set input parameter 1
              //   Logboek logboek = new Logboek(ordernummer, datum2);
 
 
