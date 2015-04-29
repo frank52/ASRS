@@ -17,6 +17,7 @@ public class Database {
     private String user = "stephhq105_kbs";
     private String pass = "WKJ03";
     private ArrayList<Logboek> logboek1;
+    private ArrayList<Artikel> artikel2;
 
 
 
@@ -98,6 +99,8 @@ public class Database {
     }
 
     public void SelectArtikel(){
+
+        artikel2 = new ArrayList<>();
         try {
             Class.forName(driver).newInstance();
             Connection database = DriverManager.getConnection(dbUrl, user, pass);
@@ -114,6 +117,7 @@ public class Database {
                 String locatie = rs.getString("locatie");
 
                 Artikel artikel = new Artikel(artikelnr,locatie,grootte);
+                artikel2.add(artikel);
 
 
             }
@@ -123,6 +127,9 @@ public class Database {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+    public ArrayList<Artikel> getlistArtikel() {
+        return artikel2;
     }
 }
 
