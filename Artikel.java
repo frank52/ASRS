@@ -8,10 +8,12 @@ package ASRS;
 public class Artikel {
     private String plaats;
     private int grootte;
+    private int artikelnr;
 
-    public Artikel(String plaats, int grootte) {
+    public Artikel(int artikelnr, String plaats, int grootte) {
         this.plaats = plaats;
         this.grootte = grootte;
+        this.artikelnr = artikelnr;
     }
 
     public String getPlaats() {
@@ -21,6 +23,12 @@ public class Artikel {
     public int getGrootte() {
         return grootte;
     }
-    
-    
+
+    public int getArtikelnr() {
+        return artikelnr;
+    }
+
+
+
+
 }
