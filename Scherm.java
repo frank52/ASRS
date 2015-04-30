@@ -7,7 +7,6 @@ import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.ResultSet;
 import java.util.ArrayList;
 
 import javax.swing.BoxLayout;
@@ -176,8 +175,8 @@ public class Scherm extends JFrame implements ActionListener {
         model4.addColumn("Product ID");
         model4.addColumn("Huidige Locatie");
         model4.addColumn("Voorgestelde Locatie");
-        d2.SelectArtikel();
-        for(Artikel l2 :d2.getlistArtikel()) {
+        d2.SelectArtikelTop();
+        for(Artikel l2 :d2.getlistArtikel2()) {
             model4.addRow(new String[]{"" +l2.getArtikelnr()+"", ""+l2.getPlaats()+"", null});
         }
 
@@ -198,7 +197,7 @@ public class Scherm extends JFrame implements ActionListener {
         model5.addColumn("Aantal keer verkocht");
         jScrollPane1 = new JScrollPane();
 
-        for(Artikel l2 :d2.getlistArtikel()) {
+        for(Artikel l2 :d2.getlistArtikel2()) {
             model5.addRow(new String[]{"" +l2.getArtikelnr()+"", ""+l2.getAantalArt()+""});
         }
 
@@ -321,8 +320,8 @@ public class Scherm extends JFrame implements ActionListener {
             for (int iii = aantalRijen - 1; iii >= 0; iii--) {
                 model4.removeRow(iii);
             }
-            d1.SelectArtikel();
-            for(Artikel l2 :d1.getlistArtikel()) {
+            d1.SelectArtikelTop();
+            for(Artikel l2 :d1.getlistArtikel2()) {
                 model4.addRow(new String[]{"" +l2.getArtikelnr()+"", ""+l2.getPlaats()+"", null});
             }
         }

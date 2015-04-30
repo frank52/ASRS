@@ -18,7 +18,7 @@ public class Database {
     private String pass = "WKJ03";
     private ArrayList<Logboek> logboek1;
     private ArrayList<Artikel> artikel2;
-
+    private ArrayList<Artikel> artikel3;
 
 
 
@@ -101,13 +101,13 @@ public class Database {
             return logboek1;
     }
 
-    public void SelectArtikel(){
+    public void SelectArtikelTop(){
 
         artikel2 = new ArrayList<>();
         try {
             Class.forName(driver).newInstance();
             Connection database = DriverManager.getConnection(dbUrl, user, pass);
-            String query = "SELECT BR.artikelnr, A.grootte, A.locatie, COUNT(BR.artikelnr) FROM bestelregel BR JOIN artikel A ON BR.artikelnr = A.artikelnr GROUP BY BR.artikelnr ORDER BY COUNT(*) DESC LIMIT 5";
+            String query = "SELECT BR.artikelnr, A.grootte, A.locatie, COUNT(BR.artikelnr), A.naam FROM bestelregel BR JOIN artikel A ON BR.artikelnr = A.artikelnr GROUP BY BR.artikelnr ORDER BY COUNT(*) DESC LIMIT 5";
             PreparedStatement myStmt = (PreparedStatement) database.prepareStatement(query);
             ResultSet rs = myStmt.executeQuery(query);
 
@@ -119,8 +119,9 @@ public class Database {
                 int grootte = rs.getInt("grootte");
                 String locatie = rs.getString("locatie");
                 int aantalArt = rs.getInt("COUNT(BR.artikelnr)");
+                String naam = rs.getString("naam");
 
-                Artikel artikel = new Artikel(artikelnr,locatie,grootte, aantalArt);
+                Artikel artikel = new Artikel(artikelnr,locatie,grootte, aantalArt, naam);
                 artikel2.add(artikel);
 
 
@@ -132,8 +133,42 @@ public class Database {
             e.printStackTrace();
         }
     }
-    public ArrayList<Artikel> getlistArtikel() {
+    public ArrayList<Artikel> getlistArtikel2() {
         return artikel2;
+    }
+    public void SelectArtikel(){
+
+        artikel2 = new ArrayList<>();
+        try {
+            Class.forName(driver).newInstance();
+            Connection database = DriverManager.getConnection(dbUrl, user, pass);
+            String query = "SELECT * FROM artikel";
+            PreparedStatement myStmt = (PreparedStatement) database.prepareStatement(query);
+            ResultSet rs = myStmt.executeQuery(query);
+
+
+            while(rs.next()) {
+
+
+                int artikelnr = rs.getInt("artikelnr");
+                int grootte = rs.getInt("grootte");
+                String locatie = rs.getString("locatie");
+                String naam = rs.getString("naam");
+
+                Artikel artikel = new Artikel(locatie, grootte, artikelnr, naam);
+                artikel3.add(artikel);
+
+
+            }
+
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    public ArrayList<Artikel> getlistArtikel() {
+        return artikel3;
     }
 }
 

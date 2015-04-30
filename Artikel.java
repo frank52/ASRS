@@ -13,12 +13,21 @@ public class Artikel {
     private int grootte;
     private int artikelnr;
     private int aantalArt;
+    private String naam;
 
-    public Artikel(int artikelnr, String plaats, int grootte, int aantalArt) {
+    public Artikel(int artikelnr, String plaats, int grootte, int aantalArt, String naam) {
         this.plaats = plaats;
         this.grootte = grootte;
         this.artikelnr = artikelnr;
         this.aantalArt = aantalArt;
+        this.naam=naam;
+    }
+
+    public Artikel(String plaats, int grootte, int artikelnr, String naam) {
+        this.plaats = plaats;
+        this.grootte = grootte;
+        this.artikelnr = artikelnr;
+        this.naam = naam;
     }
 
     @Override
@@ -42,4 +51,7 @@ public class Artikel {
         return artikelnr;
     }
 
+    public String getNaam() {
+        return naam;
+    }
 }
