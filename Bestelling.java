@@ -80,9 +80,7 @@ public class Bestelling {
 
 
     public void generatePakbonnen() {
-        System.out.println("test1");
         convertIntToArtikel(artikelnrs);
-        System.out.println("test2");
         int i = 0;
         while (i < hoeveelheidPakketten) {
             i++;
