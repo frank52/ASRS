@@ -68,7 +68,7 @@ public class Pakbon {
                 int iPlus1;
                 for (int i = 0; i < artikelnrs.size(); i++) {
                     iPlus1 = i + 1;
-                    print.println("Artikel " +  ": " + artikelnrs.get(i));
+                    print.println("Artikel " +  ": " + artikelnrs.get(i).getNaam());
                     
                 }
 

@@ -80,31 +80,9 @@ public class Bestelling {
 
 
     public void generatePakbonnen() {
-        
-//        // hardcoded test
-//        ArrayList<Artikel> artikels = new ArrayList();
-//        ArrayList<Pakket> pakketten1 = new ArrayList();
-//        
-//        //meerdere pakketten maken
-//        for (int ii = 0; ii < 3; ii++) {
-//            //meerdere artikels maken
-//            for (int i = 0 ; i < 3 ; i++) {
-//            //Artikel artikel = new Artikel("A1", i + 5);
-//            artikels.add(artikel);
-//            }
-//            
-//            Pakket pakket = new Pakket(artikels, artikels.size());
-//            pakketten1.add(pakket);
-//        }
-//        
-//        
-//        
-//        setPakketten(pakketten1);
-//        System.out.println(pakketten1);
-//        System.out.println(hoeveelheidPakketten);
-        
+        System.out.println("test1");
         convertIntToArtikel(artikelnrs);
-        
+        System.out.println("test2");
         int i = 0;
         while (i < hoeveelheidPakketten) {
             i++;

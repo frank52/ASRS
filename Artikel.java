@@ -32,8 +32,10 @@ public class Artikel {
 
     @Override
     public String toString() {
-        return "Artikel{" + "plaats=" + plaats + ", grootte=" + grootte + ", artikelnr=" + artikelnr + '}';
+        return "Artikel{" + "plaats=" + plaats + ", grootte=" + grootte + ", artikelnr=" + artikelnr + ", aantalArt=" + aantalArt + ", naam=" + naam + '}';
     }
+
+    
 
     public int getAantalArt() {
         return aantalArt;
