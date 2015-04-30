@@ -12,16 +12,22 @@ public class Artikel {
     private String plaats;
     private int grootte;
     private int artikelnr;
+    private int aantalArt;
 
-    public Artikel(int artikelnr, String plaats, int grootte) {
+    public Artikel(int artikelnr, String plaats, int grootte, int aantalArt) {
         this.plaats = plaats;
         this.grootte = grootte;
         this.artikelnr = artikelnr;
+        this.aantalArt = aantalArt;
     }
 
     @Override
     public String toString() {
         return "Artikel{" + "plaats=" + plaats + ", grootte=" + grootte + ", artikelnr=" + artikelnr + '}';
+    }
+
+    public int getAantalArt() {
+        return aantalArt;
     }
 
     public String getPlaats() {

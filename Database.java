@@ -107,13 +107,7 @@ public class Database {
         try {
             Class.forName(driver).newInstance();
             Connection database = DriverManager.getConnection(dbUrl, user, pass);
-            String query = "SELECT BR.artikelnr, A.grootte, A.locatie\n" +
-                    "FROM bestelregel BR" +
-                    "JOIN artikel A" +
-                    "ON BR.artikelnr = A.artikelnr" +
-                    "GROUP BY BR.artikelnr" +
-                    "ORDER BY COUNT(*) DESC" +
-                    "LIMIT 5";
+            String query = "SELECT BR.artikelnr, A.grootte, A.locatie, COUNT(BR.artikelnr) FROM bestelregel BR JOIN artikel A ON BR.artikelnr = A.artikelnr GROUP BY BR.artikelnr ORDER BY COUNT(*) DESC LIMIT 5";
             PreparedStatement myStmt = (PreparedStatement) database.prepareStatement(query);
             ResultSet rs = myStmt.executeQuery(query);
 
@@ -124,8 +118,9 @@ public class Database {
                 int artikelnr = rs.getInt("artikelnr");
                 int grootte = rs.getInt("grootte");
                 String locatie = rs.getString("locatie");
+                int aantalArt = rs.getInt("COUNT(BR.artikelnr)");
 
-                Artikel artikel = new Artikel(artikelnr,locatie,grootte);
+                Artikel artikel = new Artikel(artikelnr,locatie,grootte, aantalArt);
                 artikel2.add(artikel);
 
 

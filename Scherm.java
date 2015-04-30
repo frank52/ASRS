@@ -195,8 +195,12 @@ public class Scherm extends JFrame implements ActionListener {
         model5 = new DefaultTableModel();
         table1 = new JTable(model5);
         model5.addColumn("Product ID");
-
+        model5.addColumn("Aantal keer verkocht");
         jScrollPane1 = new JScrollPane();
+
+        for(Artikel l2 :d2.getlistArtikel()) {
+            model5.addRow(new String[]{"" +l2.getArtikelnr()+"", ""+l2.getAantalArt()+""});
+        }
 
         jScrollPane1.setViewportView(table1);
 
