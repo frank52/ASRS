@@ -20,11 +20,13 @@ public class Logboek {
         this.datum = datum;
     }
 
-    public Logboek(int ordernr, String voornaam, String achternaam, String datum) {
+    public Logboek(int ordernr, int aantalArtikkelen, String voornaam, String achternaam, String datum) {
         this.ordernr = ordernr;
+        this.aantalArtikkelen=aantalArtikkelen;
         this.voornaam = voornaam;
         this.achternaam = achternaam;
         this.datum = datum;
+
     }
 
     public Logboek(int aantalPakketten, int aantalArtikkelen) {
@@ -55,4 +57,5 @@ public class Logboek {
     public String getDatum() {
         return datum;
     }
+
 }

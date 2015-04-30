@@ -154,7 +154,11 @@ public class Scherm extends JFrame implements ActionListener {
         model3.addColumn("Datum");
         //model3.addColumn("Algoritme TSP");
         //model3.addColumn("Algoritme BPP");
-        //model3.addRow(d2.Select().getInt("ordernr"), null, null, null, d2.Select().getInt("datum"));
+        d2.Select();
+        for(Logboek l : d2.getlist()){
+            model3.addRow(new String[]{""+l.getOrdernr()+"", ""+ l.getAantalArtikkelen()+"", null, ""+l.getVoornaam() +" "+ l.getAchternaam()+"", ""+l.getDatum()+""});
+        }
+
 
         jScrollPane1 = new JScrollPane();
 
@@ -281,14 +285,14 @@ public class Scherm extends JFrame implements ActionListener {
                 i++;
             }
 
-//            Database d1 = new Database();
-//            d1.DatabaseBestelling(bestellingen.get(0).getOrderNr(), bestellingen.get(0).getDatum(), bestellingen.get(0).getKlant().getVoornaam(), bestellingen.get(0).getKlant().getAchternaam());
-//            ArrayList<Integer> artn = bestellingen.get(0).getArtikelnrs();
-//            int iiii = 0;
-//            for (int b : artn) {
-//                d1.DatabaseBestelRegel(bestellingen.get(0).getOrderNr(), bestellingen.get(0).getArtikelnrs().get(iiii));
-//                iiii++;
-//            }
+            Database d1 = new Database();
+            d1.DatabaseBestelling(bestellingen.get(0).getOrderNr(), bestellingen.get(0).getDatum(), bestellingen.get(0).getKlant().getVoornaam(), bestellingen.get(0).getKlant().getAchternaam(), bestellingen.get(0).getArtikelnrs().size());
+            ArrayList<Integer> artn = bestellingen.get(0).getArtikelnrs();
+            int iiii = 0;
+            for (int b : artn) {
+                d1.DatabaseBestelRegel(bestellingen.get(0).getOrderNr(), bestellingen.get(0).getArtikelnrs().get(iiii));
+                iiii++;
+            }
             
             bestellingen.get(0).generatePakbonnen();
             
@@ -297,7 +301,14 @@ public class Scherm extends JFrame implements ActionListener {
 
                 bestellingen.remove(0);
             }
-
+            int aantalRijen = model3.getRowCount();
+            for (int iii = aantalRijen - 1; iii >= 0; iii--) {
+                model3.removeRow(iii);
+            }
+            d1.Select();
+            for(Logboek l : d1.getlist()){
+                model3.addRow(new String[]{""+l.getOrdernr()+"", ""+ l.getAantalArtikkelen()+"", null, ""+l.getVoornaam() +" "+ l.getAchternaam()+"", ""+l.getDatum()+""});
+            }
         }
         int aantalRijen = model6.getRowCount();
         for (int iii = aantalRijen - 1; iii >= 0; iii--) {

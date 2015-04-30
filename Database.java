@@ -22,18 +22,19 @@ public class Database {
 
 
 
-    public void DatabaseBestelling(int ordernnr, String datum, String voornaam, String achternaam) {
+    public void DatabaseBestelling(int ordernnr, String datum, String voornaam, String achternaam, int aantalArtikelen) {
 
 
 
         try {
             Class.forName(driver).newInstance();
             Connection database = DriverManager.getConnection(dbUrl, user, pass);
-            PreparedStatement myStmt = (PreparedStatement) database.prepareStatement("Insert into bestelling(ordernr, datum, voornaamKlant, achternaamKlant )VALUES(?,?,?,?)");
+            PreparedStatement myStmt = (PreparedStatement) database.prepareStatement("Insert into bestelling(ordernr, datum, voornaamKlant, achternaamKlant, aantalArtikelen)VALUES(?,?,?,?,?)");
             myStmt.setInt(1, ordernnr); // set input parameter 1
             myStmt.setString(2, datum); // set input parameter 2
             myStmt.setString(3, voornaam); // set input parameter 2
             myStmt.setString(4, achternaam); // set input parameter 2
+            myStmt.setInt(5, aantalArtikelen);
 
             myStmt.executeUpdate(); // execute insert statement
 
@@ -69,7 +70,7 @@ public class Database {
         try {
             Class.forName(driver).newInstance();
             Connection database = DriverManager.getConnection(dbUrl, user, pass);
-            String query = "select ordernr, datum, voornaamKlant, achternaamKlant from stephhq105_kbs.bestelling ORDER BY datum DESC";
+            String query = "select ordernr, voornaamKlant, achternaamKlant, datum, aantalArtikelen from stephhq105_kbs.bestelling ORDER BY datum DESC";
             PreparedStatement myStmt = (PreparedStatement) database.prepareStatement(query);
             ResultSet rs = myStmt.executeQuery(query);
 
@@ -78,10 +79,12 @@ public class Database {
 
 
                 int ordernummer = rs.getInt("ordernr"); // set input parameter 1
-                String datum2 = rs.getString("datum"); // set input parameter 1
+
                 String voornaam = rs.getString("voornaamKlant"); // set input parameter 1
                 String achternaam = rs.getString("achternaamKlant"); // set input parameter 1
-                Logboek logboek = new Logboek(ordernummer, datum2, voornaam, achternaam);
+                String datum2 = rs.getString("datum");
+                int aantalArtikelen = rs.getInt("aantalArtikelen");
+                Logboek logboek = new Logboek(ordernummer, aantalArtikelen, voornaam, achternaam, datum2);
                 logboek1.add(logboek);
 
              //   System.out.println(ordernummer + " " + datumm);
@@ -104,7 +107,7 @@ public class Database {
         try {
             Class.forName(driver).newInstance();
             Connection database = DriverManager.getConnection(dbUrl, user, pass);
-            String query = "select artikelnr, grootte, locatie from artikel";
+            String query = "select artikelnr, grootte, locatie from artikel Order By";
             PreparedStatement myStmt = (PreparedStatement) database.prepareStatement(query);
             ResultSet rs = myStmt.executeQuery(query);
 
