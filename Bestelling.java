@@ -84,8 +84,6 @@ public class Bestelling {
         int i = 0;
         while (i < hoeveelheidPakketten) {
             i++;
-            
-            System.out.println(artikelen + "?");
             Pakbon pakbon = new Pakbon(orderNr, klant, artikelen, i, hoeveelheidPakketten);
             pakbon.maakPaklijstAlsTxt();
         }
