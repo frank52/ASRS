@@ -138,7 +138,7 @@ public class Database {
     }
     public void SelectArtikel(){
 
-        artikel2 = new ArrayList<>();
+        artikel3 = new ArrayList<>();
         try {
             Class.forName(driver).newInstance();
             Connection database = DriverManager.getConnection(dbUrl, user, pass);
