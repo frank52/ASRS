@@ -39,7 +39,7 @@ public class Database {
             myStmt.executeUpdate(); // execute insert statement
 
         } catch (Exception e) {
-            e.printStackTrace();
+            //e.printStackTrace();
         }
 
     }
@@ -58,7 +58,7 @@ public class Database {
             myStmt.executeUpdate(); // execute insert statement
 
         } catch (Exception e) {
-            e.printStackTrace();
+            //e.printStackTrace();
         }
 
     }
@@ -93,7 +93,7 @@ public class Database {
 
 
         } catch (Exception e) {
-            e.printStackTrace();
+            //e.printStackTrace();
         }
 
     }
@@ -130,7 +130,7 @@ public class Database {
 
 
         } catch (Exception e) {
-            e.printStackTrace();
+            //e.printStackTrace();
         }
     }
     public ArrayList<Artikel> getlistArtikel2() {
@@ -164,7 +164,7 @@ public class Database {
 
 
         } catch (Exception e) {
-            e.printStackTrace();
+            //e.printStackTrace();
         }
     }
     public ArrayList<Artikel> getlistArtikel() {
