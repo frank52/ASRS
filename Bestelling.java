@@ -63,11 +63,8 @@ public class Bestelling {
         d1.SelectArtikel();
         ArrayList<Artikel> allArtikelen = d1.getlistArtikel();
         artikelen = new ArrayList<>();
-        System.out.println(allArtikelen);
+        
         for (int i : artikelnrs) {
-            //System.out.println(artikelen);
-            //System.out.println(artikelnrs);
-            //System.out.println(i);
             for (Artikel a : allArtikelen) {
                 //System.out.println(a);
                 if (i == a.getArtikelnr()) {
