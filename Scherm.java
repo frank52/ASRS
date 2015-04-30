@@ -7,6 +7,7 @@ import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.rmi.server.ExportException;
 import java.util.ArrayList;
 
 import javax.swing.BoxLayout;
@@ -21,6 +22,7 @@ import javax.swing.JTable;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
 import java.util.Calendar;
+import java.util.concurrent.ExecutionException;
 
 @SuppressWarnings("serial")
 public class Scherm extends JFrame implements ActionListener {
@@ -305,7 +307,11 @@ public class Scherm extends JFrame implements ActionListener {
             }
 
             Database d1 = new Database();
-            d1.DatabaseBestelling(bestellingen.get(0).getOrderNr(), bestellingen.get(0).getDatum(), bestellingen.get(0).getKlant().getVoornaam(), bestellingen.get(0).getKlant().getAchternaam(), bestellingen.get(0).getArtikelnrs().size());
+            try {
+                d1.DatabaseBestelling(bestellingen.get(0).getOrderNr(), bestellingen.get(0).getDatum(), bestellingen.get(0).getKlant().getVoornaam(), bestellingen.get(0).getKlant().getAchternaam(), bestellingen.get(0).getArtikelnrs().size());
+            }catch(Exception exc){
+                
+            }
             ArrayList<Integer> artn = bestellingen.get(0).getArtikelnrs();
             int iiii = 0;
             for (int b : artn) {
@@ -330,7 +336,11 @@ public class Scherm extends JFrame implements ActionListener {
             }
             int aantalRijen2 = model4.getRowCount();
             for (int iii = aantalRijen - 1; iii >= 0; iii--) {
-                model4.removeRow(iii);
+                try {
+                    model4.removeRow(iii);
+                }catch(Exception ex){
+
+                }
             }
             d1.SelectArtikelTop();
             for (Artikel l2 : d1.getlistArtikel2()) {
