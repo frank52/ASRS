@@ -107,7 +107,13 @@ public class Database {
         try {
             Class.forName(driver).newInstance();
             Connection database = DriverManager.getConnection(dbUrl, user, pass);
-            String query = "select artikelnr, grootte, locatie from artikel Order By";
+            String query = "SELECT BR.artikelnr, A.grootte, A.locatie\n" +
+                    "FROM bestelregel BR" +
+                    "JOIN artikel A" +
+                    "ON BR.artikelnr = A.artikelnr" +
+                    "GROUP BY BR.artikelnr" +
+                    "ORDER BY COUNT(*) DESC" +
+                    "LIMIT 5";
             PreparedStatement myStmt = (PreparedStatement) database.prepareStatement(query);
             ResultSet rs = myStmt.executeQuery(query);
 

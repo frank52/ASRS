@@ -176,6 +176,10 @@ public class Scherm extends JFrame implements ActionListener {
         model4.addColumn("Product ID");
         model4.addColumn("Huidige Locatie");
         model4.addColumn("Voorgestelde Locatie");
+        d2.SelectArtikel();
+        for(Artikel l2 :d2.getlistArtikel()) {
+            model4.addRow(new String[]{"" +l2.getArtikelnr()+"", ""+l2.getPlaats()+"", null});
+        }
 
         jScrollPane1 = new JScrollPane();
 
@@ -308,6 +312,14 @@ public class Scherm extends JFrame implements ActionListener {
             d1.Select();
             for(Logboek l : d1.getlist()){
                 model3.addRow(new String[]{""+l.getOrdernr()+"", ""+ l.getAantalArtikkelen()+"", null, ""+l.getVoornaam() +" "+ l.getAchternaam()+"", ""+l.getDatum()+""});
+            }
+            int aantalRijen2 = model4.getRowCount();
+            for (int iii = aantalRijen - 1; iii >= 0; iii--) {
+                model4.removeRow(iii);
+            }
+            d1.SelectArtikel();
+            for(Artikel l2 :d1.getlistArtikel()) {
+                model4.addRow(new String[]{"" +l2.getArtikelnr()+"", ""+l2.getPlaats()+"", null});
             }
         }
         int aantalRijen = model6.getRowCount();
