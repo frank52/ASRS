@@ -327,9 +327,11 @@ public class Scherm extends JFrame implements ActionListener {
             }catch (Exception e1){
 
             }
+            try {
+                bestellingen.get(0).generatePakbonnen();
+            }catch(Exception e2){
 
-            bestellingen.get(0).generatePakbonnen();
-
+            }
 
             if (i >= 2) {
 
@@ -360,12 +362,16 @@ public class Scherm extends JFrame implements ActionListener {
         for (int iii = aantalRijen - 1; iii >= 0; iii--) {
             model6.removeRow(iii);
         }
-        for (Bestelling b : bestellingen) {
-            try {
-                model6.addRow(new String[]{"" + b.getOrderNr()});
-            } catch (Exception z) {
+        try {
+            for (Bestelling b : bestellingen) {
+                try {
+                    model6.addRow(new String[]{"" + b.getOrderNr()});
+                } catch (Exception z) {
 
+                }
             }
+        }catch (Exception e3){
+            
         }
         try {
             model.addRow(new String[]{"" + bestellingen.get(0).getOrderNr() + "", null, "" + bestellingen.get(0).getArtikelnrs() + "", "" + bestellingen.get(0).getKlant().getVoornaam() + " " + bestellingen.get(0).getKlant().getAchternaam()});
