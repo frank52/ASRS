@@ -82,6 +82,7 @@ public class Scherm extends JFrame implements ActionListener {
         startSysteem.setPreferredSize(new Dimension(200, 40));
         p1.add(startSysteem, BorderLayout.WEST);
         startSysteem.addActionListener(this);
+        
 
         //tabbladen
         JPanel p2 = new JPanel();
@@ -229,6 +230,7 @@ public class Scherm extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == selecteerXML) {
             cal = Calendar.getInstance();
+
 //			xmlFilesBrowserActionPerformed();
             XmlParser dialoog = new XmlParser();
 
@@ -240,6 +242,7 @@ public class Scherm extends JFrame implements ActionListener {
                     if (b.getOrderNr() == dialoog.getBestelling().getOrderNr()) {
 
                         zitErin = true;
+
                         model2.addRow(new String[]{"Order bestaat al", "Error", "" + cal.getTime() + ""});
                     }
                 }
@@ -253,6 +256,7 @@ public class Scherm extends JFrame implements ActionListener {
                 bestellingen.add(dialoog.getBestelling());
                 if (!nietsselect) {
                     model2.addRow(new String[]{"Nieuw order toegevoegd", "Action", "" + cal.getTime() + ""});
+
                 } else {
                     model2.addRow(new String[]{"Geen order toegevoegd", "Error", "" + cal.getTime() + ""});
                 }
@@ -312,11 +316,16 @@ public class Scherm extends JFrame implements ActionListener {
             }catch(Exception exc){
                 
             }
-            ArrayList<Integer> artn = bestellingen.get(0).getArtikelnrs();
-            int iiii = 0;
-            for (int b : artn) {
-                d1.DatabaseBestelRegel(bestellingen.get(0).getOrderNr(), bestellingen.get(0).getArtikelnrs().get(iiii));
-                iiii++;
+            try {
+                ArrayList<Integer> artn = bestellingen.get(0).getArtikelnrs();
+
+                int iiii = 0;
+                for (int b : artn) {
+                    d1.DatabaseBestelRegel(bestellingen.get(0).getOrderNr(), bestellingen.get(0).getArtikelnrs().get(iiii));
+                    iiii++;
+                }
+            }catch (Exception e1){
+
             }
 
             bestellingen.get(0).generatePakbonnen();
