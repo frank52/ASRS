@@ -24,18 +24,21 @@ public class TekenPanel extends JPanel{
         super.paintComponent(g);
         setBackground(Color.WHITE);
         tekenMagazijn(g);
-        kleurVakjes();
         generateVakken(5);
-        System.out.println(d1.getlistLocatie());
-
+        kleurVakjes();
+        tekenMagazijn(g);
+        for(Artikel a : d1.getlistLocatie()) {
+            System.out.println(a.getPlaats());
+        }
     }
 
     public void tekenMagazijn(Graphics g) {
         for(int i1 = 0; i1 < 5; i1++) {
             for(int i = 0; i < 5; i++) {
+                g.setColor(Color.black);
                 g.drawRect(xSelf, ySelf, verhouding, verhouding);
                 g.setColor(myColor);
-                g.fillRect(xSelf, ySelf, verhouding, verhouding);
+                g.fillRect(xSelf+1, ySelf+1, verhouding-1, verhouding-1);
                 xSelf = xSelf + verhouding;
 
             }
@@ -66,11 +69,12 @@ public class TekenPanel extends JPanel{
 
     public void kleurVakjes(){
         d1.SelectLocatie();
-
-        if(l1.toString() d1.getlistLocatie() ){
-            myColor= Color.RED;
-        }else{
-            myColor=Color.BLACK;
+        for(Artikel a: d1.getlistLocatie()) {
+            if (l1.toString().equals(a.getPlaats())) {
+                myColor = Color.RED;
+            } else {
+                myColor = Color.white;
+            }
         }
     }
 
