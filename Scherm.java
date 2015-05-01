@@ -209,8 +209,10 @@ public class Scherm extends JFrame implements ActionListener {
 
         p4.add(jScrollPane1);
 
-//		JPanel p5 = new JPanel();
-//		p2.setLayout(new GridLayout(0,1));
+		JPanel p6 = new JPanel();
+		p6.setLayout(new GridLayout(0, 1));
+        p6.add(new TekenPanel());
+
         jTabbedPane1 = new JTabbedPane();
 
         jTabbedPane1.addTab(
@@ -219,7 +221,7 @@ public class Scherm extends JFrame implements ActionListener {
                 "Meldingen", p3);
         jTabbedPane1.addTab(
                 "Statistieken", p4);
-		//jTabbedPane1.addTab("Magazijn",p5);
+		jTabbedPane1.addTab("Magazijn",p6);
 
         add(jTabbedPane1);
         bestellingen = new ArrayList<Bestelling>();
