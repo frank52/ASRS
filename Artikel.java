@@ -29,6 +29,9 @@ public class Artikel {
         this.artikelnr = artikelnr;
         this.naam = naam;
     }
+    public Artikel(String plaats){
+        this.plaats=plaats;
+    }
 
     @Override
     public String toString() {

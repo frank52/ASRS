@@ -19,6 +19,7 @@ public class Database {
     private ArrayList<Logboek> logboek1;
     private ArrayList<Artikel> artikel2;
     private ArrayList<Artikel> artikel3;
+    private ArrayList<Artikel> artikel4;
 
 
 
@@ -169,6 +170,37 @@ public class Database {
     }
     public ArrayList<Artikel> getlistArtikel() {
         return artikel3;
+    }
+
+    public void SelectLocatie(){
+
+        artikel4 = new ArrayList<>();
+        try {
+            Class.forName(driver).newInstance();
+            Connection database = DriverManager.getConnection(dbUrl, user, pass);
+            String query = "SELECT locatie FROM artikel";
+            PreparedStatement myStmt = (PreparedStatement) database.prepareStatement(query);
+            ResultSet rs = myStmt.executeQuery(query);
+
+
+            while(rs.next()) {
+
+                String locatie = rs.getString("locatie");
+
+                Artikel artikel = new Artikel(locatie);
+                artikel4.add(artikel);
+
+
+            }
+
+
+
+        } catch (Exception e) {
+            //e.printStackTrace();
+        }
+    }
+    public ArrayList<Artikel> getlistLocatie() {
+        return artikel4;
     }
 }
 
