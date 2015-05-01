@@ -12,7 +12,7 @@ public class TekenPanel extends JPanel{
     private int xSelf = 20; //startpunt x
     private int ySelf = 20; //startpunt y
     private Vak[][] alleVakken;
-
+    private Color myColor;
 
     public void paintComponent(Graphics g)
     {
@@ -21,15 +21,6 @@ public class TekenPanel extends JPanel{
         setBackground(Color.WHITE);
         tekenMagazijn(g);
         generateVakken(5);
-
-
-
-
-
-
-
-
-
     }
 
     public void tekenMagazijn(Graphics g) {
@@ -57,8 +48,15 @@ public class TekenPanel extends JPanel{
             {
                 Vak myVak = new Vak(col, row);
                 alleVakken[row][col] = myVak;
-                System.out.println(alleVakken[row][col].toString());
+//                System.out.println(alleVakken[row][col].toString());
             }
+        }
+    }
+    Locatie l1 = new Locatie;
+    Database database =  new Database();
+    public void kleurVakjes(){
+        if(l1.toString()  = database.getlistLocatie()){
+            myColor= Color.RED;
         }
     }
 

@@ -46,7 +46,8 @@ public class Vak {
 
     @Override
     public String toString() {
-        return "Vak{" + "locatie=" + locatie + '}';
+        //return "Vak{" + "locatie=" + locatie + '}';
+        return ""+locatie+"";
     }
 
 }
