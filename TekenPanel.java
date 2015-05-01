@@ -28,10 +28,6 @@ public class TekenPanel extends JPanel{
         setBackground(Color.WHITE);
 
         tekenMagazijn(g);
-        kleurVakjes();
-        tekenMagazijn(g);
-
-
 //        for(Artikel a : d1.getlistLocatie()) {
 //            System.out.println(a.getPlaats());
 //        }
@@ -48,10 +44,12 @@ public class TekenPanel extends JPanel{
                 xSelf = xSelf + verhouding;
                 String locatie= "("+i1+","+i+")";
                 locatie1=locatie;
+                kleurVakjes();
 
             }
             xSelf =20;
             ySelf = ySelf + verhouding;
+            kleurVakjes();
         }
         xSelf = 20;
         ySelf = 20;
