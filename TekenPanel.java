@@ -13,9 +13,9 @@ public class TekenPanel extends JPanel{
     private int ySelf = 20; //startpunt y
     private Vak[][] alleVakken;
     private Color myColor;
-    int i1;
-    int i;
-    String locatie1;
+    private int i1;
+    private int i;
+    private String locatie1;
 
     public TekenPanel(){
 
