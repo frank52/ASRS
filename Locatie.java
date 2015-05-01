@@ -7,6 +7,7 @@ public class Locatie {
     private int x;
     private int y;
 
+
     public Locatie(int x, int y) {
         this.x = x;
         this.y = y;

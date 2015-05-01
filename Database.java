@@ -202,5 +202,7 @@ public class Database {
     public ArrayList<Artikel> getlistLocatie() {
         return artikel4;
     }
+
+
 }
 
