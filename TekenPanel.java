@@ -13,8 +13,9 @@ public class TekenPanel extends JPanel{
     private int ySelf = 20; //startpunt y
     private Vak[][] alleVakken;
     private Color myColor;
-    private int y=0;
-    private int x=0;
+    int i1;
+    int i;
+    String locatie1;
 
     public TekenPanel(){
 
@@ -27,7 +28,8 @@ public class TekenPanel extends JPanel{
         setBackground(Color.WHITE);
 
         tekenMagazijn(g);
-//        kleurVakjes();
+        kleurVakjes();
+        tekenMagazijn(g);
 
 
 //        for(Artikel a : d1.getlistLocatie()) {
@@ -37,13 +39,15 @@ public class TekenPanel extends JPanel{
     }
 
     public void tekenMagazijn(Graphics g){
-        for(int i1 = 0; i1 < 5; i1++) {
-            for(int i = 0; i < 5; i++) {
+        for( i1= 0; i1 < 5; i1++) {
+            for(i = 0; i < 5; i++) {
                 g.setColor(Color.black);
                 g.drawRect(xSelf, ySelf, verhouding, verhouding);
-                g.setColor(Color.white);
-                g.fillRect(xSelf+1, ySelf+1, verhouding-1, verhouding-1);
+                g.setColor(myColor);
+                g.fillRect(xSelf + 1, ySelf + 1, verhouding - 1, verhouding - 1);
                 xSelf = xSelf + verhouding;
+                String locatie= "("+i1+","+i+")";
+                locatie1=locatie;
 
             }
             xSelf =20;
@@ -85,18 +89,18 @@ public class TekenPanel extends JPanel{
 //        }
 //    }
 
-//    Database d1 =  new Database();
-//
-//    public void kleurVakjes(){
-//        d1.SelectLocatie();
-//        for(Artikel a: d1.getlistLocatie()) {
-//            if (alleVakken.equals(a.getPlaats())) {
-//                myColor = Color.RED;
-//            } else {
-//                myColor = Color.white;
-//            }
-//        }
-//    }
+    Database d1 =  new Database();
+
+    public void kleurVakjes(){
+        d1.SelectLocatie();
+        for(Artikel a: d1.getlistLocatie()) {
+            if (locatie1.equals(a.getPlaats())) {
+                myColor = Color.RED;
+            } else {
+                myColor = Color.white;
+            }
+        }
+    }
 
 
 }
