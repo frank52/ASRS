@@ -2,6 +2,7 @@ package ASRS;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
 
 /**
  * Created by Willem on 1-5-2015.
@@ -15,7 +16,7 @@ public class TekenPanel extends JPanel{
     private Color myColor;
     private int i1;
     private int i;
-    private String locatie1;
+    private ArrayList<String> locatie1 = new ArrayList<>();
 
     public TekenPanel(){
 
@@ -43,7 +44,7 @@ public class TekenPanel extends JPanel{
                 g.fillRect(xSelf + 1, ySelf + 1, verhouding - 1, verhouding - 1);
                 xSelf = xSelf + verhouding;
                 String locatie= "("+i1+","+i+")";
-                locatie1=locatie;
+                locatie1.add(locatie);
                 kleurVakjes();
 
             }
@@ -53,17 +54,20 @@ public class TekenPanel extends JPanel{
         }
         xSelf = 20;
         ySelf = 20;
+        kleurVakjes();
     }
 
     Database d1 =  new Database();
 
     public void kleurVakjes(){
         d1.SelectLocatie();
-        for(Artikel a: d1.getlistLocatie()) {
-            if (locatie1.equals(a.getPlaats())) {
-                myColor = Color.RED;
-            } else {
-                myColor = Color.white;
+        for(TekenPanel a: locatie1) {
+            for (Artikel a1 : d1.getlistLocatie()) {
+                if (locatie1.equals(a1.getPlaats())) {
+                    myColor = Color.RED;
+                } else {
+                    myColor = Color.white;
+                }
             }
         }
     }
