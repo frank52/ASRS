@@ -77,12 +77,11 @@ public class TekenPanel extends JPanel
 
         for (Artikel a : artikelLijst)
         {
-            System.out.println(a.getPlaats());
-            System.out.println("Check: '" + a.getPlaats() + "' equals '" + s + "'");
+
             if (a.getPlaats().equals(s))
             {
                 returnBoolean = true;
-                System.out.println("TRUE");
+                
             }
 
         }
