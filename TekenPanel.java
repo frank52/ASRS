@@ -61,9 +61,9 @@ public class TekenPanel extends JPanel{
 
     public void kleurVakjes(){
         d1.SelectLocatie();
-        for(TekenPanel a: locatie1) {
-            for (Artikel a1 : d1.getlistLocatie()) {
-                if (locatie1.equals(a1.getPlaats())) {
+        for(Artikel a: d1.getlistLocatie()) {
+            for (String a1 : locatie1) {
+                if (locatie1.equals(a.getPlaats())) {
                     myColor = Color.RED;
                 } else {
                     myColor = Color.white;
