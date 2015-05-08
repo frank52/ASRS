@@ -20,7 +20,7 @@ public class TekenPanel extends JPanel
 
     public TekenPanel()
     {
-
+        d1.SelectLocatie();
     }
 
     public void paintComponent(Graphics g)
@@ -73,15 +73,13 @@ public class TekenPanel extends JPanel
         boolean returnBoolean;
         returnBoolean = false;
 
-        d1.SelectLocatie();
-
         ArrayList<Artikel> artikelLijst = d1.getlistLocatie();
 
         for (Artikel a : artikelLijst)
         {
             System.out.println(a.getPlaats());
             System.out.println("Check: '" + a.getPlaats() + "' equals '" + s + "'");
-            if (a.getPlaats() == s)
+            if (a.getPlaats().equals(s))
             {
                 returnBoolean = true;
                 System.out.println("TRUE");

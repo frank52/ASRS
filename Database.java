@@ -181,6 +181,8 @@ public class Database {
             String query = "SELECT locatie FROM artikel";
             PreparedStatement myStmt = (PreparedStatement) database.prepareStatement(query);
             ResultSet rs = myStmt.executeQuery(query);
+            
+            
 
 
             while(rs.next()) {
@@ -196,7 +198,7 @@ public class Database {
 
 
         } catch (Exception e) {
-            //e.printStackTrace();
+//            e.printStackTrace();
         }
     }
     public ArrayList<Artikel> getlistLocatie() {
