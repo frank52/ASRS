@@ -48,7 +48,7 @@ public class TekenPanel extends JPanel
                 g.setColor(Color.black);
                 g.drawRect(xSelf, ySelf, verhouding, verhouding);
 
-                if (tekenVakjes(locatie))
+                if (checkOvereenkomst(locatie))
                 {
                     g.setColor(Color.RED);
                 }
@@ -68,7 +68,7 @@ public class TekenPanel extends JPanel
         ySelf = 20;
     }
 
-    public boolean tekenVakjes(String s)
+    public boolean checkOvereenkomst(String s)
     {
         boolean returnBoolean;
         returnBoolean = false;
@@ -81,7 +81,6 @@ public class TekenPanel extends JPanel
             if (a.getPlaats().equals(s))
             {
                 returnBoolean = true;
-                
             }
 
         }
