@@ -9,18 +9,39 @@ import java.util.ArrayList;
  */
 public class TekenPanel extends JPanel
 {
+    ArrayList<Artikel> artikelen;
 
     private int verhouding = 100; //100 bij 100
     private int xSelf = 20; //startpunt x
     private int ySelf = 20; //startpunt y
     private Color myColor;
+    private Scherm scherm;
 
     private ArrayList<String> locatie1 = new ArrayList<>();
     Database d1 = new Database();
 
-    public TekenPanel()
+
+
+    public TekenPanel(Scherm scherm)
     {
+
+        this.scherm=scherm;
         d1.SelectLocatie();
+        d1.SelectArtikel();
+        ArrayList<Integer> artikelnrs = scherm.getArtikel();
+        ArrayList<Artikel> allArtikelen = d1.getlistArtikel();
+        artikelen = new ArrayList<>();
+
+        for (int i : artikelnrs) {
+            //System.out.println(i);
+            for (Artikel a : allArtikelen) {
+                //System.out.println(a);
+                if (i == a.getArtikelnr()) {
+                    Artikel artikel = new Artikel(a.getPlaats());
+                    artikelen.add(artikel);
+                }
+            }
+        }
     }
 
     public void paintComponent(Graphics g)
@@ -73,7 +94,7 @@ public class TekenPanel extends JPanel
         boolean returnBoolean;
         returnBoolean = false;
 
-        ArrayList<Artikel> artikelLijst = d1.getlistLocatie();
+        ArrayList<Artikel> artikelLijst = artikelen;
 
         for (Artikel a : artikelLijst)
         {

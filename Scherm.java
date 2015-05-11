@@ -40,6 +40,7 @@ public class Scherm extends JFrame implements ActionListener {
     private DefaultTableModel model4;
     private DefaultTableModel model5;
     private DefaultTableModel model6;
+    JPanel p6 = new JPanel();
     int ii = 0;
     private Calendar cal;
     private ArrayList<Bestelling> bestellingen;
@@ -48,6 +49,8 @@ public class Scherm extends JFrame implements ActionListener {
     final static boolean RIGHT_TO_LEFT = false;
     private final JFileChooser jfc;
     private boolean nietsselect = false;
+    private ArrayList<Artikel> artikelen;
+    private ArrayList<Integer> artikelnrs;
 
     public Scherm() {
 
@@ -82,6 +85,8 @@ public class Scherm extends JFrame implements ActionListener {
         startSysteem.setPreferredSize(new Dimension(200, 40));
         p1.add(startSysteem, BorderLayout.WEST);
         startSysteem.addActionListener(this);
+        startSysteem.setVisible(false);
+
         
 
         //tabbladen
@@ -100,7 +105,7 @@ public class Scherm extends JFrame implements ActionListener {
         table1 = new JTable(model);
         model.addColumn("Ordernummer");
         model.addColumn("Huidig Artikel");
-        model.addColumn("Benodigde Pakketten");
+        model.addColumn("Benodigde Artikelen");
         model.addColumn("Klant");
 
         model6 = new DefaultTableModel();
@@ -209,9 +214,9 @@ public class Scherm extends JFrame implements ActionListener {
 
         p4.add(jScrollPane1);
 
-		JPanel p6 = new JPanel();
+
 		p6.setLayout(new GridLayout(0, 1));
-        p6.add(new TekenPanel());
+
 
         jTabbedPane1 = new JTabbedPane();
 
@@ -239,7 +244,7 @@ public class Scherm extends JFrame implements ActionListener {
             boolean zitErin;
             zitErin = false;
             try {
-            for (Bestelling b : bestellingen) {
+                for (Bestelling b : bestellingen) {
 
                     if (b.getOrderNr() == dialoog.getBestelling().getOrderNr()) {
 
@@ -251,7 +256,7 @@ public class Scherm extends JFrame implements ActionListener {
 
                 }
 
-            }catch (Exception zz) {
+            } catch (Exception zz) {
 
                 nietsselect = true;
 
@@ -262,9 +267,11 @@ public class Scherm extends JFrame implements ActionListener {
                 bestellingen.add(dialoog.getBestelling());
                 if (dialoog.isGeselecteerd()) {
                     model2.addRow(new String[]{"Nieuw order toegevoegd", "Action", "" + cal.getTime() + ""});
+                    startSysteem.setVisible(true);
 
                 } else {
                     model2.addRow(new String[]{"Geen order toegevoegd", "Error", "" + cal.getTime() + ""});
+
                 }
             }
 
@@ -272,6 +279,12 @@ public class Scherm extends JFrame implements ActionListener {
             Bestelling best = dialoog.getBestelling();
             try {
                 model.addRow(new String[]{"" + bestellingen.get(0).getOrderNr() + "", null, "" + bestellingen.get(0).getArtikelnrs() + "", "" + bestellingen.get(0).getKlant().getVoornaam() + " " + bestellingen.get(0).getKlant().getAchternaam()});
+
+                artikelnrs = bestellingen.get(0).getArtikelnrs();
+
+                // System.out.println(artikelen);
+
+
             } catch (Exception z) {
 
             }
@@ -279,7 +292,8 @@ public class Scherm extends JFrame implements ActionListener {
                 if (ii > 0) {
                     try {
                         model.removeRow(1);
-                    }catch (Exception zzzzzzz){}
+                    } catch (Exception zzzzzzz) {
+                    }
                 }
                 ii++;
             }
@@ -297,16 +311,19 @@ public class Scherm extends JFrame implements ActionListener {
             }
 
         }
+
         if (e.getSource() == startSysteem) {
+
             cal = Calendar.getInstance();
             model2.addRow(new String[]{"Het Systeem is gestart", "Action", "" + cal.getTime() + ""});
+            p6.add(new TekenPanel(this));
             startSysteem.setVisible(false);
             stopSysteem.setVisible(true);
 
         }
         int i = 0;
         if (e.getSource() == stopSysteem) {
-
+            p6.remove(0);
             cal = Calendar.getInstance();
             model2.addRow(new String[]{"Het systeem is gestopt", "Action", "" + cal.getTime() + ""});
             stopSysteem.setVisible(false);
@@ -391,7 +408,12 @@ public class Scherm extends JFrame implements ActionListener {
         }catch(Exception zzz){}
     }
 
+
+    public ArrayList getArtikel(){
+        return artikelnrs;
+    }
 }
+
 
 	
 	 
