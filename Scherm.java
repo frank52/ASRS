@@ -243,20 +243,24 @@ public class Scherm extends JFrame implements ActionListener {
 
                     if (b.getOrderNr() == dialoog.getBestelling().getOrderNr()) {
 
+
                         zitErin = true;
 
                         model2.addRow(new String[]{"Order bestaat al", "Error", "" + cal.getTime() + ""});
                     }
+
                 }
-            }catch (NullPointerException zz) {
+
+            }catch (Exception zz) {
 
                 nietsselect = true;
+
             }
 
             if (!zitErin) {
 
                 bestellingen.add(dialoog.getBestelling());
-                if (!nietsselect) {
+                if (dialoog.isGeselecteerd()) {
                     model2.addRow(new String[]{"Nieuw order toegevoegd", "Action", "" + cal.getTime() + ""});
 
                 } else {

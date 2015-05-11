@@ -24,19 +24,28 @@ public class XmlParser extends JFrame {
     private String datum;
     private ArrayList<Integer> artikelnummer;
     private Bestelling bestelling;
+    private boolean geselecteerd;
+
+    public boolean isGeselecteerd() {
+        return geselecteerd;
+    }
+
+
 
     public XmlParser() {
         this.jfc = new JFileChooser();
         this.jfc.setFileSelectionMode(JFileChooser.FILES_ONLY);
         this.jfc.setFileFilter(new FileNameExtensionFilter("XML files (*.xml)", "xml"));
+        geselecteerd=false;
 
         xmlFileUitlezen();
     }
 
     protected void xmlFileUitlezen() {
         final File xmlFile = getXmlFile();
-        if (xmlFile != null) {
 
+        if (xmlFile != null) {
+            geselecteerd=true;
             try {
 
                 //setup
