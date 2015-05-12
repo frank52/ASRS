@@ -378,11 +378,11 @@ public class Scherm extends JFrame implements ActionListener
             try
             {
                 cal = Calendar.getInstance();
-                model2.addRow(new String[]
-                {
-                    "Het Systeem is gestart", "Action", "" + cal.getTime() + ""
-                });
                 p6.add(new TekenPanel(this));
+                model2.addRow(new String[]
+                        {
+                                "Het Systeem is gestart", "Action", "" + cal.getTime() + ""
+                        });
                 startSysteem.setVisible(false);
                 stopSysteem.setVisible(true);
 
