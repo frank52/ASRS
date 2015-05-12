@@ -1,85 +1,69 @@
-package ASRS;/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
+package ASRS;
 
 import java.util.ArrayList;
 
-public class Bestelling {
+public class Bestelling
+{
     private int orderNr;
     private Klant klant;
     private String datum;
-    private ArrayList<Integer> artikelnrs;
+    private ArrayList<Integer> artikelnrs; //voor bpp
     private ArrayList<Pakket> pakketten;
     private int hoeveelheidPakketten;
     private ArrayList<Artikel> artikelen;
 
-
-    public Bestelling(int orderNr, String datum, ArrayList<Integer> artikelnrs, Klant klant, int hoeveelheidPakketten) {
+    public Bestelling(int orderNr, String datum, ArrayList<Integer> artikelnrs, Klant klant)
+    {
         this.orderNr = orderNr;
         this.datum = datum;
         this.artikelnrs = artikelnrs;
         this.klant = klant;
-        this.hoeveelheidPakketten = hoeveelheidPakketten;
     }
 
-    public int getHoeveelheidPakketten() {
+    public int getHoeveelheidPakketten()
+    {
         return hoeveelheidPakketten;
     }
 
     @Override
-   public String toString(){
-       return "Ordernummer: "+ orderNr +"\nDatum:"+ datum+"\nartikelnummers"+artikelnrs+ "\npakketten"+pakketten + hoeveelheidPakketten + "\nKlant:----- \n"+klant.toString();
-   }
+    public String toString()
+    {
+        return "Ordernummer: " + orderNr + "\nDatum:" + datum + "\nartikelnummers" + artikelnrs + "\npakketten" + pakketten + hoeveelheidPakketten + "\nKlant:----- \n" + klant.toString();
+    }
 
-    public Klant getKlant() {
+    public Klant getKlant()
+    {
         return klant;
     }
 
-    public int getOrderNr() {
+    public int getOrderNr()
+    {
         return orderNr;
     }
 
-    public String getDatum() {
+    public String getDatum()
+    {
         return datum;
     }
 
-    public ArrayList<Integer> getArtikelnrs() {
+    public ArrayList<Integer> getArtikelnrs()
+    {
         return artikelnrs;
     }
 
-    public void setPakketten(ArrayList<Pakket> pakketten) {
+    public void setPakketten(ArrayList<Pakket> pakketten)
+    {
         this.pakketten = pakketten;
-    }
-    
-    public void setHoeveelheidPakketten(int hoeveelheidPakketten) {
-        this.hoeveelheidPakketten = hoeveelheidPakketten;
-    }
-    
-    public void convertIntToArtikel(ArrayList<Integer> artikelnrs) {
-        Database d1 = new Database();
-        d1.SelectArtikel();
-        ArrayList<Artikel> allArtikelen = d1.getlistArtikel();
-        artikelen = new ArrayList<>();
-        
-        for (int i : artikelnrs) {
-            for (Artikel a : allArtikelen) {
-                //System.out.println(a);
-                if (i == a.getArtikelnr()) {
-                    artikelen.add(a);
-                }
-            }
-        }
+        this.hoeveelheidPakketten = pakketten.size();
         
     }
 
-
-    public void generatePakbonnen() {
-        convertIntToArtikel(artikelnrs);
+    public void generatePakbonnen()
+    {
         int i = 0;
-        while (i < hoeveelheidPakketten) {
+        while (i < hoeveelheidPakketten)
+        {
+            artikelen = pakketten.get(i).getInhoudPakket();
             i++;
             Pakbon pakbon = new Pakbon(orderNr, klant, artikelen, i, hoeveelheidPakketten);
             pakbon.maakPaklijstAlsTxt();

@@ -72,15 +72,7 @@ public class XmlParser extends JFrame {
                 subcatKlantUitlezen(doc);
 
                 //attributen in klasse Bestelling stoppen
-
-
-
-                //      new Bestelling(uniek id, andere shit)
-
-
-                bestelling = new Bestelling(ordernr, datum, artikelnummer, klant, 3);
-
-                //System.out.println(bestelling);
+                bestelling = new Bestelling(ordernr, datum, artikelnummer, klant);
 
             }
             catch (Exception e) {
