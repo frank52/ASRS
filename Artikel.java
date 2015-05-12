@@ -7,7 +7,8 @@ package ASRS;
 
 import java.util.ArrayList;
 
-public class Artikel {
+public class Artikel
+{
 
     private String plaats;
     private int grootte;
@@ -15,48 +16,56 @@ public class Artikel {
     private int aantalArt;
     private String naam;
 
-    public Artikel(int artikelnr, String plaats, int grootte, int aantalArt, String naam) {
+    public Artikel(int artikelnr, String plaats, int grootte, int aantalArt, String naam)
+    {
         this.plaats = plaats;
         this.grootte = grootte;
         this.artikelnr = artikelnr;
         this.aantalArt = aantalArt;
-        this.naam=naam;
+        this.naam = naam;
     }
 
-    public Artikel(String plaats, int grootte, int artikelnr, String naam) {
+    public Artikel(String plaats, int grootte, int artikelnr, String naam)
+    {
         this.plaats = plaats;
         this.grootte = grootte;
         this.artikelnr = artikelnr;
         this.naam = naam;
     }
-    public Artikel(String plaats){
-        this.plaats=plaats;
+
+    public Artikel(String plaats)
+    {
+        this.plaats = plaats;
     }
 
     @Override
-    public String toString() {
+    public String toString()
+    {
         return "Artikel{" + "plaats=" + plaats + ", grootte=" + grootte + ", artikelnr=" + artikelnr + ", aantalArt=" + aantalArt + ", naam=" + naam + '}';
     }
 
-    
-
-    public int getAantalArt() {
+    public int getAantalArt()
+    {
         return aantalArt;
     }
 
-    public String getPlaats() {
+    public String getPlaats()
+    {
         return plaats;
     }
 
-    public int getGrootte() {
+    public int getGrootte()
+    {
         return grootte;
     }
 
-    public int getArtikelnr() {
+    public int getArtikelnr()
+    {
         return artikelnr;
     }
 
-    public String getNaam() {
+    public String getNaam()
+    {
         return naam;
     }
 }
