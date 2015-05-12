@@ -107,10 +107,17 @@ public class Scherm extends JFrame implements ActionListener {
         model.addColumn("Huidig Artikel");
         model.addColumn("Benodigde Artikelen");
         model.addColumn("Klant");
+        table1.setEnabled(false);
+        table1.getTableHeader().setReorderingAllowed(false);
+        table1.getTableHeader().setResizingAllowed(false);
+
 
         model6 = new DefaultTableModel();
         JTable table2 = new JTable(model6);
         model6.addColumn("Ordernummer");
+        table2.setEnabled(false);
+        table2.getTableHeader().setReorderingAllowed(false);
+        table2.getTableHeader().setResizingAllowed(false);
 
         JScrollPane jScrollPane2 = new JScrollPane();
         jScrollPane2.setViewportView(table2);
@@ -130,9 +137,13 @@ public class Scherm extends JFrame implements ActionListener {
                 new GridLayout(0, 1));
         model2 = new DefaultTableModel();
         table1 = new JTable(model2);
+
         model2.addColumn("Bericht");
         model2.addColumn("Type bericht");
         model2.addColumn("Tijd");
+        table1.setEnabled(false);
+        table1.getTableHeader().setReorderingAllowed(false);
+        table1.getTableHeader().setResizingAllowed(false);
 
         jScrollPane1 = new JScrollPane();
 
@@ -162,9 +173,12 @@ public class Scherm extends JFrame implements ActionListener {
         model3.addColumn("Datum");
         //model3.addColumn("Algoritme TSP");
         //model3.addColumn("Algoritme BPP");
+        table1.setEnabled(false);
+        table1.getTableHeader().setReorderingAllowed(false);
+        table1.getTableHeader().setResizingAllowed(false);
         d2.Select();
         for(Logboek l : d2.getlist()){
-            model3.addRow(new String[]{""+l.getOrdernr()+"", ""+ l.getAantalArtikkelen()+"", null, ""+l.getVoornaam() +" "+ l.getAchternaam()+"", ""+l.getDatum()+""});
+            model3.addRow(new String[]{""+l.getOrdernr()+"", ""+ l.getAantalArtikkelen() + "", null, ""+l.getVoornaam() +" "+ l.getAchternaam()+"", ""+l.getDatum()+""});
         }
 
 
@@ -184,6 +198,9 @@ public class Scherm extends JFrame implements ActionListener {
         model4.addColumn("Product ID");
         model4.addColumn("Huidige Locatie");
         model4.addColumn("Voorgestelde Locatie");
+        table1.setEnabled(false);
+        table1.getTableHeader().setReorderingAllowed(false);
+        table1.getTableHeader().setResizingAllowed(false);
         d2.SelectArtikelTop();
         for(Artikel l2 :d2.getlistArtikel2()) {
             model4.addRow(new String[]{"" +l2.getArtikelnr()+"", ""+l2.getPlaats()+"", null});
@@ -215,7 +232,7 @@ public class Scherm extends JFrame implements ActionListener {
         p4.add(jScrollPane1);
 
 
-		p6.setLayout(new GridLayout(0, 1));
+        p6.setLayout(new GridLayout(0, 1));
 
 
         jTabbedPane1 = new JTabbedPane();
@@ -226,10 +243,14 @@ public class Scherm extends JFrame implements ActionListener {
                 "Meldingen", p3);
         jTabbedPane1.addTab(
                 "Statistieken", p4);
-		jTabbedPane1.addTab("Magazijn",p6);
+        jTabbedPane1.addTab("Magazijn",p6);
 
         add(jTabbedPane1);
         bestellingen = new ArrayList<Bestelling>();
+
+        table1.setEnabled(false);
+        table1.getTableHeader().setReorderingAllowed(false);
+        table1.getTableHeader().setResizingAllowed(false);
 
     }
 
