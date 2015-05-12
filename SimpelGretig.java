@@ -24,7 +24,6 @@ public class SimpelGretig
         {
             for (Artikel a : allArtikelen)
             {
-                //System.out.println(a);
                 if (i == a.getArtikelnr())
                 {
                     artikellijst.add(a);
