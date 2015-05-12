@@ -85,7 +85,7 @@ public class Scherm extends JFrame implements ActionListener {
         startSysteem.setPreferredSize(new Dimension(200, 40));
         p1.add(startSysteem, BorderLayout.WEST);
         startSysteem.addActionListener(this);
-        startSysteem.setVisible(false);
+
 
         
 
@@ -288,7 +288,7 @@ public class Scherm extends JFrame implements ActionListener {
                 bestellingen.add(dialoog.getBestelling());
                 if (dialoog.isGeselecteerd()) {
                     model2.addRow(new String[]{"Nieuw order toegevoegd", "Action", "" + cal.getTime() + ""});
-                    startSysteem.setVisible(true);
+
 
                 } else {
                     model2.addRow(new String[]{"Geen order toegevoegd", "Error", "" + cal.getTime() + ""});
@@ -334,12 +334,15 @@ public class Scherm extends JFrame implements ActionListener {
         }
 
         if (e.getSource() == startSysteem) {
-
-            cal = Calendar.getInstance();
-            model2.addRow(new String[]{"Het Systeem is gestart", "Action", "" + cal.getTime() + ""});
-            p6.add(new TekenPanel(this));
-            startSysteem.setVisible(false);
-            stopSysteem.setVisible(true);
+            try {
+                cal = Calendar.getInstance();
+                model2.addRow(new String[]{"Het Systeem is gestart", "Action", "" + cal.getTime() + ""});
+                p6.add(new TekenPanel(this));
+                startSysteem.setVisible(false);
+                stopSysteem.setVisible(true);
+            }catch(Exception e2){
+                model2.addRow(new String[]{"Het systeem kon niet gestart worden", "Error", "" + cal.getTime()+""});
+            }
 
         }
         int i = 0;
