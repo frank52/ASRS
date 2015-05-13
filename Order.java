@@ -44,11 +44,13 @@ public class Order {
             final String str = a.getPlaats();
             final Pattern pattern = Pattern.compile("[\\,'\"]");
             final String[] result = pattern.split(str);
-            System.out.println(Arrays.toString(result));
+
             int x = Integer.parseInt(result[0]);
             int y = Integer.parseInt(result[1]);
             Vak vak = new Vak(x,y);
             vakken.add(vak);
+            System.out.println("vakken:");
+            System.out.println(vakken);
         }
         }
 

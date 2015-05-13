@@ -23,19 +23,20 @@ public class Database {
 
 
 
-    public void DatabaseBestelling(int ordernnr, String datum, String voornaam, String achternaam, int aantalArtikelen) {
+    public void DatabaseBestelling(int ordernnr, String datum, String voornaam, String achternaam, int aantalArtikelen, int aantalPakketen) {
 
 
 
         try {
             Class.forName(driver).newInstance();
             Connection database = DriverManager.getConnection(dbUrl, user, pass);
-            PreparedStatement myStmt = (PreparedStatement) database.prepareStatement("Insert into bestelling(ordernr, datum, voornaamKlant, achternaamKlant, aantalArtikelen)VALUES(?,?,?,?,?)");
+            PreparedStatement myStmt = (PreparedStatement) database.prepareStatement("Insert into bestelling(ordernr, datum, voornaamKlant, achternaamKlant, aantalArtikelen, aantalPakketen)VALUES(?,?,?,?,?,?)");
             myStmt.setInt(1, ordernnr); // set input parameter 1
             myStmt.setString(2, datum); // set input parameter 2
             myStmt.setString(3, voornaam); // set input parameter 2
             myStmt.setString(4, achternaam); // set input parameter 2
             myStmt.setInt(5, aantalArtikelen);
+            myStmt.setInt(6, aantalPakketen);
 
             myStmt.executeUpdate(); // execute insert statement
 
@@ -71,7 +72,7 @@ public class Database {
         try {
             Class.forName(driver).newInstance();
             Connection database = DriverManager.getConnection(dbUrl, user, pass);
-            String query = "select ordernr, voornaamKlant, achternaamKlant, datum, aantalArtikelen from stephhq105_kbs.bestelling ORDER BY datum DESC";
+            String query = "select ordernr, voornaamKlant, achternaamKlant, datum, aantalArtikelen, aantalPakketen from stephhq105_kbs.bestelling ORDER BY datum DESC";
             PreparedStatement myStmt = (PreparedStatement) database.prepareStatement(query);
             ResultSet rs = myStmt.executeQuery(query);
 
@@ -85,7 +86,8 @@ public class Database {
                 String achternaam = rs.getString("achternaamKlant"); // set input parameter 1
                 String datum2 = rs.getString("datum");
                 int aantalArtikelen = rs.getInt("aantalArtikelen");
-                Logboek logboek = new Logboek(ordernummer, aantalArtikelen, voornaam, achternaam, datum2);
+                int aantalPakketen = rs.getInt("aantalPakketen");
+                Logboek logboek = new Logboek(ordernummer, aantalPakketen, aantalArtikelen, voornaam, achternaam, datum2);
                 logboek1.add(logboek);
 
              //   System.out.println(ordernummer + " " + datumm);

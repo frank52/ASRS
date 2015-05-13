@@ -65,7 +65,7 @@ public class TekenPanel extends JPanel
         {
             for (int i = 0; i < 5; i++)
             {
-                String locatie = "" + i1 + "," + i + "";
+                String locatie = "" + i + "," + i1 + "";
                 locatie1.add(locatie);
 
                 g.setColor(Color.black);

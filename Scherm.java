@@ -53,6 +53,7 @@ public class Scherm extends JFrame implements ActionListener
     private ArrayList<Artikel> artikelen;
     private ArrayList<Integer> artikelnrs;
     private ArrayList<Vak> vakken;
+    private SimpelGretig sg;
 
     public Scherm()
     {
@@ -208,7 +209,7 @@ public class Scherm extends JFrame implements ActionListener
         {
             model4.addRow(new String[]
             {
-                "" + l2.getArtikelnr() + "", "" + l2.getPlaats() + "", null
+                "" + l2.getArtikelnr() + "", "" + l2.getPlaats() + "", "N.V.T."
             });
         }
 
@@ -391,7 +392,7 @@ public class Scherm extends JFrame implements ActionListener
                 startSysteem.setVisible(false);
                 stopSysteem.setVisible(true);
 
-                SimpelGretig sg = new SimpelGretig(bestellingen.get(0).getArtikelnrs(), this);
+                sg = new SimpelGretig(bestellingen.get(0).getArtikelnrs(), this);
                 sg.vul();
                 bestellingen.get(0).setPakketten(sg.getAllePakketten());
 
@@ -426,7 +427,7 @@ public class Scherm extends JFrame implements ActionListener
             Database d1 = new Database();
             try
             {
-                d1.DatabaseBestelling(bestellingen.get(0).getOrderNr(), bestellingen.get(0).getDatum(), bestellingen.get(0).getKlant().getVoornaam(), bestellingen.get(0).getKlant().getAchternaam(), bestellingen.get(0).getArtikelnrs().size());
+                d1.DatabaseBestelling(bestellingen.get(0).getOrderNr(), bestellingen.get(0).getDatum(), bestellingen.get(0).getKlant().getVoornaam(), bestellingen.get(0).getKlant().getAchternaam(), bestellingen.get(0).getArtikelnrs().size(), sg.getAllePakketten().size());
             }
             catch (Exception exc)
             {
@@ -471,7 +472,7 @@ public class Scherm extends JFrame implements ActionListener
             {
                 model3.addRow(new String[]
                 {
-                    "" + l.getOrdernr() + "", "" + l.getAantalArtikkelen() + "", null, "" + l.getVoornaam() + " " + l.getAchternaam() + "", "" + l.getDatum() + ""
+                    "" + l.getOrdernr() + "", "" + l.getAantalArtikkelen() + "", "" + l.getAantalPakketten() + "", "" + l.getVoornaam() + " " + l.getAchternaam() + "", "" + l.getDatum() + ""
                 });
             }
             int aantalRijen2 = model4.getRowCount();
