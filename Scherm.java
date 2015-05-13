@@ -378,6 +378,7 @@ public class Scherm extends JFrame implements ActionListener
             try
             {
                 cal = Calendar.getInstance();
+                artikelnrs = bestellingen.get(0).getArtikelnrs();
                 p6.add(new TekenPanel(this));
                 model2.addRow(new String[]
                         {
