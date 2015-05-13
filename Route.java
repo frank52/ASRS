@@ -11,14 +11,16 @@ public class Route {
 
     private int afstand;
 
-    public Route(ArrayList<Vak> volgorde) {
+    public Route(ArrayList<Vak> volgorde,int afstand) {
         this.volgorde = volgorde;
+        this.afstand = afstand;
     }
 
-    public int berekenAfstand(ArrayList<Vak> volgorde) {
-        int afstand;
-        afstand = volgorde.size() * Vak.getGroote();
+    public ArrayList<Vak> getVolgorde() {
+        return volgorde;
+    }
 
+    public int getAfstand() {
         return afstand;
     }
 }

@@ -1,5 +1,7 @@
 package ASRS;
 
+import java.util.ArrayList;
+
 /**
  * Created by Willem on 12-5-2015.
  */
@@ -7,18 +9,45 @@ public class Enumeratie extends MyMath implements Algoritme{
 
     private Order order;
     private Route route;
-    Vak[] volgorder;
+    ArrayList<Vak> volgorder;
+    Vak[] volgorderAr;
     int kortsteAfstand = 0xFFFFFF;
+    int afstand;
 
     public Enumeratie(Order order) {
         this.order = order;
-        volgorder = new Vak[order.getVakken().size()];
+        volgorderAr = new Vak[order.getVakken().size()];
+        volgorder = new ArrayList<>();
         berekenRoute(order);
-        for(int l = 0; l < volgorder.length; l++)
+
+        for(int i = 0; i < volgorderAr.length; i++)
         {
-            System.out.print(volgorder[l].getLocatie().toString());
+            volgorder.add(volgorderAr[i]);
         }
+
         System.out.println("");
+
+        System.out.println(volgorder.size());
+
+        afstand = berekenAfstand(volgorder);
+
+        route = new Route(volgorder, afstand);
+        System.out.println(volgorder);
+
+    }
+
+    private int berekenAfstand(ArrayList<Vak> volgorder)
+    {
+        int afstandi = 0;
+
+        for(int i = 1; i < volgorder.size(); i++)
+        {
+            afstandi += calcDelta(volgorder.get(i-1).getX(), volgorder.get(i-1).getY(), volgorder.get(i).getX(), volgorder.get(i).getY());
+
+            // System.out.println("van vak: " + volgorder[i-1].getLocatie() + "naar vak: " + volgorder[i].getLocatie());
+        }
+        System.out.println(afstandi);
+        return afstandi;
     }
 
     @Override
@@ -93,7 +122,7 @@ public class Enumeratie extends MyMath implements Algoritme{
                         kortsteAfstand = calcAfstand(vakken);
                         for(int l = 0; l < x; l++)
                         {
-                            volgorder[l] = vakken[l];
+                            volgorderAr[l] = vakken[l];
                         }
                     }
 
@@ -199,7 +228,7 @@ public class Enumeratie extends MyMath implements Algoritme{
                             kortsteAfstand = calcAfstand(vakken);
                             for(int l = 0; l < y; l++)
                             {
-                                volgorder[l] = vakken[l];
+                                volgorderAr[l] = vakken[l];
                             }
                         }
 
