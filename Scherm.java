@@ -52,6 +52,7 @@ public class Scherm extends JFrame implements ActionListener
     private boolean nietsselect = false;
     private ArrayList<Artikel> artikelen;
     private ArrayList<Integer> artikelnrs;
+    private ArrayList<Vak> vakken;
 
     public Scherm()
     {
@@ -378,6 +379,10 @@ public class Scherm extends JFrame implements ActionListener
             {
                 cal = Calendar.getInstance();
                 artikelnrs = bestellingen.get(0).getArtikelnrs();
+                Order order = new Order(artikelnrs);
+                order.addVak();
+                Enumeratie enumeratie = new Enumeratie(order);
+                vakken = enumeratie.getRoute().getVolgorde();
                 p6.add(new TekenPanel(this));
                 model2.addRow(new String[]
                         {
@@ -389,11 +394,8 @@ public class Scherm extends JFrame implements ActionListener
                 SimpelGretig sg = new SimpelGretig(bestellingen.get(0).getArtikelnrs(), this);
                 sg.vul();
                 bestellingen.get(0).setPakketten(sg.getAllePakketten());
-                Order order = new Order(artikelnrs);
-                order.addVak();
-                Enumeratie enumeratie = new Enumeratie(order);
-                ArrayList<Vak> vakken = enumeratie.getRoute().getVolgorde();
-                System.out.println(vakken);
+
+
             }
             catch (Exception e2)
             {
@@ -543,6 +545,7 @@ public class Scherm extends JFrame implements ActionListener
     {
         return artikelnrs;
     }
+    public ArrayList getVakken() {return vakken;}
 }
 
 

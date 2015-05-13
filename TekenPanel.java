@@ -16,8 +16,10 @@ public class TekenPanel extends JPanel
     private int ySelf = 20; //startpunt y
     private Color myColor;
     private Scherm scherm;
-
+    private ArrayList<Vak> vakken;
     private ArrayList<String> locatie1 = new ArrayList<>();
+    private boolean returnBoolean2;
+    private int index;
     Database d1 = new Database();
 
 
@@ -31,7 +33,7 @@ public class TekenPanel extends JPanel
         ArrayList<Integer> artikelnrs = scherm.getArtikel();
         ArrayList<Artikel> allArtikelen = d1.getlistArtikel();
         artikelen = new ArrayList<>();
-
+        vakken = scherm.getVakken();
         for (int i : artikelnrs) {
             //System.out.println(i);
             for (Artikel a : allArtikelen) {
@@ -72,6 +74,7 @@ public class TekenPanel extends JPanel
                 if (checkOvereenkomst(locatie))
                 {
                     g.setColor(Color.RED);
+
                 }
                 else
                 {
@@ -79,6 +82,13 @@ public class TekenPanel extends JPanel
                 }
 
                 g.fillRect(xSelf + 1, ySelf + 1, verhouding - 1, verhouding - 1);
+                if(routeLocatie(locatie))
+                {
+                    g.setFont(new Font("SanSerif", Font.BOLD, 26));
+                    g.setColor(Color.BLACK);
+                    g.drawString("" + index + "", xSelf+43, ySelf+58);
+
+                }
                 xSelf = xSelf + verhouding;
 
             }
@@ -106,6 +116,22 @@ public class TekenPanel extends JPanel
 
         }
         return returnBoolean;
+    }
+    public boolean routeLocatie(String s)
+    {
+        boolean returnBoolean2;
+        returnBoolean2 = false;
+        int i = 1;
+            for (Vak v : vakken) {
+
+                if (v.getLocatie().equals(s)) {
+                    index = i;
+                    returnBoolean2 = true;
+                }
+                i++;
+            }
+
+        return returnBoolean2;
     }
 
 }
