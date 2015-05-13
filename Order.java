@@ -23,7 +23,7 @@ public class Order {
         return vakken;
     }
 
-    public void addVak(Scherm scherm)
+    public void addVak()
     {
         Database d1 = new Database();
         d1.SelectArtikel();

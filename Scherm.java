@@ -389,7 +389,11 @@ public class Scherm extends JFrame implements ActionListener
                 SimpelGretig sg = new SimpelGretig(bestellingen.get(0).getArtikelnrs(), this);
                 sg.vul();
                 bestellingen.get(0).setPakketten(sg.getAllePakketten());
-
+                Order order = new Order(artikelnrs);
+                order.addVak();
+                Enumeratie enumeratie = new Enumeratie(order);
+                ArrayList<Vak> vakken = enumeratie.getRoute().getVolgorde();
+                System.out.println(vakken);
             }
             catch (Exception e2)
             {
