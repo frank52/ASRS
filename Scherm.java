@@ -327,8 +327,7 @@ public class Scherm extends JFrame implements ActionListener
                 {
                     "" + bestellingen.get(0).getOrderNr() + "", null, "" + bestellingen.get(0).getArtikelnrs() + "", "" + bestellingen.get(0).getKlant().getVoornaam() + " " + bestellingen.get(0).getKlant().getAchternaam()
                 });
-
-                artikelnrs = bestellingen.get(0).getArtikelnrs();
+                
 
                 // System.out.println(artikelen);
             }
