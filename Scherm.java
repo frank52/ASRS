@@ -31,7 +31,6 @@ public class Scherm extends JFrame implements ActionListener
     private JButton selecteerXML;
     private JButton stopSysteem;
     private JButton startSysteem;
-    private JButton genereerPakbon;
     private JTabbedPane jTabbedPane1;
     private JTable table1;
     private JScrollPane jScrollPane1;
@@ -45,9 +44,6 @@ public class Scherm extends JFrame implements ActionListener
     int ii = 0;
     private Calendar cal;
     private ArrayList<Bestelling> bestellingen;
-    final static boolean shouldFill = true;
-    final static boolean shouldWeightX = true;
-    final static boolean RIGHT_TO_LEFT = false;
     private final JFileChooser jfc;
     private boolean nietsselect = false;
     private ArrayList<Artikel> artikelen;
