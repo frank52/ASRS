@@ -7,7 +7,7 @@ import javax.swing.JFrame;
 import javax.swing.UIManager;
 
 public class Main {
-    Database d1 = new Database();
+
     
     public static void main(String[] args) throws Exception {
 

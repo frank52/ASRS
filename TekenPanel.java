@@ -14,7 +14,7 @@ public class TekenPanel extends JPanel
     private int verhouding = 100; //100 bij 100
     private int xSelf = 20; //startpunt x
     private int ySelf = 20; //startpunt y
-    private Color myColor;
+
     private Scherm scherm;
     private ArrayList<Vak> vakken;
     private ArrayList<String> locatie1 = new ArrayList<>();
