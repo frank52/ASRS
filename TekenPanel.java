@@ -17,6 +17,8 @@ public class TekenPanel extends JPanel
 
     private Scherm scherm;
     private ArrayList<Vak> vakken;
+    private ArrayList<Integer> xArray;
+    private ArrayList<Integer> yArray;
     private ArrayList<String> locatie1 = new ArrayList<>();
     private boolean returnBoolean2;
     private int index;
@@ -53,6 +55,7 @@ public class TekenPanel extends JPanel
         setBackground(Color.WHITE);
 
         tekenMagazijn(g);
+        arduino();
 
     }
 
@@ -133,5 +136,32 @@ public class TekenPanel extends JPanel
 
         return returnBoolean2;
     }
+    public void arduino()
+    {
+        int x = 0;
+        int x2 =0;
+        int x3 =0;
+        int y = 4;
+        int y2 = 0;
+        int y3 = 0;
+        xArray = new ArrayList<>();
+        yArray = new ArrayList<>();
+        for(Vak a: vakken)
+        {
+            x2 = a.getX();
+            x3 = x2 - x;
+            //System.out.println(x3);
+            xArray.add(x3);
+            x = x2;
+        }
+        for (Vak a: vakken)
+        {
+            y2 = a.getY();
+            y3 = (y2 - y) * -1;
+            //System.out.println(y3);
+            yArray.add(y3);
+            y = y2;
+        }
 
+    }
 }

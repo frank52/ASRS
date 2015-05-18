@@ -25,14 +25,14 @@ public class Enumeratie extends MyMath implements Algoritme{
             volgorder.add(volgorderAr[i]);
         }
 
-        System.out.println("");
+        //System.out.println("");
 
-        System.out.println(volgorder.size());
+        //System.out.println(volgorder.size());
 
         afstand = berekenAfstand(volgorder);
 
         route = new Route(volgorder, afstand);
-        System.out.println(volgorder);
+        //System.out.println(volgorder);
 
     }
 
@@ -46,7 +46,7 @@ public class Enumeratie extends MyMath implements Algoritme{
 
             // System.out.println("van vak: " + volgorder[i-1].getLocatie() + "naar vak: " + volgorder[i].getLocatie());
         }
-        System.out.println(afstandi);
+        //System.out.println(afstandi);
         return afstandi;
     }
 
@@ -75,7 +75,7 @@ public class Enumeratie extends MyMath implements Algoritme{
             i++;
         }
 
-        System.out.println(order.getVakken().size() + "! = " + super.fac(order.getVakken().size()));
+        //System.out.println(order.getVakken().size() + "! = " + super.fac(order.getVakken().size()));
         berekenPerMogelijkheid(vakken);
 
     }
@@ -86,7 +86,7 @@ public class Enumeratie extends MyMath implements Algoritme{
         Vak vakToMove;
         Vak tempVak;
         int  x = vakken.length;
-        System.out.println(x);
+        //System.out.println(x);
 
         for(int i = 0; i < vakken.length; i++)
         {
@@ -95,10 +95,10 @@ public class Enumeratie extends MyMath implements Algoritme{
 
         for(int l = 0; l < x; l++)
         {
-            System.out.print(vakken[l].getLocatie().toString());
+            //System.out.print(vakken[l].getLocatie().toString());
         }
-        System.out.println("");
-        System.out.println("");
+        //System.out.println("");
+        //System.out.println("");
 
         if(x <= 3)
         {
@@ -113,9 +113,9 @@ public class Enumeratie extends MyMath implements Algoritme{
                     //System.out.println(j + " vak " + vakken[j-1] + " geruild met" + vakken[j]);
                     for(int l = 0; l < x; l++)
                     {
-                        System.out.print(vakken[l].getLocatie().toString());
+                        //System.out.print(vakken[l].getLocatie().toString());
                     }
-                    System.out.println();
+                    //System.out.println();
 
                     if(calcAfstand(vakken) < kortsteAfstand)
                     {
@@ -187,7 +187,7 @@ public class Enumeratie extends MyMath implements Algoritme{
                 }
             }
         }
-        System.out.println("+");
+        //System.out.println("+");
     }
 
     public void berekenPerMogelijkheid(Vak[] vakken, int x)
@@ -196,7 +196,7 @@ public class Enumeratie extends MyMath implements Algoritme{
         Vak vakToMove;
         Vak tempVak;
         int  y = vakken.length;
-        System.out.println(x);
+        //System.out.println(x);
 
         for(int i = 0; i < vakken.length; i++)
         {
@@ -219,9 +219,9 @@ public class Enumeratie extends MyMath implements Algoritme{
                     {
                         for(int l = 0; l < y; l++)
                         {
-                            System.out.print(vakken[l].getLocatie().toString());
+                            //System.out.print(vakken[l].getLocatie().toString());
                         }
-                        System.out.println();
+                        //System.out.println();
 
                         if(calcAfstand(vakken) < kortsteAfstand)
                         {
@@ -297,14 +297,14 @@ public class Enumeratie extends MyMath implements Algoritme{
 
             }
         }
-        System.out.println("-");
+        //System.out.println("-");
     }
 
     private int calcAfstand(Vak[] v)
     {
         int afstand = 0;
 
-        afstand += calcDelta(0, v.length, v[0].getX(), v[v.length-1].getY());
+        afstand += calcDelta(0, 5, v[0].getX(), v[0].getY());
 
         for(int i = 0; i < v.length-1; i++)
         {

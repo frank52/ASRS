@@ -49,8 +49,8 @@ public class Order {
             int y = Integer.parseInt(result[1]);
             Vak vak = new Vak(x,y);
             vakken.add(vak);
-            System.out.println("vakken:");
-            System.out.println(vakken);
+            //System.out.println("vakken:");
+            //System.out.println(vakken);
         }
         }
 
