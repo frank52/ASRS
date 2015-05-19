@@ -80,4 +80,25 @@ public class ArduinoFuncties {
             //sorteer
         }
     }
-}
+
+    public void startConnectie(){
+        Connectie connectie = new Connectie();
+        Aansturing aansturing = new Aansturing(connectie);
+        if (connectie.initialize())
+        {
+            aansturing.naarLinks();
+            aansturing.naarRechts();
+            connectie.close();
+        }
+
+        // Wait 5 seconds then shutdown
+        try
+        {
+            Thread.sleep(2000);
+        }
+        catch (InterruptedException ie)
+        {
+        }
+    }
+    }
+
