@@ -50,6 +50,7 @@ public class Scherm extends JFrame implements ActionListener
     private ArrayList<Integer> artikelnrs;
     private ArrayList<Vak> vakken;
     private SimpelGretig sg;
+    private ArduinoFuncties arduinoFuncties;
 
     public Scherm()
     {
@@ -382,6 +383,7 @@ public class Scherm extends JFrame implements ActionListener
                 vakken = enumeratie.getRoute().getVolgorde();
 
                 p6.add(new TekenPanel(this));
+                arduinoFuncties = new ArduinoFuncties(this);
                 model2.addRow(new String[]
                         {
                                 "Het Systeem is gestart", "Action", "" + cal.getTime() + ""
