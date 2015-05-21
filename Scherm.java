@@ -25,8 +25,7 @@ import java.util.Calendar;
 import java.util.concurrent.ExecutionException;
 
 @SuppressWarnings("serial")
-public class Scherm extends JFrame implements ActionListener
-{
+public class Scherm extends JFrame implements ActionListener {
 
     private JButton selecteerXML;
     private JButton stopSysteem;
@@ -51,9 +50,9 @@ public class Scherm extends JFrame implements ActionListener
     private ArrayList<Vak> vakken;
     private SimpelGretig sg;
     private ArduinoFuncties arduinoFuncties;
+    private int iha = 0;
 
-    public Scherm()
-    {
+    public Scherm() {
 
         this.jfc = new JFileChooser();
         this.jfc.setFileSelectionMode(JFileChooser.FILES_ONLY);
@@ -174,12 +173,11 @@ public class Scherm extends JFrame implements ActionListener
         table1.getTableHeader().setReorderingAllowed(false);
         table1.getTableHeader().setResizingAllowed(false);
         d2.Select();
-        for (Logboek l : d2.getlist())
-        {
+        for (Logboek l : d2.getlist()) {
             model3.addRow(new String[]
-            {
-                "" + l.getOrdernr() + "", "" + l.getAantalArtikkelen() + "", null, "" + l.getVoornaam() + " " + l.getAchternaam() + "", "" + l.getDatum() + ""
-            });
+                    {
+                            "" + l.getOrdernr() + "", "" + l.getAantalArtikkelen() + "", null, "" + l.getVoornaam() + " " + l.getAchternaam() + "", "" + l.getDatum() + ""
+                    });
         }
 
         jScrollPane1 = new JScrollPane();
@@ -202,12 +200,11 @@ public class Scherm extends JFrame implements ActionListener
         table1.getTableHeader().setReorderingAllowed(false);
         table1.getTableHeader().setResizingAllowed(false);
         d2.SelectArtikelTop();
-        for (Artikel l2 : d2.getlistArtikel2())
-        {
+        for (Artikel l2 : d2.getlistArtikel2()) {
             model4.addRow(new String[]
-            {
-                "" + l2.getArtikelnr() + "", "" + l2.getPlaats() + "", "N.V.T."
-            });
+                    {
+                            "" + l2.getArtikelnr() + "", "" + l2.getPlaats() + "", "N.V.T."
+                    });
         }
 
         jScrollPane1 = new JScrollPane();
@@ -227,12 +224,11 @@ public class Scherm extends JFrame implements ActionListener
         model5.addColumn("Aantal keer verkocht");
         jScrollPane1 = new JScrollPane();
 
-        for (Artikel l2 : d2.getlistArtikel2())
-        {
+        for (Artikel l2 : d2.getlistArtikel2()) {
             model5.addRow(new String[]
-            {
-                "" + l2.getArtikelnr() + "", "" + l2.getAantalArt() + ""
-            });
+                    {
+                            "" + l2.getArtikelnr() + "", "" + l2.getAantalArt() + ""
+                    });
         }
 
         jScrollPane1.setViewportView(table1);
@@ -261,109 +257,93 @@ public class Scherm extends JFrame implements ActionListener
     }
 
     @Override
-    public void actionPerformed(ActionEvent e)
-    {
-        if (e.getSource() == selecteerXML)
-        {
+    public void actionPerformed(ActionEvent e) {
+        if (e.getSource() == selecteerXML) {
             cal = Calendar.getInstance();
 
             XmlParser dialoog = new XmlParser();
 
             boolean zitErin;
             zitErin = false;
-            try
-            {
-                for (Bestelling b : bestellingen)
-                {
+            try {
+                for (Bestelling b : bestellingen) {
 
-                    if (b.getOrderNr() == dialoog.getBestelling().getOrderNr())
-                    {
+                    if (b.getOrderNr() == dialoog.getBestelling().getOrderNr()) {
                         zitErin = true;
 
                         model2.addRow(new String[]
-                        {
-                            "Order bestaat al", "Error", "" + cal.getTime() + ""
-                        });
+                                {
+                                        "Order bestaat al", "Error", "" + cal.getTime() + ""
+                                });
                     }
 
                 }
 
-            }
-            catch (Exception zz)
-            {
+            } catch (Exception zz) {
 
                 nietsselect = true;
 
             }
 
-            if (!zitErin)
-            {
+            if (!zitErin) {
 
                 bestellingen.add(dialoog.getBestelling());
-                if (dialoog.isGeselecteerd())
-                {
+                if (dialoog.isGeselecteerd()) {
                     model2.addRow(new String[]
-                    {
-                        "Nieuw order toegevoegd", "Action", "" + cal.getTime() + ""
-                    });
+                            {
+                                    "Nieuw order toegevoegd", "Action", "" + cal.getTime() + ""
+                            });
 
-                }
-                else
-                {
+                } else {
                     model2.addRow(new String[]
-                    {
-                        "Geen order toegevoegd", "Error", "" + cal.getTime() + ""
-                    });
+                            {
+                                    "Geen order toegevoegd", "Error", "" + cal.getTime() + ""
+                            });
 
                 }
             }
 
             dialoog.setVisible(false);
             Bestelling best = dialoog.getBestelling();
-            try
-            {
+            try {
+                huidigArtikel();
+            } catch (NullPointerException npe) {
+
+
+            }
+            try {
+
                 model.addRow(new String[]
-                {
-                    "" + bestellingen.get(0).getOrderNr() + "", null, "" + bestellingen.get(0).getArtikelnrs() + "", "" + bestellingen.get(0).getKlant().getVoornaam() + " " + bestellingen.get(0).getKlant().getAchternaam()
-                });
-                
+                        {
+                                "" + bestellingen.get(0).getOrderNr() + "", getIha()+"" + "", "" + bestellingen.get(0).getArtikelnrs() + "", "" + bestellingen.get(0).getKlant().getVoornaam() + " " + bestellingen.get(0).getKlant().getAchternaam()
+                        });
+                model.fireTableDataChanged();
+
 
                 // System.out.println(artikelen);
+            } catch (Exception z) {
+                System.out.println("test");
             }
-            catch (Exception z)
-            {
-
-            }
-            if (e.getSource() == selecteerXML)
-            {
-                if (ii > 0)
-                {
-                    try
-                    {
+            if (e.getSource() == selecteerXML) {
+                if (ii > 0) {
+                    try {
                         model.removeRow(1);
-                    }
-                    catch (Exception zzzzzzz)
-                    {
+                    } catch (Exception zzzzzzz) {
                     }
                 }
                 ii++;
             }
             int aantalRijen = model6.getRowCount();
-            for (int i = aantalRijen - 1; i >= 0; i--)
-            {
+            for (int i = aantalRijen - 1; i >= 0; i--) {
                 model6.removeRow(i);
             }
-            for (Bestelling b : bestellingen)
-            {
-                try
-                {
+            for (Bestelling b : bestellingen) {
+                try {
                     model6.addRow(new String[]
-                    {
-                        "" + b.getOrderNr()
-                    });
-                }
-                catch (Exception h)
-                {
+                            {
+                                    "" + b.getOrderNr()
+                            });
+                } catch (Exception h) {
 
                 }
 
@@ -371,10 +351,8 @@ public class Scherm extends JFrame implements ActionListener
 
         }
 
-        if (e.getSource() == startSysteem)
-        {
-            try
-            {
+        if (e.getSource() == startSysteem) {
+            try {
                 cal = Calendar.getInstance();
                 artikelnrs = bestellingen.get(0).getArtikelnrs();
                 Order order = new Order(artikelnrs);
@@ -396,161 +374,144 @@ public class Scherm extends JFrame implements ActionListener
                 bestellingen.get(0).setPakketten(sg.getAllePakketten());
 
 
-            }
-            catch (Exception e2)
-            {
+            } catch (Exception e2) {
                 model2.addRow(new String[]
-                {
-                    "Het systeem kon niet gestart worden", "Error", "" + cal.getTime() + ""
-                });
+                        {
+                                "Het systeem kon niet gestart worden", "Error", "" + cal.getTime() + ""
+                        });
             }
 
         }
         int i = 0;
-        if (e.getSource() == stopSysteem)
-        {
+        if (e.getSource() == stopSysteem) {
             p6.remove(0);
             cal = Calendar.getInstance();
             model2.addRow(new String[]
-            {
-                "Het systeem is gestopt", "Action", "" + cal.getTime() + ""
-            });
+                    {
+                            "Het systeem is gestopt", "Action", "" + cal.getTime() + ""
+                    });
             stopSysteem.setVisible(false);
             startSysteem.setVisible(true);
 
-            for (Bestelling b : bestellingen)
-            {
+            for (Bestelling b : bestellingen) {
                 i++;
             }
 
             Database d1 = new Database();
-            try
-            {
+            try {
                 d1.DatabaseBestelling(bestellingen.get(0).getOrderNr(), bestellingen.get(0).getDatum(), bestellingen.get(0).getKlant().getVoornaam(), bestellingen.get(0).getKlant().getAchternaam(), bestellingen.get(0).getArtikelnrs().size(), sg.getAllePakketten().size());
-            }
-            catch (Exception exc)
-            {
+            } catch (Exception exc) {
 
             }
-            try
-            {
+            try {
                 ArrayList<Integer> artn = bestellingen.get(0).getArtikelnrs();
 
                 int iiii = 0;
-                for (int b : artn)
-                {
+                for (int b : artn) {
                     d1.DatabaseBestelRegel(bestellingen.get(0).getOrderNr(), bestellingen.get(0).getArtikelnrs().get(iiii));
                     iiii++;
                 }
-            }
-            catch (Exception e1)
-            {
+            } catch (Exception e1) {
 
             }
-            try
-            {
+            try {
                 bestellingen.get(0).generatePakbonnen();
-            }
-            catch (Exception e2)
-            {
+            } catch (Exception e2) {
 
             }
 
-            if (i >= 2)
-            {
+            if (i >= 2) {
 
                 bestellingen.remove(0);
             }
             int aantalRijen = model3.getRowCount();
-            for (int iii = aantalRijen - 1; iii >= 0; iii--)
-            {
+            for (int iii = aantalRijen - 1; iii >= 0; iii--) {
                 model3.removeRow(iii);
             }
             d1.Select();
-            for (Logboek l : d1.getlist())
-            {
+            for (Logboek l : d1.getlist()) {
                 model3.addRow(new String[]
-                {
-                    "" + l.getOrdernr() + "", "" + l.getAantalArtikkelen() + "", "" + l.getAantalPakketten() + "", "" + l.getVoornaam() + " " + l.getAchternaam() + "", "" + l.getDatum() + ""
-                });
+                        {
+                                "" + l.getOrdernr() + "", "" + l.getAantalArtikkelen() + "", "" + l.getAantalPakketten() + "", "" + l.getVoornaam() + " " + l.getAchternaam() + "", "" + l.getDatum() + ""
+                        });
             }
             int aantalRijen2 = model4.getRowCount();
-            for (int iii = aantalRijen - 1; iii >= 0; iii--)
-            {
-                try
-                {
+            for (int iii = aantalRijen - 1; iii >= 0; iii--) {
+                try {
                     model4.removeRow(iii);
-                }
-                catch (Exception ex)
-                {
+                } catch (Exception ex) {
 
                 }
             }
             d1.SelectArtikelTop();
-            for (Artikel l2 : d1.getlistArtikel2())
-            {
+            for (Artikel l2 : d1.getlistArtikel2()) {
                 model4.addRow(new String[]
-                {
-                    "" + l2.getArtikelnr() + "", "" + l2.getPlaats() + "", null
-                });
+                        {
+                                "" + l2.getArtikelnr() + "", "" + l2.getPlaats() + "", null
+                        });
             }
         }
         int aantalRijen = model6.getRowCount();
-        for (int iii = aantalRijen - 1; iii >= 0; iii--)
-        {
+        for (int iii = aantalRijen - 1; iii >= 0; iii--) {
             model6.removeRow(iii);
         }
-        try
-        {
-            for (Bestelling b : bestellingen)
-            {
-                try
-                {
+        try {
+            for (Bestelling b : bestellingen) {
+                try {
                     model6.addRow(new String[]
-                    {
-                        "" + b.getOrderNr()
-                    });
-                }
-                catch (Exception z)
-                {
+                            {
+                                    "" + b.getOrderNr()
+                            });
+                } catch (Exception z) {
 
                 }
             }
-        }
-        catch (Exception e3)
-        {
+        } catch (Exception e3) {
 
         }
-        try
-        {
+        try {
+            huidigArtikel();
             model.addRow(new String[]
-            {
-                "" + bestellingen.get(0).getOrderNr() + "", null, "" + bestellingen.get(0).getArtikelnrs() + "", "" + bestellingen.get(0).getKlant().getVoornaam() + " " + bestellingen.get(0).getKlant().getAchternaam()
-            });
+                    {
+                            "" + bestellingen.get(0).getOrderNr() + "", getIha() + "", "" + bestellingen.get(0).getArtikelnrs() + "", "" + bestellingen.get(0).getKlant().getVoornaam() + " " + bestellingen.get(0).getKlant().getAchternaam()
+                    });
+            model.fireTableDataChanged();
 
-            if (ii > 0)
-            {
+            if (ii > 0) {
                 model.removeRow(0);
 
             }
             ii++;
 
-        }
-        catch (Exception zzz)
-        {
+        } catch (Exception zzz) {
         }
     }
 
-    public ArrayList getArtikel()
-    {
+    public ArrayList getArtikel() {
         return artikelnrs;
     }
-    public ArrayList getVakken() {return vakken;}
+
+    public ArrayList getVakken() {
+        return vakken;
+    }
+
+    public void huidigArtikel() {
+
+
+        for (iha = 1; iha < vakken.size(); iha++) {
+            try {
+                //bij de Tread moet je van arduino krijgen wanneer het pakketje gepakt is.
+                Thread.sleep(500);
+            } catch (Exception e) {
+
+            }
+        }
+    }
+
+    public int getIha() {
+        return iha;
+    }
 }
-
-
-	
-	 
 
 
 //}

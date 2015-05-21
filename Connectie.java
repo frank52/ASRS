@@ -18,7 +18,7 @@ public class Connectie implements SerialPortEventListener {
     SerialPort serialPort = null;
     private static final String PORT_NAMES[] =
             {
-                    "COM3",
+                    "COM6",
             };
     private static final int TIME_OUT = 1000; // Port open timeout
     private static final int DATA_RATE = 9600; // Arduino serial port
