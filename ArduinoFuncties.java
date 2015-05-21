@@ -19,6 +19,7 @@ public class ArduinoFuncties {
 
     public void arduino()
     {
+        startConnectie();
         int x = 0;
         int x2 =0;
         int x3 =0;
@@ -82,12 +83,11 @@ public class ArduinoFuncties {
     }
 
     public void startConnectie(){
-        Connectie connectie = new Connectie();
-        Aansturing aansturing = new Aansturing(connectie);
+            Connectie connectie = new Connectie();
+            Aansturing aansturing = new Aansturing(connectie);
         if (connectie.initialize())
         {
-            aansturing.naarLinks();
-            aansturing.naarRechts();
+
             connectie.close();
         }
 

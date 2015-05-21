@@ -3,8 +3,10 @@ package ASRS;
 import gnu.io.CommPortIdentifier;
 import gnu.io.SerialPort;
 import gnu.io.SerialPortEvent;
+import gnu.io.SerialPortEventListener;
 
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.util.Enumeration;
@@ -12,7 +14,7 @@ import java.util.Enumeration;
 /**
  * Created by Willem on 19-5-2015.
  */
-public class Connectie {
+public class Connectie implements SerialPortEventListener {
     SerialPort serialPort = null;
     private static final String PORT_NAMES[] =
             {
@@ -23,8 +25,7 @@ public class Connectie {
     private String appName;
     private BufferedReader input;
     private OutputStream output;
-
-    private boolean klaar;
+    private boolean ontvangen = false;
 
     public Connectie()
     {
@@ -96,6 +97,7 @@ public class Connectie {
 
             output = serialPort.getOutputStream();
             output.write(data.getBytes());
+            ontvangen = false;
         }
         catch (Exception e)
         {
@@ -115,7 +117,7 @@ public class Connectie {
 
     public synchronized void serialEvent(SerialPortEvent oEvent)
     {
-        System.out.println("Event ontvangen: " + oEvent.toString());
+//        System.out.println("Event ontvangen: " + oEvent.toString());
         try
         {
             switch (oEvent.getEventType())
@@ -127,24 +129,25 @@ public class Connectie {
                     }
                     String inputLine = input.readLine();
 
-//                    if (inputLine == "false")
-//                    {
-//                        System.out.println("klaar!");
-//                        klaar = true;
-//                    }
                     System.out.println(inputLine);
-
+                    ontvangen = true;
                     break;
 
                 default:
                     break;
             }
         }
-
-        catch (Exception e)
+        catch(IOException ioe)
         {
-            System.err.println(e.toString());
+            // catch
         }
+
     }
+    public boolean isOntvangen()
+    {
+        return ontvangen;
+    }
+
+
 
 }

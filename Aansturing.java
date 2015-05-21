@@ -11,25 +11,15 @@ public class Aansturing {
         this.c = c;
     }
 
-
-    public void naarLinks()
+    public void stuur(String s)
     {
-        c.sendData("naarLinks");
+        c.sendData(s);
         try
         {
-            Thread.sleep(2000);
-        }
-        catch (InterruptedException ie)
-        {
-        }
-    }
-
-    public void naarRechts()
-    {
-        c.sendData("naarRechts");
-        try
-        {
-            Thread.sleep(2000);
+            while(!c.isOntvangen())
+            {
+                Thread.sleep(1);
+            }
         }
         catch (InterruptedException ie)
         {
