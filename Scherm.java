@@ -353,6 +353,8 @@ public class Scherm extends JFrame implements ActionListener {
 
         if (e.getSource() == startSysteem) {
             try {
+                startSysteem.setVisible(false);
+                stopSysteem.setVisible(true);
                 cal = Calendar.getInstance();
                 artikelnrs = bestellingen.get(0).getArtikelnrs();
                 Order order = new Order(artikelnrs);
@@ -366,8 +368,7 @@ public class Scherm extends JFrame implements ActionListener {
                         {
                                 "Het Systeem is gestart", "Action", "" + cal.getTime() + ""
                         });
-                startSysteem.setVisible(false);
-                stopSysteem.setVisible(true);
+
 
                 sg = new SimpelGretig(bestellingen.get(0).getArtikelnrs(), this);
                 sg.vul();
