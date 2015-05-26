@@ -1,25 +1,23 @@
 package ASRS;
 
+
 import gnu.io.CommPortIdentifier;
 import gnu.io.SerialPort;
 import gnu.io.SerialPortEvent;
 import gnu.io.SerialPortEventListener;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.util.Enumeration;
 
-/**
- * Created by Willem on 19-5-2015.
- */
-public class Connectie implements SerialPortEventListener {
+public class Connectie implements SerialPortEventListener
+{
     SerialPort serialPort = null;
     private static final String PORT_NAMES[] =
-            {
-                    "COM6",
-            };
+    {
+        "COM4",
+    };
     private static final int TIME_OUT = 1000; // Port open timeout
     private static final int DATA_RATE = 9600; // Arduino serial port
     private String appName;
@@ -148,6 +146,6 @@ public class Connectie implements SerialPortEventListener {
         return ontvangen;
     }
 
-
+    
 
 }

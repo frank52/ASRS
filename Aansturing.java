@@ -1,8 +1,5 @@
 package ASRS;
 
-/**
- * Created by Willem on 19-5-2015.
- */
 public class Aansturing {
     private Connectie c;
 
