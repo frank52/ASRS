@@ -101,7 +101,7 @@ public class Scherm extends JFrame implements ActionListener {
         model = new DefaultTableModel();
         table1 = new JTable(model);
         model.addColumn("Ordernummer");
-        model.addColumn("Huidig Artikel");
+        //model.addColumn("Huidig Artikel");
         model.addColumn("Benodigde Artikelen");
         model.addColumn("Klant");
         table1.setEnabled(false);
@@ -315,9 +315,9 @@ public class Scherm extends JFrame implements ActionListener {
 
                 model.addRow(new String[]
                         {
-                                "" + bestellingen.get(0).getOrderNr() + "", getIha()+"" + "", "" + bestellingen.get(0).getArtikelnrs() + "", "" + bestellingen.get(0).getKlant().getVoornaam() + " " + bestellingen.get(0).getKlant().getAchternaam()
+                                "" + bestellingen.get(0).getOrderNr() + "", "" + bestellingen.get(0).getArtikelnrs() + "", "" + bestellingen.get(0).getKlant().getVoornaam() + " " + bestellingen.get(0).getKlant().getAchternaam()
                         });
-                model.fireTableDataChanged();
+
 
 
                 // System.out.println(artikelen);
@@ -370,11 +370,11 @@ public class Scherm extends JFrame implements ActionListener {
                         });
 
 
-                sg = new SimpelGretig(bestellingen.get(0).getArtikelnrs(), this);
+                sg = new SimpelGretig(vakken, this);
                 sg.vul();
                 bestellingen.get(0).setPakketten(sg.getAllePakketten());
 
-
+                arduinoFuncties.beweeg(true);
             } catch (Exception e2) {
                 model2.addRow(new String[]
                         {
@@ -474,9 +474,9 @@ public class Scherm extends JFrame implements ActionListener {
             huidigArtikel();
             model.addRow(new String[]
                     {
-                            "" + bestellingen.get(0).getOrderNr() + "", getIha() + "", "" + bestellingen.get(0).getArtikelnrs() + "", "" + bestellingen.get(0).getKlant().getVoornaam() + " " + bestellingen.get(0).getKlant().getAchternaam()
+                            "" + bestellingen.get(0).getOrderNr() + "", "" + bestellingen.get(0).getArtikelnrs() + "", "" + bestellingen.get(0).getKlant().getVoornaam() + " " + bestellingen.get(0).getKlant().getAchternaam()
                     });
-            model.fireTableDataChanged();
+
 
             if (ii > 0) {
                 model.removeRow(0);

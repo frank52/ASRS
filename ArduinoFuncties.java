@@ -60,15 +60,16 @@ public class ArduinoFuncties {
         boolean pakken;
         pakken = false;
         while(bezig == true)
-
         {
+            beweegt = false;
             while(vakken.size() >= 1)
             {
-                beweegt = false;
+
                 if (beweegt == false)
                 {
-                    xArray.get(0);
-                    yArray.get(0);
+                    String xx = Integer.toString(xArray.get(0));
+                    String yy = Integer.toString(yArray.get(0));
+                    startRobot(xx + "," + yy);
                     pakken = true;
                     beweegt = true;
                     xArray.remove(0);
@@ -76,10 +77,17 @@ public class ArduinoFuncties {
                     vakken.remove(0);
                 }
                 // beweegt = ardulink
-                if (beweegt == false && pakken == true)
+                try
                 {
-                    //pakken
+                    while(!connectie.isOntvangen())
+                    {
+                        Thread.sleep(1);
+                    }
                 }
+                catch (InterruptedException ie)
+                {
+                }
+                beweegt = false;
 
             }
             //sorteer
@@ -106,9 +114,9 @@ public class ArduinoFuncties {
         }
     }
 
-    public void startRobot(){
+    public void startRobot(String l){
        aansturing = new Aansturing(connectie);
-        aansturing.stuur("start");
+        aansturing.stuur(l);
     }
 
     public void stopRobot(){

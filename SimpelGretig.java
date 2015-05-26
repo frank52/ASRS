@@ -13,18 +13,18 @@ public class SimpelGretig
     private ArrayList<ArrayList<String>> actiePerArtikel;
     private int pakketTeller = 1;
 
-    public SimpelGretig(ArrayList<Integer> artikelnrs, Scherm scherm)
+    public SimpelGretig(ArrayList<Vak> vakken, Scherm scherm)
     {
         Database d1 = new Database();
         d1.SelectArtikel();
         ArrayList<Artikel> allArtikelen = d1.getlistArtikel();
         artikellijst = new ArrayList<>();
 
-        for (int i : artikelnrs)
+        for (Vak i : vakken)
         {
             for (Artikel a : allArtikelen)
             {
-                if (i == a.getArtikelnr())
+                if (i.getLocatie() == a.getPlaats())
                 {
                     artikellijst.add(a);
                 }
