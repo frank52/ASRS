@@ -1,5 +1,6 @@
 package ASRS;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class SimpelGretig
@@ -11,6 +12,11 @@ public class SimpelGretig
     private ArrayList<Pakket> actievePakketten;
     private ArrayList<Pakket> vollePakketten;
     private ArrayList<ArrayList<String>> actiePerArtikel;
+    private ArrayList<Artikel> artikeli = new ArrayList<>();
+    private ArrayList<ArrayList<Artikel>> artikeli2 = new ArrayList<>();
+    private ArrayList<Artikel> artikeli3 = new ArrayList<>();
+    private Artikel tijdelijkArtikel;
+    private int ii;
     private int pakketTeller = 1;
 
     public SimpelGretig(ArrayList<Vak> vakken, Scherm scherm)
@@ -20,16 +26,51 @@ public class SimpelGretig
         ArrayList<Artikel> allArtikelen = d1.getlistArtikel();
         artikellijst = new ArrayList<>();
 
-        for (Vak i : vakken)
+
+        for (Vak i : vakken) //vakken naar artikelen
         {
-            for (Artikel a : allArtikelen)
+            for (Artikel a1 : allArtikelen)
             {
-                if (i.getLocatie() == a.getPlaats())
+
+                if (i.getLocatie().equals(a1.getPlaats()))
                 {
-                    artikellijst.add(a);
+                    artikellijst.add(a1);
                 }
             }
         }
+        for (Artikel i : artikellijst) //array splitsen naar 3
+        {
+
+            artikeli.add(i);
+            System.out.println("artikeli: " + artikeli);
+            ii++;
+            if (ii == 3) {
+                artikeli2.add(artikeli);
+                ii = 0;
+                System.out.println("artikeli2: " + artikeli2);
+            }
+
+        }
+        for (ArrayList<Artikel> a : artikeli2)
+        {
+
+                while(a.size() > 0){
+                try {
+                    int size = a.size();
+                    tijdelijkArtikel = a.get(size - 1);
+                    artikeli3.add(tijdelijkArtikel);
+                    a.remove(size - 1);
+//                    System.out.println("artikeli2: " + artikeli2);
+//                    System.out.println("artikeli: " + a);
+//                    System.out.println("artikeli3: " + artikeli3);
+                }
+                catch(IndexOutOfBoundsException e)
+                {
+
+                }
+            }
+        }
+
 
         actievePakketten = new ArrayList<>();
         vollePakketten = new ArrayList<>();
@@ -47,7 +88,7 @@ public class SimpelGretig
     public void vul()
     {
         ArrayList<String> actiesVanDitArtikel;
-        for (Artikel a : artikellijst)
+        for (Artikel a : artikeli3)
         {
             actiesVanDitArtikel = new ArrayList<>();
 

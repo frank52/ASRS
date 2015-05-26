@@ -384,8 +384,7 @@ public class Scherm extends JFrame implements ActionListener
         {
             try
             {
-                startSysteem.setVisible(false);
-                stopSysteem.setVisible(true);
+
                 cal = Calendar.getInstance();
                 artikelnrs = bestellingen.get(0).getArtikelnrs();
                 Order order = new Order(artikelnrs);
@@ -395,10 +394,10 @@ public class Scherm extends JFrame implements ActionListener
 
                 p6.add(new TekenPanel(this));
 
-                Connectie connectie = new Connectie();
-                Aansturing aansturing = new Aansturing(connectie);
+                //Connectie connectie = new Connectie();
+                //Aansturing aansturing = new Aansturing(connectie);
 
-                arduinoFuncties = new ArduinoFuncties(this, connectie, aansturing);
+                //arduinoFuncties = new ArduinoFuncties(this, connectie, aansturing);
                 model2.addRow(new String[]
                 {
                     "Het Systeem is gestart", "Action", "" + cal.getTime() + ""
@@ -408,14 +407,17 @@ public class Scherm extends JFrame implements ActionListener
                 sg.vul();
                 bestellingen.get(0).setPakketten(sg.getAllePakketten());
 
-                if (connectie.initialize())
-                {
-                    arduinoFuncties.beweeg(true);
-                }
-                connectie.close();
+                //if (connectie.initialize())
+                //{
+                //    arduinoFuncties.beweeg(true);
+                //}
+                //connectie.close();
+                startSysteem.setVisible(false);
+                stopSysteem.setVisible(true);
             }
             catch (Exception e2)
             {
+                e2.printStackTrace();
                 model2.addRow(new String[]
                 {
                     "Het systeem kon niet gestart worden", "Error", "" + cal.getTime() + ""
