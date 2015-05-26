@@ -10,6 +10,8 @@ public class ArduinoFuncties {
     private  ArrayList<Integer> xArray;
     private ArrayList<Integer> yArray;
     private Scherm scherm;
+    Connectie connectie;
+    Aansturing aansturing;
 
     private int i=0;
 
@@ -85,8 +87,9 @@ public class ArduinoFuncties {
     }
 
     public void startConnectie(){
-            Connectie connectie = new Connectie();
-            Aansturing aansturing = new Aansturing(connectie);
+        connectie = new Connectie();
+        aansturing= new Aansturing(connectie);
+
         if (connectie.initialize())
         {
 
@@ -103,26 +106,14 @@ public class ArduinoFuncties {
         }
     }
 
-    public void huidigArtikel(){
-
-
-                for (i = 1; i < vakken.size(); i++){
-                    try {
-                        //bij de Tread moet je van arduino krijgen wanneer het pakketje gepakt is.
-                       Thread.sleep(500);
-                   }catch(Exception e){
-
-                    }
-                }
-
-
+    public void startRobot(){
+       aansturing = new Aansturing(connectie);
+        aansturing.stuur("start");
     }
-    public int getI() {
-//        if(i==null){
-//            return 0;
-//        }else {
-            return i;
-//        }
+
+    public void stopRobot(){
+        aansturing = new Aansturing(connectie);
+        aansturing.stuur("stop");
     }
 }
 
