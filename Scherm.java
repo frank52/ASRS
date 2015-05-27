@@ -22,6 +22,7 @@ import javax.swing.JTable;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
 import java.util.Calendar;
+import java.util.Timer;
 import java.util.concurrent.ExecutionException;
 
 @SuppressWarnings("serial")
@@ -394,29 +395,36 @@ public class Scherm extends JFrame implements ActionListener
 
                 p6.add(new TekenPanel(this));
 
-                //Connectie connectie = new Connectie();
-                //Aansturing aansturing = new Aansturing(connectie);
 
-                //arduinoFuncties = new ArduinoFuncties(this, connectie, aansturing);
                 model2.addRow(new String[]
                 {
                     "Het Systeem is gestart", "Action", "" + cal.getTime() + ""
                 });
 
+
+
+
+                startSysteem.setVisible(false);
+                stopSysteem.setVisible(true);
+
+                Timer timer = new Timer();
+
+                Connectie connectie = new Connectie();
+                Aansturing aansturing = new Aansturing(connectie);
+
                 sg = new SimpelGretig(vakken, this);
                 sg.vul();
                 bestellingen.get(0).setPakketten(sg.getAllePakketten());
 
-                //if (connectie.initialize())
-                //{
-                //    arduinoFuncties.beweeg(true);
-                    for(int i =0; i<sg.getActiePerArtikel().size(); i++) {
+                if (connectie.initialize())
+                {
+                    arduinoFuncties = new ArduinoFuncties(this, connectie, aansturing, timer);
+                    for(int i =0; i<sg.getActiesVanDitArtikel().size(); i++) {
                         arduinoFuncties.stuurLopendeBand(sg.getActiesVanDitArtikel().get(i));
                     }
-                //}
-                //connectie.close();
-                startSysteem.setVisible(false);
-                stopSysteem.setVisible(true);
+                }
+                connectie.close();
+
             }
             catch (Exception e2)
             {
@@ -431,6 +439,7 @@ public class Scherm extends JFrame implements ActionListener
         int i = 0;
         if (e.getSource() == stopSysteem)
         {
+            arduinoFuncties.getBeweeg().setBeweeg(false);
             p6.remove(0);
             cal = Calendar.getInstance();
             model2.addRow(new String[]

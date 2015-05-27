@@ -1,6 +1,8 @@
 package ASRS;
 
 import java.util.ArrayList;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class ArduinoFuncties
 {
@@ -10,17 +12,27 @@ public class ArduinoFuncties
     private Scherm scherm;
     Connectie connectie;
     Aansturing aansturing;
+    private boolean bezig;
+    private Timer timer;
+    private beweeg bewegen;
 
     private int i = 0;
 
-    public ArduinoFuncties(Scherm scherm, Connectie c, Aansturing a)
+    public ArduinoFuncties(Scherm scherm, Connectie c, Aansturing a, Timer t)
     {
         this.scherm = scherm;
         connectie = c;
         a = a;
         vakken = scherm.getVakken();
+        timer = t;
         arduino();
+        bewegen = new beweeg(true);
+        t.scheduleAtFixedRate(bewegen,0,1);
 
+    }
+    public beweeg getBeweeg()
+    {
+        return bewegen;
     }
 
     public void arduino()
@@ -58,45 +70,53 @@ public class ArduinoFuncties
             }
         
     }
+    public class beweeg extends TimerTask {
 
-    public void beweeg(boolean bezig)
-    {
-        boolean beweegt;
-        boolean pakken;
-        pakken = false;
-        while (bezig == true)
+
+        public beweeg(boolean b) {
+            bezig = b;
+        }
+
+        public void setBeweeg(boolean b)
         {
-            beweegt = false;
-            while (vakken.size() >= 1)
-            {
+            bezig = b;
+        }
 
-                if (beweegt == false)
-                {
-                    String xx = Integer.toString(xArray.get(0));
-                    String yy = Integer.toString(yArray.get(0));
-                    String xyString = xx + "," + yy;
-                    startRobot(xyString);
-                    pakken = true;
-                    beweegt = true;
-                    xArray.remove(0);
-                    yArray.remove(0);
-                    vakken.remove(0);
-                }
-                // beweegt = ardulink
-                try
-                {
-                    while (!connectie.isOntvangen())
-                    {
-                        Thread.sleep(1);
-                    }
-                }
-                catch (InterruptedException ie)
-                {
-                }
+        public void run() {
+            boolean pakken;
+            pakken = false;
+            boolean beweegt;
+            while (bezig == true) {
                 beweegt = false;
+                while (vakken.size() >= 1) {
+
+                    if (beweegt == false) {
+                        String xx = Integer.toString(xArray.get(0));
+                        String yy = Integer.toString(yArray.get(0));
+                        String xyString = xx + "," + yy;
+                        startRobot(xyString);
+                        pakken = true;
+                        beweegt = true;
+                        xArray.remove(0);
+                        yArray.remove(0);
+                        vakken.remove(0);
+                    }
+                    // beweegt = ardulink
+                    try {
+                        while (!connectie.isOntvangen()) {
+                            Thread.sleep(1);
+
+                        }
+                    } catch (InterruptedException ie) {
+                    }
+                    beweegt = false;
+
+                }
+
+
 
             }
-            //sorteer
+
         }
     }
 
@@ -111,10 +131,14 @@ public class ArduinoFuncties
     }
 
     public void stuurLopendeBand(String richting){
-        if(richting == "naarRechts"){
-            aansturing.stuur("right");
-        }else if(richting == "naarLinks"){
-            aansturing.stuur("left");
-        }
+
+            if(connectie.isOntvangen()) {
+                if (richting == "naarRechts") {
+                    aansturing.stuur("right");
+                } else if (richting == "naarLinks") {
+                    aansturing.stuur("left");
+                }
+            }
+
     }
 }
