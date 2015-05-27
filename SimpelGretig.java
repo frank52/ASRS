@@ -16,6 +16,7 @@ public class SimpelGretig
     private ArrayList<ArrayList<Artikel>> artikeli2 = new ArrayList<>();
     private ArrayList<Artikel> artikeli3 = new ArrayList<>();
     private Artikel tijdelijkArtikel;
+    private ArrayList<String> actiesVanDitArtikel;
     private int ii;
     private int pakketTeller = 1;
 
@@ -88,7 +89,7 @@ public class SimpelGretig
 
     public void vul()
     {
-        ArrayList<String> actiesVanDitArtikel;
+
         for (Artikel a : artikeli3)
         {
             actiesVanDitArtikel = new ArrayList<>();
@@ -149,6 +150,9 @@ public class SimpelGretig
     public ArrayList<ArrayList<String>> getActiePerArtikel()
     {
         return actiePerArtikel;
+    }
+    public ArrayList<String> getActiesVanDitArtikel(){
+        return actiesVanDitArtikel;
     }
 
     public ArrayList<Pakket> getActievePakketten()

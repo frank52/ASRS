@@ -410,6 +410,9 @@ public class Scherm extends JFrame implements ActionListener
                 //if (connectie.initialize())
                 //{
                 //    arduinoFuncties.beweeg(true);
+                    for(int i =0; i<sg.getActiePerArtikel().size(); i++) {
+                        arduinoFuncties.stuurLopendeBand(sg.getActiesVanDitArtikel().get(i));
+                    }
                 //}
                 //connectie.close();
                 startSysteem.setVisible(false);
