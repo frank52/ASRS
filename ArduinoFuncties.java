@@ -111,10 +111,12 @@ public class ArduinoFuncties
     }
 
     public void stuurLopendeBand(String richting){
-        if(richting == "naarRechts"){
-            aansturing.stuur("right");
-        }else if(richting == "naarLinks"){
-            aansturing.stuur("left");
+        if(connectie.isOntvangen()) {
+            if (richting == "naarRechts") {
+                aansturing.stuur("right");
+            } else if (richting == "naarLinks") {
+                aansturing.stuur("left");
+            }
         }
     }
 }
