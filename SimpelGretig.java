@@ -12,7 +12,7 @@ public class SimpelGretig
     private ArrayList<Pakket> actievePakketten;
     private ArrayList<Pakket> vollePakketten;
     private ArrayList<ArrayList<String>> actiePerArtikel;
-    private ArrayList<Artikel> artikeli = new ArrayList<>();
+    private ArrayList<Artikel> artikeli;
     private ArrayList<ArrayList<Artikel>> artikeli2 = new ArrayList<>();
     private ArrayList<Artikel> artikeli3 = new ArrayList<>();
     private Artikel tijdelijkArtikel;
@@ -38,16 +38,18 @@ public class SimpelGretig
                 }
             }
         }
+        artikeli = new ArrayList<>();
         for (Artikel i : artikellijst) //array splitsen naar 3
         {
 
             artikeli.add(i);
-            System.out.println("artikeli: " + artikeli);
+
             ii++;
-            if (ii == 3) {
+            if (ii == 3 || i.equals(artikellijst.get(artikellijst.size()-1))) {
                 artikeli2.add(artikeli);
                 ii = 0;
-                System.out.println("artikeli2: " + artikeli2);
+
+                artikeli = new ArrayList<>();
             }
 
         }
@@ -60,9 +62,8 @@ public class SimpelGretig
                     tijdelijkArtikel = a.get(size - 1);
                     artikeli3.add(tijdelijkArtikel);
                     a.remove(size - 1);
-//                    System.out.println("artikeli2: " + artikeli2);
-//                    System.out.println("artikeli: " + a);
-//                    System.out.println("artikeli3: " + artikeli3);
+
+
                 }
                 catch(IndexOutOfBoundsException e)
                 {
