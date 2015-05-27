@@ -395,14 +395,10 @@ public class Scherm extends JFrame implements ActionListener
 
                 p6.add(new TekenPanel(this));
 
-
                 model2.addRow(new String[]
                 {
                     "Het Systeem is gestart", "Action", "" + cal.getTime() + ""
                 });
-
-
-
 
                 startSysteem.setVisible(false);
                 stopSysteem.setVisible(true);
@@ -419,16 +415,14 @@ public class Scherm extends JFrame implements ActionListener
                 if (connectie.initialize())
                 {
                     arduinoFuncties = new ArduinoFuncties(this, connectie, aansturing, timer);
-                    for(int i =0; i<sg.getActiesVanDitArtikel().size(); i++) {
+                    for(int i =0; i < sg.getActiesVanDitArtikel().size(); i++) {
                         arduinoFuncties.stuurLopendeBand(sg.getActiesVanDitArtikel().get(i));
                     }
                 }
-                connectie.close();
 
             }
             catch (Exception e2)
             {
-                e2.printStackTrace();
                 model2.addRow(new String[]
                 {
                     "Het systeem kon niet gestart worden", "Error", "" + cal.getTime() + ""
