@@ -559,7 +559,7 @@ public class Scherm extends JFrame implements ActionListener {
 
                         }
 
-                            //sg.getActiesVanDitArtikel().remove(0);
+                            sg.getActiesVanDitArtikel().remove(0);
                         } 
                     }
 
