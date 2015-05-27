@@ -16,6 +16,7 @@ public class ArduinoFuncties
     private Timer timer;
     private beweeg bewegen;
 
+
     private int i = 0;
 
     public ArduinoFuncties(Scherm scherm, Connectie c, Aansturing a, Timer t)
@@ -51,7 +52,7 @@ public class ArduinoFuncties
         {
             x2 = a.getX();
             x3 = x2 - x;
-            System.out.println(x3);
+            //System.out.println(x3);
             xArray.add(x3);
             x = x2;
         }
@@ -112,6 +113,7 @@ public class ArduinoFuncties
 
         public void run()
         {
+           int iii =0;
             boolean pakken = false;
             boolean beweegt;
             while (bezig == true)
@@ -129,7 +131,7 @@ public class ArduinoFuncties
                         beweegt = true;
                         xArray.remove(0);
                         yArray.remove(0);
-                        vakken.remove(0);
+
                     }
                     // beweegt = ardulink
                     try
@@ -144,11 +146,136 @@ public class ArduinoFuncties
                     {
                     }
                     beweegt = false;
+                    iii++;
+                    if (iii == 3)
+                    {
+                        String beweegHo = "" + (0 -vakken.get(0).getX()) + "";
+                        String beweegVe = "" + (4 - vakken.get(0).getY()) + "";
+                        String beweegVeHo = beweegHo + "," + beweegVe;
+                        vakken.remove(0);
+                        connectie.sendData("startpositie");
+                        while (!connectie.isOntvangen())
+                        {
+                            try {
+                                Thread.sleep(1);
+                            } catch (InterruptedException e) {
+                            }
 
+                        }
+                        connectie.sendData(beweegVeHo);
+                        while (!connectie.isOntvangen())
+                        {
+                            try {
+                                Thread.sleep(1);
+                            } catch (InterruptedException e) {
+                            }
+
+                        }
+                        connectie.sendData("drop");
+                        while (!connectie.isOntvangen())
+                        {
+                            try {
+                                Thread.sleep(1);
+                            } catch (InterruptedException e) {
+                            }
+
+                        }
+
+                        String beweegHo2 = "" + (vakken.get(0).getX()) + "";
+                        String beweegVe2 = "" + (vakken.get(0).getY() - 4) + "";
+                        String beweegVeHo2 = beweegHo2 + "," + beweegVe2;
+                        connectie.sendData(beweegVeHo2);
+                        while (!connectie.isOntvangen())
+                        {
+                            try {
+                                Thread.sleep(1);
+                            } catch (InterruptedException e) {
+                            }
+
+                        }
+                        xArray.remove(0);
+                        yArray.remove(0);
+                        iii=1;
+                        if (iii == vakken.size())
+                        {
+                            String beweegHo3 = "" + (0 -vakken.get(0).getX()) + "";
+                            String beweegVe3 = "" + (4 - vakken.get(0).getY()) + "";
+                            String beweegVeHo3 = beweegHo3 + "," + beweegVe3;
+                            connectie.sendData("startpositie");
+                            while (!connectie.isOntvangen())
+                            {
+                                try {
+                                    Thread.sleep(1);
+                                } catch (InterruptedException e) {
+                                }
+
+                            }
+                            connectie.sendData(beweegVeHo3);
+                            while (!connectie.isOntvangen())
+                            {
+                                try {
+                                    Thread.sleep(1);
+                                } catch (InterruptedException e) {
+                                }
+
+                            }
+                            connectie.sendData("drop");
+                            while (!connectie.isOntvangen())
+                            {
+                                try {
+                                    Thread.sleep(1);
+                                } catch (InterruptedException e) {
+                                }
+
+                            }
+
+                        }
+                        vakken.remove(0);
+
+
+                    }
+                    else {
+                        if (iii == 2 && vakken.size() == 1)
+                        {
+                            String beweegHo = "" + (0 -vakken.get(0).getX()) + "";
+                            String beweegVe = "" + (4 - vakken.get(0).getY()) + "";
+                            String beweegVeHo = beweegHo + "," + beweegVe;
+                            connectie.sendData("startpositie");
+                            while (!connectie.isOntvangen())
+                            {
+                                try {
+                                    Thread.sleep(1);
+                                } catch (InterruptedException e) {
+                                }
+
+                            }
+                            connectie.sendData(beweegVeHo);
+                            while (!connectie.isOntvangen())
+                            {
+                                try {
+                                    Thread.sleep(1);
+                                } catch (InterruptedException e) {
+                                }
+
+                            }
+                            connectie.sendData("drop");
+                            while (!connectie.isOntvangen())
+                            {
+                                try {
+                                    Thread.sleep(1);
+                                } catch (InterruptedException e) {
+                                }
+
+                            }
+
+                        }
+                        vakken.remove(0);
+
+                    }
                 }
 
             }
-
+                connectie.close();
         }
     }
 

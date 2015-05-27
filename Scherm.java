@@ -392,8 +392,9 @@ public class Scherm extends JFrame implements ActionListener
                 order.addVak();
                 Enumeratie enumeratie = new Enumeratie(order);
                 vakken = enumeratie.getRoute().getVolgorde();
+                //System.out.println(vakken);
 
-                p6.add(new TekenPanel(this));
+                p6.add(new TekenPanel(this, vakken));
 
                 model2.addRow(new String[]
                 {

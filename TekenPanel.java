@@ -27,7 +27,7 @@ public class TekenPanel extends JPanel
 
 
 
-    public TekenPanel(Scherm scherm)
+    public TekenPanel(Scherm scherm, ArrayList<Vak> vakken)
     {
 
         this.scherm=scherm;
@@ -36,7 +36,7 @@ public class TekenPanel extends JPanel
         ArrayList<Integer> artikelnrs = scherm.getArtikel();
         ArrayList<Artikel> allArtikelen = d1.getlistArtikel();
         artikelen = new ArrayList<>();
-        vakken = scherm.getVakken();
+        this.vakken = vakken;
         for (int i : artikelnrs) {
             //System.out.println(i);
             for (Artikel a : allArtikelen) {
@@ -79,6 +79,10 @@ public class TekenPanel extends JPanel
                 if (checkOvereenkomst(locatie))
                 {
                     g.setColor(Color.RED);
+                    if(!routeLocatie(locatie))
+                    {
+                        g.setColor(Color.GREEN);
+                    }
 
                 }
                 else
@@ -102,6 +106,7 @@ public class TekenPanel extends JPanel
         }
         xSelf = 20;
         ySelf = 20;
+        repaint();
     }
 
     public boolean checkOvereenkomst(String s)
@@ -135,8 +140,10 @@ public class TekenPanel extends JPanel
                 }
                 i++;
             }
-
+        //System.out.println(vakken);
+        //System.out.println(artikelen);
         return returnBoolean2;
+
     }
 
 
