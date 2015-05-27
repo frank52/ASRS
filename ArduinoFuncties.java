@@ -89,11 +89,11 @@ public class ArduinoFuncties
         {
             if (richting == "naarRechts")
             {
-                aansturing.stuur("right");
+                connectie.sendData("right");
             }
             else if (richting == "naarLinks")
             {
-                aansturing.stuur("left");
+                connectie.sendData("left");
             }
         }
     }
