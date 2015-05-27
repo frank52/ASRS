@@ -372,23 +372,23 @@ public class Scherm extends JFrame implements ActionListener {
                 startSysteem.setVisible(false);
                 stopSysteem.setVisible(true);
 
-//                Timer timer = new Timer();
-//
-//                Connectie connectie = new Connectie("COM5");
-//                Aansturing aansturing = new Aansturing(connectie);
-//
+                Timer timer = new Timer();
+
+                Connectie connectie = new Connectie("COM5");
+                Aansturing aansturing = new Aansturing(connectie);
+
                 sg = new SimpelGretig(vakken, this);
                 sg.vul();
                 bestellingen.get(0).setPakketten(sg.getAllePakketten());
-//
-//                if (connectie.initialize())
-//                {
-//                    arduinoFuncties = new ArduinoFuncties(this, connectie, aansturing, timer);
-//                    for(int i =0; i < sg.getActiesVanDitArtikel().size(); i++) {
-//                        arduinoFuncties.stuurLopendeBand(sg.getActiesVanDitArtikel().get(i));
-//                    }
-//
-//                }
+
+                if (connectie.initialize())
+                {
+                    arduinoFuncties = new ArduinoFuncties(this, connectie, aansturing, timer);
+                    for(int i =0; i < sg.getActiesVanDitArtikel().size(); i++) {
+                        arduinoFuncties.stuurLopendeBand(sg.getActiesVanDitArtikel().get(i));
+                    }
+
+                }
                 Connectie connectie2 = new Connectie("COM8");
                 Aansturing aansturing2 = new Aansturing(connectie2);
                 Timer timer2 = new Timer();
