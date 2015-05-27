@@ -9,15 +9,13 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
+import java.util.ArrayList;
 import java.util.Enumeration;
 
 public class Connectie implements SerialPortEventListener
 {
     SerialPort serialPort = null;
-    private static final String PORT_NAMES[] =
-    {
-        "COM5","COM4"
-    };
+    private ArrayList<String> PORT_NAME;
     private static final int TIME_OUT = 1000; // Port open timeout
     private static final int DATA_RATE = 9600; // Arduino serial port
     private String appName;
@@ -25,8 +23,10 @@ public class Connectie implements SerialPortEventListener
     private OutputStream output;
     private boolean ontvangen = false;
 
-    public Connectie()
+    public Connectie(String PORT_NAME)
     {
+        this.PORT_NAME = new ArrayList<>();
+        this.PORT_NAME.add(PORT_NAME);
         appName = getClass().getName();
     }
 
@@ -40,7 +40,7 @@ public class Connectie implements SerialPortEventListener
             while (portId == null && portEnum.hasMoreElements())
             {
                 CommPortIdentifier currPortId = (CommPortIdentifier) portEnum.nextElement();
-                for (String portName : PORT_NAMES)
+                for (String portName : PORT_NAME)
                 {
                     if (currPortId.getName().equals(portName)
                             || currPortId.getName().startsWith(portName))

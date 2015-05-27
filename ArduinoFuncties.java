@@ -31,6 +31,12 @@ public class ArduinoFuncties
         t.scheduleAtFixedRate(bewegen, 0, 1);
 
     }
+    public ArduinoFuncties(Scherm scherm, Connectie c, Aansturing a)
+    {
+        this.scherm = scherm;
+        connectie = c;
+        aansturing = a;
+            }
 
     public beweeg getBeweeg()
     {
@@ -84,18 +90,18 @@ public class ArduinoFuncties
 
     public void stuurLopendeBand(String richting)
     {
-
-        if (connectie.isOntvangen())
-        {
-            if (richting == "naarRechts")
+            if (richting.equals("naarRechts"))
             {
                 connectie.sendData("right");
+                System.out.println("rechts");
+
             }
-            else if (richting == "naarLinks")
+            else if (richting.equals("naarLinks"))
             {
                 connectie.sendData("left");
+                System.out.println("Links");
             }
-        }
+
     }
 
     public class beweeg extends TimerTask
