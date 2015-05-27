@@ -269,8 +269,13 @@ public class ArduinoFuncties
                             }
 
                         }
-                        vakken.remove(0);
+                        try {
+                            vakken.remove(0);
+                        }
+                        catch (Exception e)
+                        {
 
+                        }
                     }
                 }
 
