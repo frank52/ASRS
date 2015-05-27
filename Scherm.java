@@ -549,7 +549,7 @@ public class Scherm extends JFrame implements ActionListener {
                 if (c.initialize())
                 {
                     while (sg.getActiesVanDitArtikel().size() > 0) {
-                        arduinoFuncties2.stuurLopendeBand(sg.getActiesVanDitArtikel().get(0));
+
                         while (!c.isOntvangen())
                         {
                             try {
@@ -558,8 +558,9 @@ public class Scherm extends JFrame implements ActionListener {
                             }
 
                         }
-
-                            sg.getActiesVanDitArtikel().remove(0);
+                        arduinoFuncties2.stuurLopendeBand(sg.getActiesVanDitArtikel().get(0));
+                        
+                        sg.getActiesVanDitArtikel().remove(0);
                         } 
                     }
 
