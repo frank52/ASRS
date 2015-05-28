@@ -16,7 +16,6 @@ public class ArduinoFuncties
     private Timer timer;
     private beweeg bewegen;
 
-
     private int i = 0;
 
     public ArduinoFuncties(Scherm scherm, Connectie c, Aansturing a, Timer t)
@@ -31,12 +30,13 @@ public class ArduinoFuncties
         t.scheduleAtFixedRate(bewegen, 0, 1);
 
     }
+
     public ArduinoFuncties(Scherm scherm, Connectie c, Aansturing a)
     {
         this.scherm = scherm;
         connectie = c;
         aansturing = a;
-            }
+    }
 
     public beweeg getBeweeg()
     {
@@ -90,17 +90,47 @@ public class ArduinoFuncties
 
     public void stuurLopendeBand(String richting)
     {
-            if (richting.equals("naarRechts"))
+        if (richting.equals("naarRechts"))
+        {
+            connectie.sendData("right");
+
+        }
+        else if (richting.equals("naarLinks"))
+        {
+            connectie.sendData("left");
+        }
+
+        else if (richting.equals("nieuwRechts"))
+        {
+            connectie.sendData("newRight");
+            while (!connectie.isOntvangen())
             {
-                connectie.sendData("right");
-                System.out.println("rechts");
+                try
+                {
+                    Thread.sleep(1);
+                }
+                catch (InterruptedException e)
+                {
+                }
 
             }
-            else if (richting.equals("naarLinks"))
+
+        }
+        else if (richting.equals("nieuwLinks"))
+        {
+            connectie.sendData("newLeft");
+            while (!connectie.isOntvangen())
             {
-                connectie.sendData("left");
-                System.out.println("Links");
+                try
+                {
+                    Thread.sleep(1);
+                }
+                catch (InterruptedException e)
+                {
+                }
+
             }
+        }
 
     }
 
@@ -119,7 +149,7 @@ public class ArduinoFuncties
 
         public void run()
         {
-           int iii =0;
+            int iii = 0;
             boolean pakken = false;
             boolean beweegt;
             while (bezig == true)
@@ -155,34 +185,43 @@ public class ArduinoFuncties
                     iii++;
                     if (iii == 3)
                     {
-                        String beweegHo = "" + (0 -vakken.get(0).getX()) + "";
+                        String beweegHo = "" + (0 - vakken.get(0).getX()) + "";
                         String beweegVe = "" + (4 - vakken.get(0).getY()) + "";
                         String beweegVeHo = beweegHo + "," + beweegVe;
                         vakken.remove(0);
                         connectie.sendData("startpositie");
                         while (!connectie.isOntvangen())
                         {
-                            try {
+                            try
+                            {
                                 Thread.sleep(1);
-                            } catch (InterruptedException e) {
+                            }
+                            catch (InterruptedException e)
+                            {
                             }
 
                         }
                         connectie.sendData(beweegVeHo);
                         while (!connectie.isOntvangen())
                         {
-                            try {
+                            try
+                            {
                                 Thread.sleep(1);
-                            } catch (InterruptedException e) {
+                            }
+                            catch (InterruptedException e)
+                            {
                             }
 
                         }
                         connectie.sendData("drop");
                         while (!connectie.isOntvangen())
                         {
-                            try {
+                            try
+                            {
                                 Thread.sleep(1);
-                            } catch (InterruptedException e) {
+                            }
+                            catch (InterruptedException e)
+                            {
                             }
 
                         }
@@ -193,44 +232,56 @@ public class ArduinoFuncties
                         connectie.sendData(beweegVeHo2);
                         while (!connectie.isOntvangen())
                         {
-                            try {
+                            try
+                            {
                                 Thread.sleep(1);
-                            } catch (InterruptedException e) {
+                            }
+                            catch (InterruptedException e)
+                            {
                             }
 
                         }
                         xArray.remove(0);
                         yArray.remove(0);
-                        iii=1;
+                        iii = 1;
                         if (iii == vakken.size())
                         {
-                            String beweegHo3 = "" + (0 -vakken.get(0).getX()) + "";
+                            String beweegHo3 = "" + (0 - vakken.get(0).getX()) + "";
                             String beweegVe3 = "" + (4 - vakken.get(0).getY()) + "";
                             String beweegVeHo3 = beweegHo3 + "," + beweegVe3;
                             connectie.sendData("startpositie");
                             while (!connectie.isOntvangen())
                             {
-                                try {
+                                try
+                                {
                                     Thread.sleep(1);
-                                } catch (InterruptedException e) {
+                                }
+                                catch (InterruptedException e)
+                                {
                                 }
 
                             }
                             connectie.sendData(beweegVeHo3);
                             while (!connectie.isOntvangen())
                             {
-                                try {
+                                try
+                                {
                                     Thread.sleep(1);
-                                } catch (InterruptedException e) {
+                                }
+                                catch (InterruptedException e)
+                                {
                                 }
 
                             }
                             connectie.sendData("drop");
                             while (!connectie.isOntvangen())
                             {
-                                try {
+                                try
+                                {
                                     Thread.sleep(1);
-                                } catch (InterruptedException e) {
+                                }
+                                catch (InterruptedException e)
+                                {
                                 }
 
                             }
@@ -238,44 +289,54 @@ public class ArduinoFuncties
                         }
                         vakken.remove(0);
 
-
                     }
-                    else {
+                    else
+                    {
                         if (iii == 2 && vakken.size() == 1)
                         {
-                            String beweegHo = "" + (0 -vakken.get(0).getX()) + "";
+                            String beweegHo = "" + (0 - vakken.get(0).getX()) + "";
                             String beweegVe = "" + (4 - vakken.get(0).getY()) + "";
                             String beweegVeHo = beweegHo + "," + beweegVe;
                             connectie.sendData("startpositie");
                             while (!connectie.isOntvangen())
                             {
-                                try {
+                                try
+                                {
                                     Thread.sleep(1);
-                                } catch (InterruptedException e) {
+                                }
+                                catch (InterruptedException e)
+                                {
                                 }
 
                             }
                             connectie.sendData(beweegVeHo);
                             while (!connectie.isOntvangen())
                             {
-                                try {
+                                try
+                                {
                                     Thread.sleep(1);
-                                } catch (InterruptedException e) {
+                                }
+                                catch (InterruptedException e)
+                                {
                                 }
 
                             }
                             connectie.sendData("drop");
                             while (!connectie.isOntvangen())
                             {
-                                try {
+                                try
+                                {
                                     Thread.sleep(1);
-                                } catch (InterruptedException e) {
+                                }
+                                catch (InterruptedException e)
+                                {
                                 }
 
                             }
 
                         }
-                        try {
+                        try
+                        {
                             vakken.remove(0);
                         }
                         catch (Exception e)
@@ -286,7 +347,7 @@ public class ArduinoFuncties
                 }
 
             }
-                connectie.close();
+            connectie.close();
         }
     }
 
